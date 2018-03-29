@@ -54,9 +54,9 @@ class octopi :
         statustext = default_font.render("Status:", True, (255, 255, 255), (0, 0, 0))
         
         #Fill background
-        screen.fill((0, 0, 0))
+        self.screen.fill((0, 0, 0))
         time.sleep(.5)
-        screen.blit(statustext, (10, 10))
+        self.screen.blit(statustext, (10, 10))
         pygame.display.update()
  
 # Create an instance of the OctoPi class
