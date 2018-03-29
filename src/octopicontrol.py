@@ -149,7 +149,6 @@ def main():
 	return_from_ss = False
 	screenpressed = False
 	
-
 	# Initialise screen
 	pygame.init()
 	screen = pygame.display.set_mode((480, 320))
@@ -192,35 +191,35 @@ def main():
 			background.fill((0, 0, 0))
 
 			# create fonts
-			font = pygame.font.Font(None, 100)
-			tzfont = pygame.font.Font(None, 46)
+			font = pygame.font.Font(None, 40)
+			#tzfont = pygame.font.Font(None, 46)
 		
 			# get time for currently selected timezone
-			tzdata = datetime.now(timezone(timezones[index]))
+			#tzdata = datetime.now(timezone(timezones[index]))
 
 			# format the date and time strings
-			local_time = tzdata.strftime('%X %Z')
-			local_date = tzdata.strftime('%x')
+			#local_time = tzdata.strftime('%X %Z')
+			#local_date = tzdata.strftime('%x')
 
 			# render each string with a font in a certain color
-			timetext = font.render(local_time, 1, (250, 250, 250))
-			datetext = font.render(local_date, 1, (250, 250, 250))
-			tzinfo = tzfont.render(locations[index], 1, (250, 250, 250))
+			#timetext = font.render(local_time, 1, (250, 250, 250))
+			#datetext = font.render(local_date, 1, (250, 250, 250))
+			statusLabel = font.render("Status:", True, (255, 255, 255))
 			
 			# figure out where to place time
-			timepos = timetext.get_rect()
-			timepos.centerx = background.get_rect().centerx
-			timepos.centery = background.get_rect().centery - 40
+			#timepos = timetext.get_rect()
+			#timepos.centerx = background.get_rect().centerx
+			#timepos.centery = background.get_rect().centery - 40
 
 			# figure out where to place date
-			datepos = datetext.get_rect()
-			datepos.centerx = background.get_rect().centerx
-			datepos.centery = background.get_rect().centery + 40
+			#datepos = datetext.get_rect()
+			#datepos.centerx = background.get_rect().centerx
+			#datepos.centery = background.get_rect().centery + 40
 		
 			# put the readable name at 10, 10
-			background.blit(tzinfo, (10, 10))
-			background.blit(timetext, timepos)
-			background.blit(datetext, datepos)
+			background.blit(statusLabel, (5, 5))
+			#background.blit(timetext, timepos)
+			#background.blit(datetext, datepos)
 			
 			# Blit everything to the screen
 			screen.blit(background, (0, 0))
