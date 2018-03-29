@@ -15,6 +15,7 @@ from pygame.locals import *
 os.putenv('SDL_FBDEV', '/dev/fb1')
 os.putenv('SDL_MOUSEDRV', 'TSLIB')
 os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
+os.putenv('SDL_VIDEODRIVER', 'dummy')
 
 tzone = "US/Central"
 
