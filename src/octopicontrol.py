@@ -118,7 +118,7 @@ class DelaySwitch(object):
 ########## end screen saver classes ##########
 
 def signal_handler(signal, frame):
-  print 'Signal: {}'.format(signal)
+  print 'Caught signal: {}'.format(signal)
   time.sleep(1)
   pygame.quit()
   sys.exit(0)
@@ -136,8 +136,8 @@ def main():
     pygame.mouse.set_visible(False)
 
     # setup signals to catch ctrl-c
-    signal.signal(signal.SIGTERM, signal_handler)
-    signal.signal(signal.SIGINT, signal_handler)
+    #signal.signal(signal.SIGTERM, signal_handler)
+    #signal.signal(signal.SIGINT, signal_handler)
     
     # main loop
     pos = (0, 0)
