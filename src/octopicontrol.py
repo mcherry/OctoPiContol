@@ -172,7 +172,7 @@ def main():
 			background.fill((0, 0, 0))
 
 			# create fonts
-			font = pygame.font.Font(get_script_path() + "/NotoMono-Regular.ttf", 12)
+			font = pygame.font.Font(get_script_path() + "/NotoMono-Regular.ttf", 16)
 			#tzfont = pygame.font.Font(None, 46)
 		
 			# get time for currently selected timezone
@@ -186,7 +186,12 @@ def main():
 			#timetext = font.render(local_time, 1, (250, 250, 250))
 			#datetext = font.render(local_date, 1, (250, 250, 250))
 			statusLabel = font.render("Status:", True, (255, 255, 255))
+                        fileLabel = font.render("Status:", True, (255, 255, 255))
+                        sizeLabel = font.render("Status:", True, (255, 255, 255))
+                        
                         background.blit(statusLabel, (5, 5))
+			background.blit(fileLabel, (5, 15))
+			background.blit(sizeLabel, (5, 25))
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
                         
