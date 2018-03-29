@@ -1,12 +1,9 @@
 #!/usr/bin/python
-__author__ = "mcherry"
-__date__ = "$Mar 29, 2018 8:33:53 AM$"
 # -*- coding: utf-8 -*-
 
 import pygame
 import os
 import time
-import pytz
 import random
 from datetime import datetime
 from pytz import timezone
@@ -120,7 +117,6 @@ class DelaySwitch(object):
 
 
 def main():
-	global index
 	global wclient
 	
 	runtime = 0
@@ -144,7 +140,7 @@ def main():
 				# this is an attempt to not process mousebuttonup events
 				# so fast that the time "skips" an index
 				pygame.event.set_blocked(MOUSEBUTTONUP)
-				time.sleep(0.35)
+				time.sleep(0.25)
 				
 				#pos = pygame.mouse.get_pos()
 				#print pos
@@ -174,11 +170,11 @@ def main():
 			tzdata = datetime.now(timezone(tzone))
 
 			# format the date and time strings
-			local_time = tzdata.strftime('%X %Z')
-			local_date = tzdata.strftime('%x')
+			#local_time = tzdata.strftime('%X %Z')
+			#local_date = tzdata.strftime('%x')
 
 			# render each string with a font in a certain color
-			statustext = font.render(local_time, 1, (250, 250, 250))
+			statustext = font.render("Status:", 1, (250, 250, 250))
 			#datetext = font.render(local_date, 1, (250, 250, 250))
 			#tzinfo = font.render(locations[index], 1, (250, 250, 250))
 			
@@ -210,7 +206,7 @@ def main():
 			
 			# re-enable mousebutton up events after processing time
 			pygame.event.set_allowed(MOUSEBUTTONUP)
-			time.sleep(0.9)
+			time.sleep(1)
 		
 		else:
 			# fire up the screensaver
