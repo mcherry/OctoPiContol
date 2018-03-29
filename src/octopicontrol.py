@@ -14,7 +14,7 @@ os.putenv('SDL_FBDEV', '/dev/fb1')
 os.putenv('SDL_MOUSEDRV', 'TSLIB')
 os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 
-tzone=("US/Central")
+tzone = "US/Central"
 
 ########## start screen saver classes ##########
 #
@@ -117,13 +117,10 @@ class DelaySwitch(object):
 
 
 def main():
-	global wclient
-	
 	runtime = 0
 	ssaver_time = 180
 	screensaver_on = False
 	return_from_ss = False
-	screenpressed = False
 	
 
 	# Initialise screen
@@ -165,9 +162,6 @@ def main():
 
 			# create fonts
 			font = pygame.font.Font(None, 46)
-		
-			# get time for currently selected timezone
-			tzdata = datetime.now(timezone(tzone))
 
 			# format the date and time strings
 			#local_time = tzdata.strftime('%X %Z')
