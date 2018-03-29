@@ -5,6 +5,8 @@ import pygame
 import os
 import time
 import random
+import sys
+import signal
 from datetime import datetime
 from pytz import timezone
 from pygame.locals import *
@@ -115,166 +117,161 @@ class DelaySwitch(object):
 
 ########## end screen saver classes ##########
 
+def signal_handler(signal, frame):
+  print 'Signal: {}'.format(signal)
+  sleep(1)
+  pygame.quit()
+  sys.exit(0)
 
 def main():
-	runtime = 0
-	ssaver_time = 180
-	screensaver_on = False
-	return_from_ss = False
+    runtime = 0
+    ssaver_time = 180
+    screensaver_on = False
+    return_from_ss = False
 	
 
-	# Initialise screen
-	pygame.init()
-	screen = pygame.display.set_mode((480, 320))
-	pygame.mouse.set_visible(False)
+    # Initialise screen
+    pygame.init()
+    screen = pygame.display.set_mode((480, 320))
+    pygame.mouse.set_visible(False)
 
-	# main loop that shows and cycles time
-	pos = (0, 0)
-	while 1:
-		for event in pygame.event.get():
-			if event.type is MOUSEBUTTONUP:
-				# disable mousebuttonup events while procesing the event.
-				# this is an attempt to not process mousebuttonup events
-				# so fast that the time "skips" an index
-				pygame.event.set_blocked(MOUSEBUTTONUP)
-				time.sleep(0.25)
+    # main loop
+    pos = (0, 0)
+    while 1:
+        for event in pygame.event.get():
+            if event.type is MOUSEBUTTONUP:
+                # disable mousebuttonup events while procesing the event.
+		# this is an attempt to not process mousebuttonup events
+		# so fast that the time "skips" an index
+		pygame.event.set_blocked(MOUSEBUTTONUP)
+		time.sleep(0.25)
+
+		#pos = pygame.mouse.get_pos()
+		#print pos
 				
-				#pos = pygame.mouse.get_pos()
-				#print pos
+		if return_from_ss != True:
+                    runtime = 0
+                    return_from_ss = False
+                    break
 				
-				if return_from_ss != True:
-                                    runtime = 0
-						
-				return_from_ss = False
-				
-				break
-				
-			elif event.type == QUIT:
-				return
+		elif event.type == QUIT:
+                    return
 
 		if screensaver_on is False:
-			# Show Time
+                    # Fill background
+                    background = pygame.Surface(screen.get_size())
+                    background = background.convert()
+                    background.fill((0, 0, 0))
+
+                    # create fonts
+                    font = pygame.font.Font(None, 46)
+
+                    # format the date and time strings
+                    #local_time = tzdata.strftime('%X %Z')
+                    #local_date = tzdata.strftime('%x')
+
+                    # render each string with a font in a certain color
+                    statustext = font.render("Status:", 1, (250, 250, 250))
+                    #datetext = font.render(local_date, 1, (250, 250, 250))
+                    #tzinfo = font.render(locations[index], 1, (250, 250, 250))
 			
-			# Fill background
-			background = pygame.Surface(screen.get_size())
-			background = background.convert()
-			background.fill((0, 0, 0))
+                    # figure out where to place time
+                    #timepos = timetext.get_rect()
+                    #timepos.centerx = background.get_rect().centerx
+                    #timepos.centery = background.get_rect().centery - 40
 
-			# create fonts
-			font = pygame.font.Font(None, 46)
-
-			# format the date and time strings
-			#local_time = tzdata.strftime('%X %Z')
-			#local_date = tzdata.strftime('%x')
-
-			# render each string with a font in a certain color
-			statustext = font.render("Status:", 1, (250, 250, 250))
-			#datetext = font.render(local_date, 1, (250, 250, 250))
-			#tzinfo = font.render(locations[index], 1, (250, 250, 250))
-			
-			# figure out where to place time
-			#timepos = timetext.get_rect()
-			#timepos.centerx = background.get_rect().centerx
-			#timepos.centery = background.get_rect().centery - 40
-
-			# figure out where to place date
-			#datepos = datetext.get_rect()
-			#datepos.centerx = background.get_rect().centerx
-			#datepos.centery = background.get_rect().centery + 40
+                    # figure out where to place date
+                    #datepos = datetext.get_rect()
+                    #datepos.centerx = background.get_rect().centerx
+                    #datepos.centery = background.get_rect().centery + 40
 		
-			# put the readable name at 10, 10
-			background.blit(statustext, (10, 10))
-			#background.blit(timetext, timepos)
-			#background.blit(datetext, datepos)
+                    # put the readable name at 10, 10
+                    background.blit(statustext, (10, 10))
+                    #background.blit(timetext, timepos)
+                    #background.blit(datetext, datepos)
 			
-			# Blit everything to the screen
-			screen.blit(background, (0, 0))
-			pygame.display.flip()
+                    # Blit everything to the screen
+                    screen.blit(background, (0, 0))
+                    pygame.display.flip()
 
-			# wait a second to refresh
-			runtime += 1
+                    # wait a second to refresh
+                    runtime += 1
 			
-			if runtime == ssaver_time:
-				runtime = 0
-				screensaver_on = True
+                    if runtime == ssaver_time:
+                        runtime = 0
+			screensaver_on = True
 			
-			# re-enable mousebutton up events after processing time
-			pygame.event.set_allowed(MOUSEBUTTONUP)
-			time.sleep(1)
+                    # re-enable mousebutton up events after processing time
+                    pygame.event.set_allowed(MOUSEBUTTONUP)
+                    time.sleep(1)
 		
 		else:
-			# fire up the screensaver
-			size = [480,320]
+                    # fire up the screensaver
+                    size = [480,320]
 			
-			background = pygame.Surface(screen.get_size())
-			background = background.convert()
-			background.fill((0, 0, 0))
-			screen.blit(background, (0, 0))
-			pygame.display.flip()
+                    background = pygame.Surface(screen.get_size())
+                    background = background.convert()
+                    background.fill((0, 0, 0))
+                    screen.blit(background, (0, 0))
+                    pygame.display.flip()
 					
-			delay = DelaySwitch(25)
+                    delay = DelaySwitch(25)
 
-			text_width=15
-			text = pygame.font.SysFont(None, text_width)
+                    text_width=15
+                    text = pygame.font.SysFont(None, text_width)
 
-			groups = []
+                    groups = []
 
-			add_line=1
-			pos = random.randint(1,size[0]/text_width+1)*text_width-text_width/2
+                    add_line=1
+                    pos = random.randint(1,size[0]/text_width+1)*text_width-text_width/2
 
-			while True:
-				if screensaver_on is False:
-					break
+                    while True:
+                        if screensaver_on is False:
+                            break
 									
-				add_line-=1
-				if add_line==0:
-					fast = random.randint(0,20)
-					if fast==0:
-						speed = 3
-					else:
-						speed = random.randint(1,2)
+			add_line-=1
+			if add_line==0:
+                            fast = random.randint(0,20)
+                            if fast==0:
+                                speed = 3
+                            else:
+                                speed = random.randint(1,2)
 
-					add_line=2
-					pos = random.randint(1,size[0]/text_width)*text_width-text_width/2
-					groups.append(Group([pos, -text.get_height()], speed))
+                            add_line=2
+                            pos = random.randint(1,size[0]/text_width)*text_width-text_width/2
+                            groups.append(Group([pos, -text.get_height()], speed))
 					
-				if random.randint(0,50) == 50:
-					# "matrix code" is a string made up of the current timezone/time/date
-					timedata = datetime.now(timezone(timezones[index]))
-					timestring = timedata.strftime('%X %Z %z') + locations[index] + timezones[index]
-					code = list(timestring)
-					random.shuffle(code, random.random)
-					
-					pos = [random.randint(1,size[0]/text_width+1)*text_width-text_width/2, random.randint(1,size[1]/text.get_height()+1)*text.get_height()]
-					groups.append(CodePartical(pos, random.randint(0,len(code)-1), code))
-
+                            if random.randint(0,50) == 50:
+                                # "matrix code" is a string made up of the current timezone/time/date
+                                timedata = datetime.now(timezone(timezones[index]))
+                                timestring = timedata.strftime('%X %Z %z') + locations[index] + timezones[index]
+                                code = list(timestring)
+                                random.shuffle(code, random.random)
+                                pos = [random.randint(1,size[0]/text_width+1)*text_width-text_width/2, random.randint(1,size[1]/text.get_height()+1)*text.get_height()]
+                                groups.append(CodePartical(pos, random.randint(0,len(code)-1), code))
 
 				for group in groups:
-					group.modernize(text, size)
-					if group.dead:
-						groups.remove(group)
+                                    group.modernize(text, size)
+                                    if group.dead:
+					groups.remove(group)
 						
 				rects = []
 				for group in groups:
-					for rect in group.render(screen, text):
-						rects.append(rect)
+                                    for rect in group.render(screen, text):
+                                        rects.append(rect)
 						
 				delay.update()
-				
 				pygame.display.flip()
 				
 				for rect in rects:
-					screen.fill([0,0,0], rect)
+                                    screen.fill([0,0,0], rect)
 
 				for event in pygame.event.get():
-					if event.type is MOUSEBUTTONUP:
-						screensaver_on = False
-						return_from_ss = True
-						
-						break
-											
-					elif event.type == QUIT:
-						return
-
+                                    if event.type is MOUSEBUTTONUP:
+                                        screensaver_on = False
+                                        return_from_ss = True
+                                        break			
+                                    elif event.type == QUIT:
+                                        return
 
 if __name__ == '__main__': main()
