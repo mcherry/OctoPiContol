@@ -19,7 +19,7 @@ os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 tzone = "US/Central"
 
 ########## start screen saver classes ##########
-#
+##
 # Matrix code borrowed and modified from Dylan J. Raub (dylanjraub)
 # http://pygame.org/project-Matrix+code-756-.html
 
