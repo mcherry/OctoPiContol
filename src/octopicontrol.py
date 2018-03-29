@@ -172,7 +172,7 @@ def main():
 			background.fill((0, 0, 0))
 
 			# create fonts
-			font = pygame.font.Font(get_script_path() + "NotoMono-Regular.ttf", 30)
+			font = pygame.font.Font(get_script_path() + "/NotoMono-Regular.ttf", 30)
 			#tzfont = pygame.font.Font(None, 46)
 		
 			# get time for currently selected timezone
