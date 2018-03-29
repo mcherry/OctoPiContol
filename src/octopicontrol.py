@@ -142,10 +142,8 @@ def main():
     pos = (0, 0)
     while True:
         for event in pygame.event.get():
-            if event.type is MOUSEBUTTONUP:
+            if event.type == MOUSEBUTTONUP:
                 # disable mousebuttonup events while procesing the event.
-		# this is an attempt to not process mousebuttonup events
-		# so fast that the time "skips" an index
 		pygame.event.set_blocked(MOUSEBUTTONUP)
 		time.sleep(0.25)
 
@@ -159,37 +157,14 @@ def main():
 		elif event.type == QUIT:
                     return
 
-            if screensaver_on is False:
+            if screensaver_on == False:
                 # create fonts
-                default_font = pygame.font.SysFont(None, 46)
-                statustext = default_font.render("Status:", True, (0, 0, 0), (255, 255, 255))
+                default_font = pygame.font.SysFont(None, 40)
+                statustext = default_font.render("Status:", True, (255, 255, 255), (0, 0, 0))
                 
                 # Fill background
                 screen.fill((0, 0, 0))
                 screen.blit(statustext, (10, 10))
-                
-                # format the date and time strings
-                # local_time = tzdata.strftime('%X %Z')
-                # local_date = tzdata.strftime('%x')
-
-                # render each string with a font in a certain color
-                #statustext = default_font.render("Status:", True, (0, 0, 0), (255, 255, 255))
-                #datetext = font.render(local_date, 1, (250, 250, 250))
-                #tzinfo = font.render(locations[index], 1, (250, 250, 250))
-			
-                # figure out where to place time
-                #timepos = timetext.get_rect()
-                #timepos.centerx = background.get_rect().centerx
-                #timepos.centery = background.get_rect().centery - 40
-
-                # figure out where to place date
-                #datepos = datetext.get_rect()
-                #datepos.centerx = background.get_rect().centerx
-                #datepos.centery = background.get_rect().centery + 40
-		
-                # put the readable name at 10, 10
-                #background.blit(statustext, (10, 10))
-
                 
                 pygame.display.update()
 
