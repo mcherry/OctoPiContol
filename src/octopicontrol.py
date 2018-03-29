@@ -6,7 +6,7 @@ import pygame
 import time
 import random
  
-class pyscope :
+class octopi :
     screen = None;
     
     def __init__(self):
@@ -50,13 +50,16 @@ class pyscope :
         "Destructor to make sure pygame shuts down, etc."
  
     def test(self):
-        # Fill the screen with red (255, 0, 0)
-        red = (255, 0, 0)
-        self.screen.fill(red)
-        # Update the display
+        default_font = pygame.font.SysFont(None, 40)
+        statustext = default_font.render("Status:", True, (255, 255, 255), (0, 0, 0))
+        
+        #Fill background
+        screen.fill((0, 0, 0))
+        time.sleep(.5)
+        screen.blit(statustext, (10, 10))
         pygame.display.update()
  
-# Create an instance of the PyScope class
-scope = pyscope()
-scope.test()
+# Create an instance of the OctoPi class
+newtest = octopi()
+newtest.test()
 time.sleep(10)
