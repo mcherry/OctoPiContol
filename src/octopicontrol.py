@@ -161,7 +161,7 @@ def main():
 
             if screensaver_on is False:
                 # create fonts
-                default_font = pygame.font.Sysfont(None, 46)
+                default_font = pygame.font.SysFont(None, 46)
                 statustext = default_font.render("Status:", True, (0, 0, 0), (255, 255, 255))
                 
                 # Fill background
