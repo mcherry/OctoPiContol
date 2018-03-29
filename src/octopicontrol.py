@@ -131,7 +131,7 @@ def main():
 
     # Initialise screen
     pygame.init()
-    screen = pygame.display.set_mode((480, 320))
+    screen = pygame.display.set_mode([480, 320])
     pygame.mouse.set_visible(False)
 
     # setup signals to catch ctrl-c
@@ -140,7 +140,7 @@ def main():
     
     # main loop
     pos = (0, 0)
-    while 1:
+    while True:
         for event in pygame.event.get():
             if event.type is MOUSEBUTTONUP:
                 # disable mousebuttonup events while procesing the event.
@@ -155,26 +155,25 @@ def main():
 		if return_from_ss != True:
                     runtime = 0
                     return_from_ss = False
-                    break
-				
+                    break	
 		elif event.type == QUIT:
                     return
 
             if screensaver_on is False:
-                # Fill background
-                background = pygame.Surface(screen.get_size())
-                background = background.convert()
-                background.fill((0, 0, 0))
-
                 # create fonts
-                default_font = pygame.font.Font(None, 46)
-
+                default_font = pygame.font.Sysfont(None, 46)
+                statustext = default_font.render("Status:", True, (0, 0, 0), (255, 255, 255))
+                
+                # Fill background
+                screen.fill((0, 0, 0))
+                screen.blit(statustext, (10, 10))
+                
                 # format the date and time strings
                 # local_time = tzdata.strftime('%X %Z')
                 # local_date = tzdata.strftime('%x')
 
                 # render each string with a font in a certain color
-                statustext = default_font.render("Status:", 1, (250, 250, 250))
+                #statustext = default_font.render("Status:", True, (0, 0, 0), (255, 255, 255))
                 #datetext = font.render(local_date, 1, (250, 250, 250))
                 #tzinfo = font.render(locations[index], 1, (250, 250, 250))
 			
@@ -189,13 +188,10 @@ def main():
                 #datepos.centery = background.get_rect().centery + 40
 		
                 # put the readable name at 10, 10
-                background.blit(statustext, (10, 10))
-                #background.blit(timetext, timepos)
-                #background.blit(datetext, datepos)
-			
-                # Blit everything to the screen
-                screen.blit(background, (0, 0))
-                pygame.display.flip()
+                #background.blit(statustext, (10, 10))
+
+                
+                pygame.display.update()
 
                 # wait a second to refresh
                 runtime += 1
