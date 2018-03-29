@@ -3,6 +3,7 @@
 
 import pygame
 import os
+import sys
 import time
 import pytz
 import random
@@ -116,6 +117,9 @@ class DelaySwitch(object):
 
 ########## end screen saver classes ##########
 
+def get_script_path():
+    return os.path.dirname(os.path.realpath(sys.argv[0]))
+
 def main():
 	global index
 	global wclient
@@ -168,7 +172,7 @@ def main():
 			background.fill((0, 0, 0))
 
 			# create fonts
-			font = pygame.font.SysFont("Helvetica", 30)
+			font = pygame.font.Font(get_script_path() + "NotoMono-Regular.ttf", 30)
 			#tzfont = pygame.font.Font(None, 46)
 		
 			# get time for currently selected timezone
