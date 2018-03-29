@@ -186,12 +186,15 @@ def main():
 			#timetext = font.render(local_time, 1, (250, 250, 250))
 			#datetext = font.render(local_date, 1, (250, 250, 250))
 			statusLabel = font.render("Status:", True, (255, 255, 255))
-                        fileLabel = font.render("Status:", True, (255, 255, 255))
-                        sizeLabel = font.render("Status:", True, (255, 255, 255))
+                        fileLabel = font.render("File:", True, (255, 255, 255))
+                        sizeLabel = font.render("Size:", True, (255, 255, 255))
                         
                         background.blit(statusLabel, (5, 5))
-			background.blit(fileLabel, (5, 15))
-			background.blit(sizeLabel, (5, 25))
+			background.blit(fileLabel, (5, 20))
+			background.blit(sizeLabel, (5, 35))
+                        
+                        pygame.draw.rect(background, (255, 255, 255), (5, 55, 475, 75))
+                        
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
                         
