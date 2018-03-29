@@ -15,30 +15,7 @@ os.putenv('SDL_FBDEV', '/dev/fb1')
 os.putenv('SDL_MOUSEDRV', 'TSLIB')
 os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 
-# timezones we want to keep track of
-timezones=[]
-timezones.append("Etc/UTC")
-timezones.append("US/Eastern")
-timezones.append("US/Central")
-timezones.append("Europe/Amsterdam")
-timezones.append("US/Pacific")
-timezones.append("Asia/Singapore")
-timezones.append("Europe/London")
-timezones.append("America/Toronto")
-
-# locations associated with timezones
-locations=[]
-locations.append("World")
-locations.append("New York, NY")
-locations.append("Home")
-locations.append("Amsterdam, NL")
-locations.append("San Francisco, CA")
-locations.append("Singapore")
-locations.append("London, FR")
-locations.append("Toronto, ON")
-
-# Where to start the clock
-index = 2
+default_timezone = "US/Central";
 
 ########## start screen saver classes ##########
 #
@@ -191,7 +168,7 @@ def main():
 			background.fill((0, 0, 0))
 
 			# create fonts
-			font = pygame.font.Font(None, 40)
+			font = pygame.font.Font(None, 30)
 			#tzfont = pygame.font.Font(None, 46)
 		
 			# get time for currently selected timezone
@@ -205,7 +182,10 @@ def main():
 			#timetext = font.render(local_time, 1, (250, 250, 250))
 			#datetext = font.render(local_date, 1, (250, 250, 250))
 			statusLabel = font.render("Status:", True, (255, 255, 255))
-			
+                        background.blit(statusLabel, (5, 5))
+			screen.blit(background, (0, 0))
+			pygame.display.flip()
+                        
 			# figure out where to place time
 			#timepos = timetext.get_rect()
 			#timepos.centerx = background.get_rect().centerx
@@ -217,14 +197,10 @@ def main():
 			#datepos.centery = background.get_rect().centery + 40
 		
 			# put the readable name at 10, 10
-			background.blit(statusLabel, (5, 5))
+			
 			#background.blit(timetext, timepos)
 			#background.blit(datetext, datepos)
 			
-			# Blit everything to the screen
-			screen.blit(background, (0, 0))
-			pygame.display.flip()
-
 			# wait a second to refresh
 			runtime += 1
 			
