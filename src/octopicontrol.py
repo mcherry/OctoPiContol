@@ -193,7 +193,7 @@ def main():
 			background.blit(fileLabel, (5, 30))
 			background.blit(sizeLabel, (5, 55))
                         
-                        pygame.draw.rect(background, (255, 255, 255), (5, 85, 470, 75), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 85, 470, 60), 2)
                         
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
