@@ -142,6 +142,21 @@ def main():
     pos = (0, 0)
     while True:
         for event in pygame.event.get():
+            if event.type == MOUSEBUTTONUP:
+                # disable mousebuttonup events while procesing the event.
+		pygame.event.set_blocked(MOUSEBUTTONUP)
+		time.sleep(0.25)
+
+		#pos = pygame.mouse.get_pos()
+		#print pos
+				
+		if return_from_ss != True:
+                    runtime = 0
+                    return_from_ss = False
+                    break	
+		elif event.type == QUIT:
+                    return
+
             if screensaver_on == False:
                 # create fonts
                 default_font = pygame.font.SysFont(None, 40)
@@ -149,6 +164,7 @@ def main():
                 
                 # Fill background
                 screen.fill((0, 0, 0))
+                time.sleep(.5)
                 screen.blit(statustext, (10, 10))
                 
                 pygame.display.update()
@@ -162,7 +178,7 @@ def main():
 			
                 # re-enable mousebutton up events after processing time
                 pygame.event.set_allowed(MOUSEBUTTONUP)
-                time.sleep(1)
+                time.sleep(.5)
 		
             else:
                 # fire up the screensaver
@@ -231,20 +247,5 @@ def main():
                                     break			
                                 elif event.type == QUIT:
                                     return
-            
-            if event.type == MOUSEBUTTONUP:
-                # disable mousebuttonup events while procesing the event.
-		pygame.event.set_blocked(MOUSEBUTTONUP)
-		time.sleep(0.25)
-
-		#pos = pygame.mouse.get_pos()
-		#print pos
-				
-		if return_from_ss != True:
-                    runtime = 0
-                    return_from_ss = False
-                    break	
-		elif event.type == QUIT:
-                    return
 
 if __name__ == '__main__': main()
