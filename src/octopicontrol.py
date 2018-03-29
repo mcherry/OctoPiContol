@@ -131,13 +131,17 @@ def main():
 	
 
     # Initialise screen
+    time.sleep(.25);
     pygame.init()
+    time.sleep(.25);
     screen = pygame.display.set_mode((480, 320))
+    time.sleep(.25);
     pygame.mouse.set_visible(False)
+    time.sleep(.25);
 
     # setup signals to catch ctrl-c
-    #signal.signal(signal.SIGTERM, signal_handler)
-    #signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+    signal.signal(signal.SIGINT, signal_handler)
     
     # main loop
     pos = (0, 0)
