@@ -119,7 +119,7 @@ class DelaySwitch(object):
 
 def signal_handler(signal, frame):
   print 'Signal: {}'.format(signal)
-  sleep(1)
+  time.sleep(1)
   pygame.quit()
   sys.exit(0)
 
