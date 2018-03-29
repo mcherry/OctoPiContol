@@ -190,10 +190,10 @@ def main():
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
                         
                         background.blit(statusLabel, (5, 5))
-			background.blit(fileLabel, (5, 20))
-			background.blit(sizeLabel, (5, 35))
+			background.blit(fileLabel, (5, 25))
+			background.blit(sizeLabel, (5, 45))
                         
-                        pygame.draw.rect(background, (255, 255, 255), (5, 55, 475, 75))
+                        pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 75), 2)
                         
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
@@ -262,8 +262,8 @@ def main():
 					
 				if random.randint(0,50) == 50:
 					# "matrix code" is a string made up of the current timezone/time/date
-					timedata = datetime.now(timezone(timezones[index]))
-					timestring = timedata.strftime('%X %Z %z') + locations[index] + timezones[index]
+					timedata = datetime.now(timezone(default_timezone))
+					timestring = timedata.strftime('%X %Z %z') + "MP Mini V2" + default_timezone
 					code = list(timestring)
 					random.shuffle(code, random.random)
 					
