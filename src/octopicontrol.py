@@ -130,7 +130,7 @@ def main():
     return_from_ss = False
 
     # Initialise screen
-    pygame.display.init()
+    pygame.init()
     screen = pygame.display.set_mode((480, 320))
     pygame.mouse.set_visible(False)
 
@@ -167,14 +167,14 @@ def main():
                 background.fill((0, 0, 0))
 
                 # create fonts
-                font = pygame.font.Font(None, 46)
+                default_font = pygame.font.Font(None, 46)
 
                 # format the date and time strings
                 # local_time = tzdata.strftime('%X %Z')
                 # local_date = tzdata.strftime('%x')
 
                 # render each string with a font in a certain color
-                statustext = font.render("Status:", 1, (250, 250, 250))
+                statustext = default_font.render("Status:", 1, (250, 250, 250))
                 #datetext = font.render(local_date, 1, (250, 250, 250))
                 #tzinfo = font.render(locations[index], 1, (250, 250, 250))
 			
