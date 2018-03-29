@@ -190,10 +190,10 @@ def main():
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
                         
                         background.blit(statusLabel, (5, 5))
-			background.blit(fileLabel, (5, 25))
-			background.blit(sizeLabel, (5, 45))
+			background.blit(fileLabel, (5, 30))
+			background.blit(sizeLabel, (5, 55))
                         
-                        pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 75), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 75, 470, 75), 2)
                         
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
