@@ -1,11 +1,6 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
-
+#!/usr/bin/python
 __author__ = "mcherry"
 __date__ = "$Mar 29, 2018 8:33:53 AM$"
-
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import pygame
@@ -22,32 +17,7 @@ os.putenv('SDL_FBDEV', '/dev/fb1')
 os.putenv('SDL_MOUSEDRV', 'TSLIB')
 os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 
-# timezones we want to keep track of
-timezones=[]
-timezones.append("Etc/UTC")
-timezones.append("US/Eastern")
-timezones.append("US/Central")
-timezones.append("Europe/Amsterdam")
-timezones.append("US/Pacific")
-timezones.append("Asia/Singapore")
-timezones.append("Europe/London")
-timezones.append("America/Toronto")
-
 tzone=("US/Central")
-
-# locations associated with timezones
-locations=[]
-locations.append("World")
-locations.append("New York, NY")
-locations.append("Home")
-locations.append("Amsterdam, NL")
-locations.append("San Francisco, CA")
-locations.append("Singapore")
-locations.append("London, FR")
-locations.append("Toronto, ON")
-
-# Where to start the clock
-index = 2
 
 ########## start screen saver classes ##########
 #
@@ -174,17 +144,13 @@ def main():
 				# this is an attempt to not process mousebuttonup events
 				# so fast that the time "skips" an index
 				pygame.event.set_blocked(MOUSEBUTTONUP)
-				time.sleep(0.30)
+				time.sleep(0.35)
 				
 				#pos = pygame.mouse.get_pos()
 				#print pos
 				
 				if return_from_ss != True:
-					index += 1
-
-					if (index > (len(timezones)-1)):
-						index = 0
-						runtime = 0
+                                    runtime = 0
 						
 				return_from_ss = False
 				
