@@ -48,7 +48,6 @@ class pyscope :
  
     def __del__(self):
         "Destructor to make sure pygame shuts down, etc."
-        pygame.quit()
  
     def test(self):
         # Fill the screen with red (255, 0, 0)
