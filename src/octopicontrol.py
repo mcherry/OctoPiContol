@@ -171,25 +171,8 @@ def main():
 	pos = (0, 0)
 	while 1:
 		for event in pygame.event.get():
-			if event.type is MOUSEBUTTONUP:
-				# disable mousebuttonup events while procesing the event.
-				# this is an attempt to not process mousebuttonup events
-				# so fast that the time "skips" an index
-				pygame.event.set_blocked(MOUSEBUTTONUP)
-				time.sleep(0.25)
-				
-				#pos = pygame.mouse.get_pos()
-                                # pushed button 1
-                                
-				#print pos
-				
-				if return_from_ss != True:
-					runtime = 0
-						
-				return_from_ss = False
-				
-				break
-                        
+			if event.type == QUIT:
+				return
                         elif event.type == MOUSEBUTTONDOWN:
 				time.sleep(0.25)
                                 mouse_pos = event.pos
@@ -211,10 +194,8 @@ def main():
 						
 				return_from_ss = False
                                 time.sleep(.25)
+                                
 				break
-				
-			elif event.type == QUIT:
-				return
 
 		if screensaver_on is False:
 			# Show Time
