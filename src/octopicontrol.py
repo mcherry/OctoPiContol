@@ -189,7 +189,7 @@ def main():
 				time.sleep(0.25)
                                 
                                 x, y = event.pos
-                                if (background.get_rect(5, 160, 100, 100).collidepoint(x, y)):
+                                if (pygame.Rect(5, 160, 100, 100).collidepoint(x, y)):
                                     print "Pressed button 1"
                                 
                                 if return_from_ss != True:
