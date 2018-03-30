@@ -7,6 +7,9 @@ import sys
 import time
 import pytz
 import random
+import socket
+import fcntl
+import struct
 from datetime import datetime
 from pytz import timezone
 from pygame.locals import *
@@ -120,6 +123,15 @@ class DelaySwitch(object):
 def get_script_path():
     return os.path.dirname(os.path.realpath(sys.argv[0]))
 
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', ifname[:15]))[20:24])
+
+def getHwAddr(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', ifname[:15]))
+    return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1]
+
 def main():
 	global index
 	global wclient
@@ -183,14 +195,14 @@ def main():
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
                         infoLine1 = font.render("[ Ext:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
                         infoLine2 = font.render("[ Bed:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
+                        inetInfo1 = font.render("   [ eth0:                 ] [ mac:                   ]")
+                        inetInfo2 = font.render("   [ wl0:                  ] [ mac:                   ]")
                         timeText = font.render(local_time, True, (255, 255, 255))
 			dateText = font.render(local_date, True, (255, 255, 255))
 			
                         background.blit(statusLabel, (5, 5))
 			background.blit(fileLabel, (5, 25))
 			background.blit(sizeLabel, (5, 45))
-                        background.blit(dateText, (5, 300))
-                        background.blit(timeText, (405, 300))
                         
                         # progress bar
                         pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
@@ -203,6 +215,13 @@ def main():
                         pygame.draw.rect(background, (255, 255, 255), (127, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (250, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (371, 160, 100, 100), 2)
+                        
+                        background.blit(inetInfo1, (5,275))
+                        background.blit(inetInfo2, (5,290))
+                        
+                        # date and time
+                        background.blit(dateText, (5, 300))
+                        background.blit(timeText, (405, 300))
                         
                         screen.blit(background, (0, 0))
 			pygame.display.flip()
