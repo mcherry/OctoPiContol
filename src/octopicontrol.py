@@ -194,7 +194,9 @@ def main():
                                 pygame.event.set_blocked(MOUSEBUTTONDOWN)
 				time.sleep(0.25)
                                 
-                                if Button1.collidepoint(event.pos):
+                                mouse_pos = event.pos
+                                
+                                if Button1.collidepoint(mouse_pos):
                                     print "Pressed button 1"
                                 
                                 if return_from_ss != True:
