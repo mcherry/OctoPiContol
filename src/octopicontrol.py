@@ -160,22 +160,19 @@ def main():
 	pygame.init()
 	screen = pygame.display.set_mode((480, 320))
 	pygame.mouse.set_visible(False)
+        
+        Button1 = pygame.Rect(5, 160, 100, 100)
+        Button2 = pygame.Rect(127, 160, 100, 100)
+        Button3 = pygame.Rect(250, 160, 100, 100)
+        Button4 = pygame.Rect(371, 160, 100, 100)
 
 	# main loop that shows and cycles time
 	pos = (0, 0)
 	while 1:
-                Button1 = pygame.Rect(5, 160, 100, 100)
-                Button2 = pygame.Rect(127, 160, 100, 100)
-                Button3 = pygame.Rect(250, 160, 100, 100)
-                Button4 = pygame.Rect(371, 160, 100, 100)
-        
-                clock = pygame.time.Clock();
-                clock.tick(30)
-                
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				return
-                        elif event.type == MOUSEBUTTONDOWN:
+                        elif event.type == MOUSEBUTTONUP:
                                 mouse_pos = pygame.mouse.get_pos()
                                 
                                 if Button1.collidepoint(mouse_pos):
@@ -271,7 +268,8 @@ def main():
 				runtime = 0
 				screensaver_on = True
 			
-			#time.sleep(1)
+			clock = pygame.time.Clock();
+                        clock.tick(30)
 		
 		else:
 			# fire up the screensaver
