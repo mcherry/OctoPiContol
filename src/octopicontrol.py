@@ -194,7 +194,7 @@ def main():
 			background.blit(fileLabel, (5, 25))
 			background.blit(sizeLabel, (5, 45))
                         background.blit(dateText, (5, 300))
-                        background.blit(timeText, (400, 300))
+                        background.blit(timeText, (410, 300))
                         
                         # progress bar
                         pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
