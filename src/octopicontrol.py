@@ -170,7 +170,7 @@ def main():
 	# main loop that shows and cycles time
 	pos = (0, 0)
 	while 1:
-                clock.tick(30)
+                pygame.time.Clock.tick(30)
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				return
@@ -179,19 +179,15 @@ def main():
                                 
                                 if Button1.collidepoint(mouse_pos):
                                     print "Pressed button 1"
-                                    break
                                     
                                 if Button2.collidepoint(mouse_pos):
                                     print "Pressed button 2"
-                                    break
                                 
                                 if Button3.collidepoint(mouse_pos):
                                     print "Pressed button 3"
-                                    break
                                     
                                 if Button4.collidepoint(mouse_pos):
                                     print "Pressed button 4"
-                                    break
                                     
                                 if return_from_ss != True:
 					runtime = 0
