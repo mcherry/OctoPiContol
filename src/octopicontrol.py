@@ -197,14 +197,14 @@ def main():
                         # progress bar
                         pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
                         
-                        background.blit(infoLine1, (5, 120))
-                        background.blit(infoLine2, (5, 140))
+                        background.blit(infoLine1, (5, 115))
+                        background.blit(infoLine2, (5, 135))
                         
                         # buttons
                         pygame.draw.rect(background, (255, 255, 255), (5, 160, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (125, 160, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (240, 160, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (355, 160, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (130, 160, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (244, 160, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (360, 160, 100, 100), 2)
                         
                         screen.blit(background, (0, 0))
 			pygame.display.flip()
