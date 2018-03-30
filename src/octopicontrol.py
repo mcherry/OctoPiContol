@@ -21,11 +21,6 @@ os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 
 default_timezone = "US/Central";
 
-Button1 = pygame.Rect(5, 160, 100, 100)
-Button2 = pygame.Rect(127, 160, 100, 100)
-Button3 = pygame.Rect(250, 160, 100, 100)
-Button4 = pygame.Rect(371, 160, 100, 100)
-
 ########## start screen saver classes ##########
 #
 # Matrix code borrowed and modified from Dylan J. Raub (dylanjraub)
@@ -154,7 +149,6 @@ def getHWAddr(ifname):
 def main():
 	global index
 	global wclient
-        global Button1, Button2, Button3, Button4
 	
 	runtime = 0
 	ssaver_time = 180
@@ -166,6 +160,11 @@ def main():
 	pygame.init()
 	screen = pygame.display.set_mode((480, 320))
 	pygame.mouse.set_visible(False)
+        
+        Button1 = pygame.Rect(5, 160, 100, 100)
+        Button2 = pygame.Rect(127, 160, 100, 100)
+        Button3 = pygame.Rect(250, 160, 100, 100)
+        Button4 = pygame.Rect(371, 160, 100, 100)
 
 	# main loop that shows and cycles time
 	pos = (0, 0)
@@ -272,7 +271,7 @@ def main():
 				runtime = 0
 				screensaver_on = True
 			
-			time.sleep(1)
+			#time.sleep(1)
 		
 		else:
 			# fire up the screensaver
