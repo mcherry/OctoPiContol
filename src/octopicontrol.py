@@ -195,8 +195,8 @@ def main():
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
                         infoLine1 = font.render("[ Ext:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
                         infoLine2 = font.render("[ Bed:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
-                        inetInfo2 = font.render("   [ wlan0: " + getIPAddr('wlan0') + " ] [ mac: " + getHWAddr('wlan0') + " ]", True, (255, 255, 255))
-                        inetInfo1 = font.render("   [ eth0:  " + getIPAddr('eth0') + " ] [ mac: " + getHWAddr('eth0') + " ]", True, (255, 255, 255))
+                        inetInfo2 = font.render("   [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ] [ mac: " + getHWAddr('wlan0') + " ]", True, (255, 255, 255))
+                        inetInfo1 = font.render("   [ eth0:  " + getIPAddr('eth0').ljust(15) + " ] [ mac: " + getHWAddr('eth0') + " ]", True, (255, 255, 255))
                         timeText = font.render(local_time, True, (255, 255, 255))
 			dateText = font.render(local_date, True, (255, 255, 255))
 			
