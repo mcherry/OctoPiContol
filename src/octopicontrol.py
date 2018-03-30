@@ -199,7 +199,14 @@ def main():
                         
                         background.blit(infoLine1, (5, 90))
                         background.blit(infoLine2, (5, 105))
-			screen.blit(background, (0, 0))
+                        
+                        # buttons
+                        pygame.draw.rect(background, (255, 255, 255), (5, 120, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 235, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 350, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 165, 100, 100), 2)
+                        
+                        screen.blit(background, (0, 0))
 			pygame.display.flip()
                         
 			# figure out where to place time
