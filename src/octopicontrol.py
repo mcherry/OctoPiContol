@@ -184,7 +184,7 @@ def main():
 				
 				break
                         
-                        elif event.type == MOUSEBUTTODOWN:
+                        elif event.type == MOUSEBUTTONDOWN:
                                 pygame.event.set_blocked(MOUSEBUTTONDOWN)
 				time.sleep(0.25)
                                 
