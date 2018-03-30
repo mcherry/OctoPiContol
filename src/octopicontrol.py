@@ -178,8 +178,8 @@ def main():
 			tzdata = datetime.now(timezone(default_timezone))
 
 			# format the date and time strings
-			local_time = tzdata.strftime('%X %Z')
-			local_date = tzdata.strftime('%x')
+			local_time = tzdata.strftime('%H:%M:%S')
+			local_date = tzdata.strftime('%Y-%m-%d')
 
 			# render each string with a font in a certain color
 			statusLabel = font.render("Status:", True, (255, 255, 255))
