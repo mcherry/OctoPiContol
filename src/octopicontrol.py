@@ -179,7 +179,7 @@ def main():
 
 			# format the date and time strings
 			local_time = tzdata.strftime('%H:%M:%S')
-			local_date = tzdata.strftime('%Y-%m-%d')
+			local_date = tzdata.strftime('%m-%d-%Y')
 
 			# render each string
 			statusLabel = font.render("Status:", True, (255, 255, 255))
@@ -194,7 +194,7 @@ def main():
 			background.blit(fileLabel, (5, 25))
 			background.blit(sizeLabel, (5, 45))
                         background.blit(dateText, (5, 300))
-                        background.blit(timeText, (340, 300))
+                        background.blit(timeText, (400, 300))
                         
                         # progress bar
                         pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
@@ -207,8 +207,6 @@ def main():
                         pygame.draw.rect(background, (255, 255, 255), (127, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (250, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (371, 160, 100, 100), 2)
-                        
-                        
                         
                         screen.blit(background, (0, 0))
 			pygame.display.flip()
