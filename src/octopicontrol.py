@@ -58,8 +58,8 @@ class CodePartical(object):
 class Group(object): 
     def __init__(self, pos, speed):
 		# "matrix code" is a string made up of the current timezone/time/date
-		timedata = datetime.now(timezone(timezones[index]))
-		timestring = timedata.strftime('%X %Z %z') + locations[index] + timezones[index]
+		timedata = datetime.now(timezone(default_timezone))
+		timestring = timedata.strftime('%X %Z %z') + default_timezone
 		self.code = list(timestring)
 		random.shuffle(self.code, random.random)
 		
@@ -182,17 +182,19 @@ def main():
 			#local_date = tzdata.strftime('%x')
 
 			# render each string with a font in a certain color
-			#timetext = font.render(local_time, 1, (250, 250, 250))
-			#datetext = font.render(local_date, 1, (250, 250, 250))
 			statusLabel = font.render("Status:", True, (255, 255, 255))
                         fileLabel = font.render("File:", True, (255, 255, 255))
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
                         infoLine1 = font.render("[ Ext:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
                         infoLine2 = font.render("[ Bed:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
-                        
+                        timeText = font.render(local_time, True, (255, 255, 255))
+			dateText = font.render(local_date, True, (255, 255, 255))
+			
                         background.blit(statusLabel, (5, 5))
 			background.blit(fileLabel, (5, 25))
 			background.blit(sizeLabel, (5, 45))
+                        background.blit(dateText, (5, 305))
+                        background.blit(timeText, (300, 305))
                         
                         # progress bar
                         pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
@@ -205,6 +207,8 @@ def main():
                         pygame.draw.rect(background, (255, 255, 255), (127, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (250, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (371, 160, 100, 100), 2)
+                        
+                        
                         
                         screen.blit(background, (0, 0))
 			pygame.display.flip()
