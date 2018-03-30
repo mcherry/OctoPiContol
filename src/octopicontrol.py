@@ -201,10 +201,10 @@ def main():
                         background.blit(infoLine2, (5, 105))
                         
                         # buttons
-                        pygame.draw.rect(background, (255, 255, 255), (5, 120, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (5, 235, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (5, 350, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (5, 165, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 125, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (120, 125, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (235, 125, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (350, 125, 100, 100), 2)
                         
                         screen.blit(background, (0, 0))
 			pygame.display.flip()
