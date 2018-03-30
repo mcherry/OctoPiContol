@@ -124,13 +124,27 @@ def get_script_path():
     return os.path.dirname(os.path.realpath(sys.argv[0]))
 
 def getIPAddr(ifname):
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', ifname[:15]))[20:24])
+    retval = ""
+    
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        retval = socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', ifname[:15]))[20:24])
+    except:
+        retval = "000.000.000.000"
+        
+    return retval
 
 def getHWAddr(ifname):
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', ifname[:15]))
-    return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1]
+    retval = ""
+    
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', ifname[:15]))
+        retval = ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1]
+    except:
+        retval = "000.000.000.000"
+
+    return retval
 
 def main():
 	global index
