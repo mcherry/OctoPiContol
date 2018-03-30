@@ -150,11 +150,7 @@ def main():
 				#print pos
 				
 				if return_from_ss != True:
-					index += 1
-
-					if (index > (len(timezones)-1)):
-						index = 0
-						runtime = 0
+					runtime = 0
 						
 				return_from_ss = False
 				
@@ -194,7 +190,7 @@ def main():
 			background.blit(fileLabel, (5, 25))
 			background.blit(sizeLabel, (5, 45))
                         background.blit(dateText, (5, 300))
-                        background.blit(timeText, (410, 300))
+                        background.blit(timeText, (405, 300))
                         
                         # progress bar
                         pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
