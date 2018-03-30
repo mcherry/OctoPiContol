@@ -172,8 +172,7 @@ def main():
 			background.fill((0, 0, 0))
 
 			# create fonts
-			font = pygame.font.Font(get_script_path() + "/NotoMono-Regular.ttf", 16)
-			#tzfont = pygame.font.Font(None, 46)
+			font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 16)
 		
 			# get time for currently selected timezone
 			#tzdata = datetime.now(timezone(timezones[index]))
@@ -188,12 +187,17 @@ def main():
 			statusLabel = font.render("Status:", True, (255, 255, 255))
                         fileLabel = font.render("File:", True, (255, 255, 255))
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
+                        infoLine1 = font.render("[ Extruder:      ]  [ Target:      ]  [ Low:      ]  [ High:      ]", True, (255, 255, 255))
+                        infoLine2 = font.render("[ Bed:           ]  [ Target:      ]  [ Low:      ]  [ High:      ]", True, (255, 255, 255))
                         
                         background.blit(statusLabel, (5, 5))
 			background.blit(fileLabel, (5, 30))
 			background.blit(sizeLabel, (5, 55))
                         
+                        # progress bar
                         pygame.draw.rect(background, (255, 255, 255), (5, 85, 470, 60), 2)
+                        
+                        background.blit(infoLine1, (5, 160))
                         
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
