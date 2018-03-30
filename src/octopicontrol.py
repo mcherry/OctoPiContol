@@ -123,11 +123,11 @@ class DelaySwitch(object):
 def get_script_path():
     return os.path.dirname(os.path.realpath(sys.argv[0]))
 
-def get_ip_address(ifname):
+def getIPAddr(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', ifname[:15]))[20:24])
 
-def getHwAddr(ifname):
+def getHWAddr(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', ifname[:15]))
     return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1]
@@ -195,7 +195,7 @@ def main():
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
                         infoLine1 = font.render("[ Ext:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
                         infoLine2 = font.render("[ Bed:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
-                        inetInfo1 = font.render("   [ eth0:                 ] [ mac:                   ]", True, (255, 255, 255))
+                        inetInfo1 = font.render("   [ eth0: " + getIPAddr('eth0') + " ] [ mac: " + getHWAddr('eth0') + " ]", True, (255, 255, 255))
                         inetInfo2 = font.render("   [ wl0:                  ] [ mac:                   ]", True, (255, 255, 255))
                         timeText = font.render(local_time, True, (255, 255, 255))
 			dateText = font.render(local_date, True, (255, 255, 255))
