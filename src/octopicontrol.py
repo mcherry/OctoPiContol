@@ -191,9 +191,7 @@ def main():
 				break
                         
                         elif event.type == MOUSEBUTTONDOWN:
-                                pygame.event.set_blocked(MOUSEBUTTONDOWN)
 				time.sleep(0.25)
-                                
                                 mouse_pos = event.pos
                                 
                                 if Button1.collidepoint(mouse_pos):
@@ -213,7 +211,6 @@ def main():
 						
 				return_from_ss = False
                                 time.sleep(.25)
-				pygame.event.set_allowed(MOUSEBUTTONDOWN)
 				break
 				
 			elif event.type == QUIT:
