@@ -175,7 +175,7 @@ def main():
 			font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
 		
 			# get time for currently selected timezone
-			tzdata = datetime.now(timezone(timezones[index]))
+			tzdata = datetime.now(timezone(default_timezone))
 
 			# format the date and time strings
 			local_time = tzdata.strftime('%X %Z')
