@@ -178,15 +178,19 @@ def main():
                                 
                                 if Button1.collidepoint(mouse_pos):
                                     print "Pressed button 1"
+                                    break
                                     
                                 if Button2.collidepoint(mouse_pos):
                                     print "Pressed button 2"
+                                    break
                                 
                                 if Button3.collidepoint(mouse_pos):
                                     print "Pressed button 3"
+                                    break
                                     
                                 if Button4.collidepoint(mouse_pos):
                                     print "Pressed button 4"
+                                    break
                                     
                                 if return_from_ss != True:
 					runtime = 0
