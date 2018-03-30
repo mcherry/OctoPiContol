@@ -160,15 +160,15 @@ def main():
 	pygame.init()
 	screen = pygame.display.set_mode((480, 320))
 	pygame.mouse.set_visible(False)
-        
-        Button1 = pygame.Rect(5, 160, 100, 100)
-        Button2 = pygame.Rect(127, 160, 100, 100)
-        Button3 = pygame.Rect(250, 160, 100, 100)
-        Button4 = pygame.Rect(371, 160, 100, 100)
 
 	# main loop that shows and cycles time
 	pos = (0, 0)
 	while 1:
+                Button1 = pygame.Rect(5, 160, 100, 100)
+                Button2 = pygame.Rect(127, 160, 100, 100)
+                Button3 = pygame.Rect(250, 160, 100, 100)
+                Button4 = pygame.Rect(371, 160, 100, 100)
+        
                 clock = pygame.time.Clock();
                 clock.tick(30)
                 
