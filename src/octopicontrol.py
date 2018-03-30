@@ -175,11 +175,11 @@ def main():
 			font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
 		
 			# get time for currently selected timezone
-			#tzdata = datetime.now(timezone(timezones[index]))
+			tzdata = datetime.now(timezone(timezones[index]))
 
 			# format the date and time strings
-			#local_time = tzdata.strftime('%X %Z')
-			#local_date = tzdata.strftime('%x')
+			local_time = tzdata.strftime('%X %Z')
+			local_date = tzdata.strftime('%x')
 
 			# render each string with a font in a certain color
 			statusLabel = font.render("Status:", True, (255, 255, 255))
