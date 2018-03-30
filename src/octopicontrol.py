@@ -170,6 +170,7 @@ def main():
 	# main loop that shows and cycles time
 	pos = (0, 0)
 	while 1:
+                clock.tick(30)
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				return
