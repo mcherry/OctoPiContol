@@ -216,8 +216,8 @@ def main():
                         pygame.draw.rect(background, (255, 255, 255), (250, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (371, 160, 100, 100), 2)
                         
-                        background.blit(inetInfo1, (5,275))
-                        background.blit(inetInfo2, (5,290))
+                        background.blit(inetInfo1, (5,265))
+                        background.blit(inetInfo2, (5,280))
                         
                         # date and time
                         background.blit(dateText, (5, 300))
