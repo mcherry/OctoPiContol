@@ -198,7 +198,16 @@ def main():
                                 
                                 if Button1.collidepoint(mouse_pos):
                                     print "Pressed button 1"
+                                    
+                                if Button2.collidepoint(mouse_pos):
+                                    print "Pressed button 2"
                                 
+                                if Button3.collidepoint(mouse_pos):
+                                    print "Pressed button 3"
+                                    
+                                if Button4.collidepoint(mouse_pos):
+                                    print "Pressed button 4"
+                                    
                                 if return_from_ss != True:
 					runtime = 0
 						
@@ -250,10 +259,10 @@ def main():
                         background.blit(infoLine2, (2, 135))
                         
                         # buttons
-                        pygame.draw.rect(background, (255, 255, 255), (5, 160, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (127, 160, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (250, 160, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (371, 160, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+                        pygame.draw.rect(background, (255, 255, 255), Button2, 2)
+                        pygame.draw.rect(background, (255, 255, 255), Button3, 2)
+                        pygame.draw.rect(background, (255, 255, 255), Button4, 2)
                         
                         background.blit(inetInfo1, (5,265))
                         background.blit(inetInfo2, (5,280))
