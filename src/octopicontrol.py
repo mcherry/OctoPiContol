@@ -174,7 +174,6 @@ def main():
 			if event.type == QUIT:
 				return
                         elif event.type == MOUSEBUTTONDOWN:
-				time.sleep(0.25)
                                 mouse_pos = event.pos
                                 
                                 if Button1.collidepoint(mouse_pos):
@@ -193,8 +192,6 @@ def main():
 					runtime = 0
 						
 				return_from_ss = False
-                                time.sleep(.25)
-                                
 				break
 
 		if screensaver_on is False:
@@ -274,8 +271,6 @@ def main():
 				runtime = 0
 				screensaver_on = True
 			
-			# re-enable mousebutton up events after processing time
-			pygame.event.set_allowed(MOUSEBUTTONUP)
 			time.sleep(1)
 		
 		else:
