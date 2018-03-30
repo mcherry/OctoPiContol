@@ -187,18 +187,18 @@ def main():
 			statusLabel = font.render("Status:", True, (255, 255, 255))
                         fileLabel = font.render("File:", True, (255, 255, 255))
                         sizeLabel = font.render("Size:", True, (255, 255, 255))
-                        infoLine1 = font.render("[ Extruder:      ]  [ Target:      ]  [ Low:      ]  [ High:      ]", True, (255, 255, 255))
-                        infoLine2 = font.render("[ Bed:           ]  [ Target:      ]  [ Low:      ]  [ High:      ]", True, (255, 255, 255))
+                        infoLine1 = font.render("[Ext:     ] [Target:     ] [Low:     ] [High:     ]", True, (255, 255, 255))
+                        infoLine2 = font.render("[Bed:     ] [Target:     ] [Low:     ] [High:     ]", True, (255, 255, 255))
                         
                         background.blit(statusLabel, (5, 5))
 			background.blit(fileLabel, (5, 20))
 			background.blit(sizeLabel, (5, 35))
                         
                         # progress bar
-                        pygame.draw.rect(background, (255, 255, 255), (5, 50, 475, 30), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 55, 475, 30), 2)
                         
-                        background.blit(infoLine1, (5, 85))
-                        background.blit(infoLine2, (5, 100))
+                        background.blit(infoLine1, (5, 90))
+                        background.blit(infoLine2, (5, 105))
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
                         
