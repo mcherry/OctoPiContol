@@ -173,6 +173,8 @@ def main():
 				time.sleep(0.25)
 				
 				#pos = pygame.mouse.get_pos()
+                                # pushed button 1
+                                
 				#print pos
 				
 				if return_from_ss != True:
@@ -180,6 +182,21 @@ def main():
 						
 				return_from_ss = False
 				
+				break
+                        
+                        elif event.type == MOUSEBUTTODOWN:
+                                pygame.event.set_blocked(MOUSEBUTTONDOWN)
+				time.sleep(0.25)
+                                
+                                x, y = event.pos
+                                if ((5, 160, 100, 100).collidepoint(x, y)):
+                                    print "Pressed button 1"
+                                
+                                if return_from_ss != True:
+					runtime = 0
+						
+				return_from_ss = False
+				pygame.event.set_allowed(MOUSEBUTTONDOWN)
 				break
 				
 			elif event.type == QUIT:
