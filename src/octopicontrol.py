@@ -174,7 +174,7 @@ def main():
 			if event.type == QUIT:
 				return
                         elif event.type == MOUSEBUTTONDOWN:
-                                mouse_pos = event.pos
+                                mouse_pos = pygame.mouse.get_pos()
                                 
                                 if Button1.collidepoint(mouse_pos):
                                     print "Pressed button 1"
@@ -199,8 +199,6 @@ def main():
 				break
 
 		if screensaver_on is False:
-			# Show Time
-			
 			# Fill background
 			background = pygame.Surface(screen.get_size())
 			background = background.convert()
