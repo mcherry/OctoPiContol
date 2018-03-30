@@ -202,7 +202,7 @@ def main():
                         
                         # buttons
                         pygame.draw.rect(background, (255, 255, 255), (5, 160, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (130, 160, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (125, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (250, 160, 100, 100), 2)
                         pygame.draw.rect(background, (255, 255, 255), (370, 160, 100, 100), 2)
                         
