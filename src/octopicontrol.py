@@ -189,7 +189,7 @@ def main():
 				time.sleep(0.25)
                                 
                                 x, y = event.pos
-                                if ((5, 160, 100, 100).collidepoint(x, y)):
+                                if (background.get_rect(5, 160, 100, 100).collidepoint(x, y)):
                                     print "Pressed button 1"
                                 
                                 if return_from_ss != True:
