@@ -191,20 +191,20 @@ def main():
                         infoLine2 = font.render("[ Bed:      ] [ Target:      ] [ Low:      ] [ High:      ]", True, (255, 255, 255))
                         
                         background.blit(statusLabel, (5, 5))
-			background.blit(fileLabel, (5, 20))
-			background.blit(sizeLabel, (5, 35))
+			background.blit(fileLabel, (5, 25))
+			background.blit(sizeLabel, (5, 45))
                         
                         # progress bar
-                        pygame.draw.rect(background, (255, 255, 255), (5, 55, 470, 30), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
                         
-                        background.blit(infoLine1, (5, 90))
-                        background.blit(infoLine2, (5, 105))
+                        background.blit(infoLine1, (5, 125))
+                        background.blit(infoLine2, (5, 145))
                         
                         # buttons
                         pygame.draw.rect(background, (255, 255, 255), (5, 125, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (120, 125, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (235, 125, 100, 100), 2)
-                        pygame.draw.rect(background, (255, 255, 255), (350, 125, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (125, 125, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (240, 125, 100, 100), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (355, 125, 100, 100), 2)
                         
                         screen.blit(background, (0, 0))
 			pygame.display.flip()
