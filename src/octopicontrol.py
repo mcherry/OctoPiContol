@@ -172,7 +172,7 @@ def main():
 			background.fill((0, 0, 0))
 
 			# create fonts
-			font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 16)
+			font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
 		
 			# get time for currently selected timezone
 			#tzdata = datetime.now(timezone(timezones[index]))
@@ -191,14 +191,14 @@ def main():
                         infoLine2 = font.render("[ Bed:           ]  [ Target:      ]  [ Low:      ]  [ High:      ]", True, (255, 255, 255))
                         
                         background.blit(statusLabel, (5, 5))
-			background.blit(fileLabel, (5, 30))
-			background.blit(sizeLabel, (5, 55))
+			background.blit(fileLabel, (5, 20))
+			background.blit(sizeLabel, (5, 35))
                         
                         # progress bar
-                        pygame.draw.rect(background, (255, 255, 255), (5, 85, 470, 60), 2)
+                        pygame.draw.rect(background, (255, 255, 255), (5, 50, 475, 30), 2)
                         
-                        background.blit(infoLine1, (5, 160))
-                        
+                        background.blit(infoLine1, (5, 85))
+                        background.blit(infoLine2, (5, 100))
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
                         
