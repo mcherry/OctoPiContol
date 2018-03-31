@@ -187,6 +187,47 @@ def CtoF(value):
 def rptstr(str, cnt):
 	return ''.join([char * cnt for char in str])
 
+def setProgress(surface, percent):
+	if percent >= 7:
+		pygame.draw.rect(surface, (255, 255, 255), (14, 70, 30, 30))
+	
+	if percent >=15:
+		pygame.draw.rect(surface, (255, 255, 255), (49, 70, 30, 30))
+	
+	if percent >= 24:
+		pygame.draw.rect(surface, (255, 255, 255), (84, 70, 30, 30))
+	
+	if percent >= 30:
+		pygame.draw.rect(surface, (255, 255, 255), (119, 70, 30, 30))
+	
+	if percent >= 44:
+		pygame.draw.rect(surface, (255, 255, 255), (154, 70, 30, 30))
+	
+	if percent >= 50:
+		pygame.draw.rect(surface, (255, 255, 255), (189, 70, 30, 30))
+	
+	if percent >= 62:
+		pygame.draw.rect(surface, (255, 255, 255), (224, 70, 30, 30))
+	
+	if percent >= 70:
+		pygame.draw.rect(surface, (255, 255, 255), (260, 70, 30, 30))
+	
+	if percent >= 75:
+		pygame.draw.rect(surface, (255, 255, 255), (295, 70, 30, 30))
+	
+	if percent >= 83:
+		pygame.draw.rect(surface, (255, 255, 255), (330, 70, 30, 30))
+	
+	if percent >= 90:
+		pygame.draw.rect(surface, (255, 255, 255), (365, 70, 30, 30))
+	
+	if percent >= 95:
+		pygame.draw.rect(surface, (255, 255, 255), (401, 70, 30, 30))
+	
+	if percent >= 100:
+		pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
+	
+
 def main():
 	global index
 	global wclient
@@ -206,6 +247,7 @@ def main():
 	Button2 = pygame.Rect(127, 160, 100, 100)
 	Button3 = pygame.Rect(250, 160, 100, 100)
 	Button4 = pygame.Rect(371, 160, 100, 100)
+	
 
 	# main loop that shows and cycles time
 	pos = (0, 0)
@@ -314,6 +356,8 @@ def main():
 			background = pygame.Surface(screen.get_size())
 			background = background.convert()
 			background.fill((0, 0, 0))
+			
+			
 
 			# create fonts
 			font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
@@ -324,18 +368,35 @@ def main():
 			# format the date and time strings
 			local_time = tzdata.strftime('%H:%M:%S')
 			local_date = tzdata.strftime('%m-%d-%Y')
-
+			
+			if ext_target_f == "32": ext_target_f = 0
+			if bed_target_f == "32": bed_target_f = 0;
+			
+			time = float(progress_printtimeleft)
+			day = time // (24 * 3600)
+			time = time % (24 * 3600)
+			hour = time // 3600
+			time %= 3600
+			minutes = time // 60
+			time %= 60
+			seconds = time
+			
+			eta = "%02d:%02d:%02d:%02d" % (day, hour, minutes, seconds)
+			
+			setProgress(background, progress_completion);
+			
 			# render each string
 			statusLabel = font.render("Status: " + state, True, (255, 255, 255))
 			percentLabel = font.render(`progress_completion` + '% Printed', True, (255, 255, 255))
 			fileLabel = font.render("File:   " + file_name, True, (255, 255, 255))
 			sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
 			verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-			infoLine1 = font.render("[ Ext: " + ext_f + "F ] [ Target: " + ext_target_f + "F ] [ Low:    F ] [ High:    F ]", True, (255, 255, 255))
-			infoLine2 = font.render("[ Bed: " + bed_f + "F ] [ Target: " + bed_target_f + "F ] [ Low:    F ] [ High:    F ]", True, (255, 255, 255))
+			infoLine1 = font.render("              [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
+			infoLine2 = font.render("              [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
 			inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
 			inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
 			timeText = font.render(local_time, True, (255, 255, 255))
+			etaText = font.render(eta, True, (255, 255, 255))
 			dateText = font.render(local_date, True, (255, 255, 255))
 
 			background.blit(statusLabel, (5, 5))
@@ -361,6 +422,7 @@ def main():
 			
 			# date and time
 			background.blit(dateText, (5, 300))
+			background.blit(etaText, (195, 300))
 			background.blit(timeText, (405, 300))
 			
 			screen.blit(background, (0, 0))
