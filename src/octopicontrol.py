@@ -381,11 +381,11 @@ def main():
 			
 			# render each string
 			statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
-			fileLabel = font.render("File:   " + file_name, True, (255, 255, 255))
+			fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
 			sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
 			verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-			infoLine1 = font.render("              [ Ext: " + ext_f + "F ]   [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
-			infoLine2 = font.render("              [ Bed: " + bed_f + "F ]   [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
+			infoLine1 = font.render("               [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
+			infoLine2 = font.render("               [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
 			inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
 			inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
 			timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
