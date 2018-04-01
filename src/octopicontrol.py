@@ -12,6 +12,7 @@ import fcntl
 import struct
 import json
 import requests
+from time import sleep
 from datetime import datetime
 from pytz import timezone
 from pygame.locals import *
@@ -154,8 +155,6 @@ def getHWAddr(ifname):
     else:
         return retval
 
-	return retval
-
 def headers():
 	headers = {
 		'Content-Type': 'application/json',
@@ -191,52 +190,60 @@ def setProgress(surface, percent):
 	if percent >= 7:
 		pygame.draw.rect(surface, (255, 255, 255), (14, 70, 30, 30))
 	
-	if percent >=15:
+	if percent >= 16:
 		pygame.draw.rect(surface, (255, 255, 255), (49, 70, 30, 30))
 	
 	if percent >= 24:
 		pygame.draw.rect(surface, (255, 255, 255), (84, 70, 30, 30))
 	
-	if percent >= 30:
+	if percent >= 31:
 		pygame.draw.rect(surface, (255, 255, 255), (119, 70, 30, 30))
 	
-	if percent >= 44:
+	if percent >= 39:
 		pygame.draw.rect(surface, (255, 255, 255), (154, 70, 30, 30))
 	
-	if percent >= 50:
+	if percent >= 45:
 		pygame.draw.rect(surface, (255, 255, 255), (189, 70, 30, 30))
 	
-	if percent >= 62:
+	if percent >= 52:
 		pygame.draw.rect(surface, (255, 255, 255), (224, 70, 30, 30))
 	
-	if percent >= 70:
+	if percent >= 60:
 		pygame.draw.rect(surface, (255, 255, 255), (260, 70, 30, 30))
 	
-	if percent >= 75:
+	if percent >= 69:
 		pygame.draw.rect(surface, (255, 255, 255), (295, 70, 30, 30))
 	
-	if percent >= 83:
+	if percent >= 78:
 		pygame.draw.rect(surface, (255, 255, 255), (330, 70, 30, 30))
 	
-	if percent >= 90:
+	if percent >= 85:
 		pygame.draw.rect(surface, (255, 255, 255), (365, 70, 30, 30))
 	
-	if percent >= 95:
+	if percent >= 92:
 		pygame.draw.rect(surface, (255, 255, 255), (401, 70, 30, 30))
 	
 	if percent >= 100:
 		pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
-	
+
+def createSurface(screen, bgcolor):
+		bground = pygame.Surface(screen.get_size())
+		bground = bground.convert()
+		bground.fill(bgcolor)
+		
+		return bground
 
 def main():
 	global index
 	global wclient
 	
 	runtime = 0
-	ssaver_time = 1920
+	ssaver_time = 720
 	screensaver_on = False
 	return_from_ss = False
 	screenpressed = False
+	ext_target_f = "0";
+	bed_target_f = "0";
 	
 	# Initialise screen
 	pygame.init()
@@ -248,7 +255,9 @@ def main():
 	Button3 = pygame.Rect(250, 160, 100, 100)
 	Button4 = pygame.Rect(371, 160, 100, 100)
 	
-
+	# create fonts
+	font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
+	
 	# main loop that shows and cycles time
 	pos = (0, 0)
 	while 1:
@@ -301,11 +310,7 @@ def main():
 			    octo_version = ver['server']
 			else:
 			    bad_read = True
-
-			ext_hi = 0
-			ext_lo = 999
-			bed_hi = 0
-			bed_lo = 999
+			
 			ext_f = "0"
 			bed_f = "0"
 			
@@ -327,23 +332,16 @@ def main():
 					ext_target = 0
 					bed = 0
 					bed_target = 0
-				
-				if ext > ext_hi:
-					ext_hi = ext;
 					
-				if ext < ext_lo:
-					ext_lo = ext
-				
-				if bed > bed_hi:
-					bed_hi = bed;
-					
-				if bed < bed_lo:
-					bed_lo = bed
-					
-				ext_f = CtoF(ext).ljust(3);
-				ext_target_f = CtoF(ext_target).rjust(3)
+				ext_f = CtoF(ext).ljust(3)
 				bed_f = CtoF(bed).ljust(3)
-				bed_target_f = CtoF(bed_target).rjust(3)
+				
+				if ext_target == 0 or bed_target == 0:
+					ext_target_f = "0".rjust(3)
+					bed_target_f = "0".rjust(3)
+				else:
+					ext_target_f = CtoF(ext_target).ljust(3)
+					bed_target_f = CtoF(bed_target).ljust(3)
 
 			else:
 				bad_read = True
@@ -353,54 +351,48 @@ def main():
 				file_size = 0
 				
 			# Fill background
-			background = pygame.Surface(screen.get_size())
-			background = background.convert()
-			background.fill((0, 0, 0))
-			
-			
-
-			# create fonts
-			font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
+			background = createSurface(screen, (0, 0, 0))
 		
 			# get time for currently selected timezone
 			tzdata = datetime.now(timezone(default_timezone))
-
-			# format the date and time strings
-			local_time = tzdata.strftime('%H:%M:%S')
-			local_date = tzdata.strftime('%m-%d-%Y')
 			
 			if ext_target_f == "32": ext_target_f = 0
 			if bed_target_f == "32": bed_target_f = 0;
 			
-			time = float(progress_printtimeleft)
-			day = time // (24 * 3600)
-			time = time % (24 * 3600)
-			hour = time // 3600
-			time %= 3600
-			minutes = time // 60
-			time %= 60
-			seconds = time
+			if progress_printtimeleft is not None:
+				time = float(int(progress_printtimeleft))
+				day = time // (24 * 3600)
+				time = time % (24 * 3600)
+				hour = time // 3600
+				time %= 3600
+				minutes = time // 60
+				time %= 60
+				seconds = time
+			else:
+				time = 0
+				day = 0
+				hour = 0
+				minutes = 0
+				seconds = 0
 			
-			eta = "%02d:%02d:%02d:%02d" % (day, hour, minutes, seconds)
+			eta = "%02d:%02d:%02d" % (day, hour, minutes)
 			
 			setProgress(background, progress_completion);
 			
 			# render each string
-			statusLabel = font.render("Status: " + state, True, (255, 255, 255))
-			percentLabel = font.render(`progress_completion` + '% Printed', True, (255, 255, 255))
+			statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
 			fileLabel = font.render("File:   " + file_name, True, (255, 255, 255))
 			sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
 			verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-			infoLine1 = font.render("              [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
-			infoLine2 = font.render("              [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
+			infoLine1 = font.render("              [ Ext: " + ext_f + "F ]   [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
+			infoLine2 = font.render("              [ Bed: " + bed_f + "F ]   [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
 			inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
 			inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
-			timeText = font.render(local_time, True, (255, 255, 255))
+			timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
 			etaText = font.render(eta, True, (255, 255, 255))
-			dateText = font.render(local_date, True, (255, 255, 255))
+			dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
 
 			background.blit(statusLabel, (5, 5))
-			background.blit(percentLabel, (360, 5))
 			background.blit(fileLabel, (5, 25))
 			background.blit(sizeLabel, (5, 45))
 			background.blit(verLabel, (360, 45))
@@ -422,26 +414,12 @@ def main():
 			
 			# date and time
 			background.blit(dateText, (5, 300))
-			background.blit(etaText, (195, 300))
+			background.blit(etaText, (205, 300))
 			background.blit(timeText, (405, 300))
 			
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
-                        
-			# figure out where to place time
-			#timepos = timetext.get_rect()
-			#timepos.centerx = background.get_rect().centerx
-			#timepos.centery = background.get_rect().centery - 40
-
-			# figure out where to place date
-			#datepos = datetext.get_rect()
-			#datepos.centerx = background.get_rect().centerx
-			#datepos.centery = background.get_rect().centery + 40
-		
-			# put the readable name at 10, 10
-			
-			#background.blit(timetext, timepos)
-			#background.blit(datetext, datepos)
+			pygame.time.Clock().tick(25)
 			
 			# wait a second to refresh
 			runtime += 1
@@ -449,24 +427,20 @@ def main():
 			if runtime == ssaver_time:
 				runtime = 0
 				screensaver_on = True
-			
-			pygame.time.Clock().tick(30)
+				
+			sleep(0.25)
 		
 		else:
 			# fire up the screensaver
 			size = [480,320]
 			
-			background = pygame.Surface(screen.get_size())
-			background = background.convert()
-			background.fill((0, 0, 0))
+			background = createSurface(screen, (0, 0, 0))
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
 					
-			#delay = DelaySwitch(15)
+			delay = DelaySwitch(25)
 
 			text_width = 13
-			text = pygame.font.SysFont(get_script_path() + "/Fonts/NotoMono-Regular.ttf", text_width)
-
 			groups = []
 
 			add_line=1
@@ -486,31 +460,31 @@ def main():
 
 					add_line=2
 					pos = random.randint(1,size[0]/text_width)*text_width-text_width/2
-					groups.append(Group([pos, -text.get_height()], speed))
+					groups.append(Group([pos, -font.get_height()], speed))
 					
 				if random.randint(0,50) == 50:
-					matrixcode = "MP Mini V2 IIIP 3D Printer"
+					matrixcode = "MP Mini Slect V2 IIIP 3D Printer"
 					code = list(matrixcode)
 					random.shuffle(code, random.random)
 					
-					pos = [random.randint(1,size[0]/text_width+1)*text_width-text_width/2, random.randint(1,size[1]/text.get_height()+1)*text.get_height()]
+					pos = [random.randint(1,size[0]/text_width+1)*text_width-text_width/2, random.randint(1,size[1]/font.get_height()+1)*font.get_height()]
 					groups.append(CodePartical(pos, random.randint(0,len(code)-1), code))
 
 
 				for group in groups:
-					group.modernize(text, size)
+					group.modernize(font, size)
 					if group.dead:
 						groups.remove(group)
 						
 				rects = []
 				for group in groups:
-					for rect in group.render(screen, text):
+					for rect in group.render(screen, font):
 						rects.append(rect)
 						
-				#delay.update()
+				delay.update()
 				
 				pygame.display.flip()
-				pygame.time.Clock().tick(30)
+				pygame.time.Clock().tick(25)
 				
 				for rect in rects:
 					screen.fill([0,0,0], rect)
