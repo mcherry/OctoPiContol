@@ -435,7 +435,8 @@ def main():
 				runtime = 0
 				screensaver_on = True
 				
-			sleep(0.25)
+			#sleep(0.15)
+                        pygame.time.Clock().tick(25)
 		
 		else:
 			# fire up the screensaver
