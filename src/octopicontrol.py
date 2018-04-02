@@ -267,11 +267,11 @@ def draw_info_display(background, font):
     pygame.draw.rect(background, (255, 255, 255), Button3, 2)
     pygame.draw.rect(background, (255, 255, 255), Button4, 2)
     
-    #pygame.display.update(pygame.Rect(5, 5, 480, 75))
-    #pygame.display.update(Button1)
-    #pygame.display.update(Button2)
-    #pygame.display.update(Button3)
-    #pygame.display.update(Button4)
+    pygame.display.update(pygame.Rect(5, 5, 480, 75))
+    pygame.display.update(Button1)
+    pygame.display.update(Button2)
+    pygame.display.update(Button3)
+    pygame.display.update(Button4)
 
 def draw_time_display(background, font, eta):
     tzdata = datetime.now(timezone(default_timezone))
@@ -490,8 +490,8 @@ def main():
 				runtime = 0
 				screensaver_on = True
 				
-			sleep(0.25)
-                        pygame.time.Clock().tick(25)
+			sleep(0.35)
+                        pygame.time.Clock().tick(30)
 		
 		else:
 			# fire up the screensaver
