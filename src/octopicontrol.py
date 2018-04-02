@@ -26,7 +26,7 @@ default_timezone = "US/Central";
 
 fps = 25
 DISPLAY_REFRESH = USEREVENT
-pygame.time.set_timer(DISPLAY_REFRESH, int(1000.0 / fps))
+time.set_timer(DISPLAY_REFRESH, int(1000.0 / fps))
 
 ########## start screen saver classes ##########
 #
@@ -284,11 +284,6 @@ def main():
 						
                     return_from_ss = False
                     break
-                
-                elif event.type == DISPLAY_REFRESH:
-                    background = createSurface(screen, (0, 0, 0))
-                    screen.blit(background, (0, 0))
-                    pygame.display.flip()
 
 		if screensaver_on is False:
                     bad_read = False
@@ -300,7 +295,8 @@ def main():
                     state = "Offline"
                     api_version = "0"
                     octo_version = "0"
-
+                        
+                        
                     job = get_info('job');
                     if job is not None:
                         status = job['state']
@@ -364,7 +360,7 @@ def main():
 				file_size = 0
 				
 			# Fill background
-			#background = createSurface(screen, (0, 0, 0))
+			background = createSurface(screen, (0, 0, 0))
 		
 			# get time for currently selected timezone
 			tzdata = datetime.now(timezone(default_timezone))
@@ -437,10 +433,10 @@ def main():
                             runtime = 0
                             screensaver_on = True
                         
-                        #screen.blit(background, (0, 0))
-			#pygame.display.flip()
-			#pygame.time.Clock().tick(25)
-                        pygame.time.wait(0)
+                        screen.blit(background, (0, 0))
+			pygame.display.flip()
+			pygame.time.Clock().tick(25)
+                        time.wait(0)
                 
 		else:
 			# fire up the screensaver
