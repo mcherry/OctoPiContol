@@ -287,7 +287,8 @@ def main():
 
 		if screensaver_on is False:
 			bad_read = False
-			
+			progress_completion = 0;
+                        
 			job = get_info('job');
 			if job is not None:
 				status = job['state']
