@@ -13,6 +13,7 @@ import struct
 import json
 import requests
 from time import sleep
+from time import wait
 from datetime import datetime
 from pytz import timezone
 from pygame.locals import *
