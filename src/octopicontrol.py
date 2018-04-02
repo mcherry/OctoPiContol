@@ -5,7 +5,7 @@ import pygame
 import os
 import sys
 import time
-import pytz
+#import pytz
 import random
 import socket
 import fcntl
@@ -291,7 +291,7 @@ def main():
                         progress_printtimeleft = 0
                         file_name = rptstr(' ', 20)
                         file_size = 0
-                        status = "Offline"
+                        #status = "Offline"
                         state = "Offline"
                         api_version = "0"
                         octo_version = "0"
@@ -375,14 +375,14 @@ def main():
 				hour = time // 3600
 				time %= 3600
 				minutes = time // 60
-				time %= 60
-				seconds = time
+				#time %= 60
+				#seconds = time
 			else:
 				time = 0
 				day = 0
 				hour = 0
 				minutes = 0
-				seconds = 0
+				#seconds = 0
 			
 			eta = "%02d:%02d:%02d" % (day, hour, minutes)
 			
