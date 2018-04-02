@@ -288,7 +288,11 @@ def main():
 		if screensaver_on is False:
 			bad_read = False
 			progress_completion = 0;
+                        progress_printtime = 0
+                        progress_printtimeleft = 0
                         file_name = rptstr(' ', 20)
+                        status = "Offline"
+                        
                         
 			job = get_info('job');
 			if job is not None:
