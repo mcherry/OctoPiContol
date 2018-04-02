@@ -437,7 +437,7 @@ def main():
 				minutes = 0
 				#seconds = 0
 			
-			#eta = "%02d:%02d:%02d" % (day, hour, minutes)
+			eta = "%02d:%02d:%02d" % (day, hour, minutes)
 			
 			#setProgress(background, progress_completion);
 			
