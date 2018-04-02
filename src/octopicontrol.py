@@ -5,7 +5,6 @@ import pygame
 import os
 import sys
 import time
-#import pytz
 import random
 import socket
 import fcntl
@@ -291,7 +290,6 @@ def main():
                         progress_printtimeleft = 0
                         file_name = rptstr(' ', 20)
                         file_size = 0
-                        #status = "Offline"
                         state = "Offline"
                         api_version = "0"
                         octo_version = "0"
@@ -428,7 +426,7 @@ def main():
 			
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
-			pygame.time.Clock().tick(25)
+			#pygame.time.Clock().tick(25)
 			
 			# wait a second to refresh
 			runtime += 1
