@@ -440,7 +440,7 @@ def main():
                         #screen.blit(background, (0, 0))
 			#pygame.display.flip()
 			#pygame.time.Clock().tick(25)
-                        time.wait(0)
+                        pygame.time.wait(0)
                 
 		else:
 			# fire up the screensaver
