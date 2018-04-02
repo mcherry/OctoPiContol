@@ -26,7 +26,7 @@ default_timezone = "US/Central";
 
 fps = 25
 DISPLAY_REFRESH = USEREVENT
-time.set_timer(DISPLAY_REFRESH, int(1000.0 / fps))
+pygame.time.set_timer(DISPLAY_REFRESH, int(1000.0 / fps))
 
 ########## start screen saver classes ##########
 #
