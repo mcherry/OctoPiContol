@@ -437,7 +437,7 @@ def main():
 				minutes = 0
 				#seconds = 0
 			
-			eta = "%02d:%02d:%02d" % (day, hour, minutes)
+			#eta = "%02d:%02d:%02d" % (day, hour, minutes)
 			
 			#setProgress(background, progress_completion);
 			
@@ -490,8 +490,8 @@ def main():
 				runtime = 0
 				screensaver_on = True
 				
-			sleep(0.25)
-                        #pygame.time.Clock().tick(25)
+			#sleep(0.25)
+                        pygame.time.Clock().tick(25)
 		
 		else:
 			# fire up the screensaver
