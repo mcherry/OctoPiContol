@@ -309,6 +309,7 @@ def main():
         background = createSurface(screen, (0, 0, 0))
         
         draw_info_display(background, font)
+        screen.blit(background, (0, 0))
         pygame.display.flip()
 	
 	# main loop that shows and cycles time
