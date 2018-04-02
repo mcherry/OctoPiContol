@@ -427,8 +427,9 @@ def main():
 			background.blit(timeText, (405, 300))
 			
 			screen.blit(background, (0, 0))
+                        sleep(0.25)
 			pygame.display.flip()
-			pygame.time.Clock().tick(25)
+			#pygame.time.Clock().tick(25)
 			
 			# wait a second to refresh
 			runtime += 1
@@ -436,8 +437,6 @@ def main():
 			if runtime == ssaver_time:
 				runtime = 0
 				screensaver_on = True
-				
-			sleep(0.25)
 		
 		else:
 			# fire up the screensaver
