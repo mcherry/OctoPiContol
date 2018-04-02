@@ -232,7 +232,7 @@ def setProgress(surface, percent):
 	if percent >= 100:
 		pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
         
-        pygame.display.update((5, 65, 470, 40))
+        pygame.display.update(pygame.Rect(5, 65, 470, 40))
 
 def createSurface(screen, bgcolor):
     bground = pygame.Surface(screen.get_size())
@@ -267,7 +267,7 @@ def draw_info_display(background, font):
     pygame.draw.rect(background, (255, 255, 255), Button3, 2)
     pygame.draw.rect(background, (255, 255, 255), Button4, 2)
     
-    pygame.display.update((5, 5, 480, 75))
+    pygame.display.update(pygame.Rect(5, 5, 480, 75))
     pygame.display.update(Button1)
     pygame.display.update(Button2)
     pygame.display.update(Button3)
@@ -284,7 +284,7 @@ def draw_time_display(background, font, eta):
     background.blit(etaText, (205, 300))
     background.blit(timeText, (405, 300))
     
-    pygame.display.update((5, 300, 480, 320))
+    pygame.display.update(pygame.Rect(5, 300, 480, 320))
     
 def main():
 	global index
