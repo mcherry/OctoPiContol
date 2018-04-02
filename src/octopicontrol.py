@@ -409,7 +409,7 @@ def main():
 				file_size = 0
 				
 			# Fill background
-			background = createSurface(screen, (0, 0, 0))
+			#background = createSurface(screen, (0, 0, 0))
 		
 			# get time for currently selected timezone
 			#tzdata = datetime.now(timezone(default_timezone))
@@ -435,7 +435,7 @@ def main():
 			
 			eta = "%02d:%02d:%02d" % (day, hour, minutes)
 			
-			setProgress(background, progress_completion);
+			#setProgress(background, progress_completion);
 			
 			# render each string
 			#statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
