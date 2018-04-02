@@ -284,7 +284,7 @@ def draw_time_display(background, font, eta):
     background.blit(etaText, (205, 300))
     background.blit(timeText, (405, 300))
     
-    #pygame.display.update(pygame.Rect(5, 300, 480, 320))
+    pygame.display.update(pygame.Rect(5, 300, 480, 320))
     
 def main():
 	global index
@@ -490,7 +490,7 @@ def main():
 				runtime = 0
 				screensaver_on = True
 				
-			#sleep(0.25)
+			sleep(0.25)
                         pygame.time.Clock().tick(25)
 		
 		else:
