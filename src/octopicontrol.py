@@ -293,6 +293,8 @@ def main():
                         file_size = 0
                         status = "Offline"
                         state = "Offline"
+                        api_version = 0;
+                        octo_version = 0;
                         
                         
 			job = get_info('job');
