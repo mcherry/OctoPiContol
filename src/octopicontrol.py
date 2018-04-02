@@ -225,13 +225,6 @@ def setProgress(surface, percent):
 	if percent >= 100:
 		pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
 
-def createSurface(screen, bgcolor):
-		bground = pygame.Surface(screen.get_size())
-		bground = bground.convert()
-		bground.fill(bgcolor)
-		
-		return bground
-
 def main():
 	global index
 	global wclient
@@ -358,8 +351,10 @@ def main():
                             file_size = 0
 				
 			# Fill background
-			background = createSurface(screen, (0, 0, 0))
-		
+			background = pygame.Surface(screen.get_size())
+                        background = background.convert()
+                        background.fill((0, 0, 0))
+                    
 			# get time for currently selected timezone
 			tzdata = datetime.now(timezone(default_timezone))
 			
@@ -441,7 +436,9 @@ def main():
 			# fire up the screensaver
 			size = [480,320]
 			
-			background = createSurface(screen, (0, 0, 0))
+			background = pygame.Surface(screen.get_size())
+                        background = background.convert()
+                        background.fill((0, 0, 0))
 			screen.blit(background, (0, 0))
 			#delay = DelaySwitch(25)
 
