@@ -286,6 +286,7 @@ def main():
                     break
                 
                 elif event.type == DISPLAY_REFRESH:
+                    background = createSurface(screen, (0, 0, 0))
                     screen.blit(background, (0, 0))
                     pygame.display.flip()
 
@@ -363,7 +364,7 @@ def main():
 				file_size = 0
 				
 			# Fill background
-			background = createSurface(screen, (0, 0, 0))
+			#background = createSurface(screen, (0, 0, 0))
 		
 			# get time for currently selected timezone
 			tzdata = datetime.now(timezone(default_timezone))
