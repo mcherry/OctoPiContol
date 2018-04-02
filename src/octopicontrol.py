@@ -24,10 +24,6 @@ os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 
 default_timezone = "US/Central";
 
-fps = 25
-DISPLAY_REFRESH = USEREVENT
-time.set_timer(DISPLAY_REFRESH, int(1000.0 / fps))
-
 ########## start screen saver classes ##########
 #
 # Matrix code borrowed and modified from Dylan J. Raub (dylanjraub)
@@ -436,7 +432,7 @@ def main():
                         screen.blit(background, (0, 0))
 			pygame.display.flip()
 			pygame.time.Clock().tick(25)
-                        time.wait(0)
+                        sleep(0.25)
                 
 		else:
 			# fire up the screensaver
