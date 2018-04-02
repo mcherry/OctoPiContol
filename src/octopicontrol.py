@@ -292,6 +292,7 @@ def main():
                         progress_printtimeleft = 0
                         file_name = rptstr(' ', 20)
                         status = "Offline"
+                        state = "Offline"
                         
                         
 			job = get_info('job');
