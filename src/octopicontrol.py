@@ -5,7 +5,7 @@ import pygame
 import os
 import sys
 import time
-#import pytz
+import pytz
 import random
 import socket
 import fcntl
@@ -156,32 +156,35 @@ def getHWAddr(ifname):
         return retval
 
 def headers():
-    headers = {
-        'Content-Type': 'application/json',
-        'X-Api-Key': 'CDC8A137E67F454DB5CA45AEF6DE6973'
-    }
-    return headers
+	headers = {
+		'Content-Type': 'application/json',
+		'X-Api-Key': 'CDC8A137E67F454DB5CA45AEF6DE6973'
+	}
+
+	return headers
     
 
 def get_info(api_path):
     response = requests.get("http://octopi.inditech.org/api/" + api_path, headers = headers())
+
     if response.status_code == 200:
         return json.loads(response.content.decode('utf-8'))
     else:
         return None
 
 def put_info(api_path):
-    response = requests.put("http://octopi.inditech.org/api/" + api_path, headers = headers())
-    if response.status_code == 200:
-        return json.loads(response.content.decode('utf-8'))
-    else:
-        return None
+	response = requests.put("http://octopi.inditech.org/api/" + api_path, headers = headers())
+	
+	if response.status_code == 200:
+		return json.loads(response.content.decode('utf-8'))
+	else:
+		return None
 
 def CtoF(value):
-    return `int(round(9 / 5 * value + 32))`
+	return `int(round(9 / 5 * value + 32))`
 
 def rptstr(str, cnt):
-    return ''.join([char * cnt for char in str])
+	return ''.join([char * cnt for char in str])
 
 def setProgress(surface, percent):
 	if percent >= 7:
@@ -224,10 +227,11 @@ def setProgress(surface, percent):
 		pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
 
 def createSurface(screen, bgcolor):
-    bground = pygame.Surface(screen.get_size())
-    bground = bground.convert()
-    bground.fill(bgcolor)
-    return bground
+		bground = pygame.Surface(screen.get_size())
+		bground = bground.convert()
+		bground.fill(bgcolor)
+		
+		return bground
 
 def main():
 	global index
@@ -257,99 +261,90 @@ def main():
 	# main loop that shows and cycles time
 	pos = (0, 0)
 	while 1:
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    return
-                elif event.type == MOUSEBUTTONUP:
-                    mouse_pos = pygame.mouse.get_pos()
+		for event in pygame.event.get():
+			if event.type == QUIT:
+				return
+                        elif event.type == MOUSEBUTTONUP:
+                                mouse_pos = pygame.mouse.get_pos()
                                 
-                    if Button1.collidepoint(mouse_pos):
-                        print "Pressed button 1"
+                                if Button1.collidepoint(mouse_pos):
+                                    print "Pressed button 1"
                                     
-                    if Button2.collidepoint(mouse_pos):
-                        print "Pressed button 2"
+                                if Button2.collidepoint(mouse_pos):
+                                    print "Pressed button 2"
                                 
-                    if Button3.collidepoint(mouse_pos):
-                        print "Pressed button 3"
+                                if Button3.collidepoint(mouse_pos):
+                                    print "Pressed button 3"
                                     
-                    if Button4.collidepoint(mouse_pos):
-                        print "Pressed button 4"
+                                if Button4.collidepoint(mouse_pos):
+                                    print "Pressed button 4"
                                     
-                    if return_from_ss != True:
-                        runtime = 0
+                                if return_from_ss != True:
+					runtime = 0
 						
-                    return_from_ss = False
-                    break
+				return_from_ss = False
+				break
 
 		if screensaver_on is False:
-                    bad_read = False
-                    progress_completion = 0;
-                    progress_printtimeleft = 0
-                    file_name = rptstr(' ', 20)
-                    file_size = 0
-                    #status = "Offline"
-                    state = "Offline"
-                    api_version = "0"
-                    octo_version = "0"
-                        
-                        
-                    job = get_info('job');
-                    if job is not None:
-                        status = job['state']
-			file_name = job['job']['file']['name']
-			file_size = job['job']['file']['size']
-			progress_completion = job['progress']['completion']
-			#progress_printtime = job['progress']['printTime']
-			progress_printtimeleft = job['progress']['printTimeLeft']
-                    else:
-			bad_read = True
+			bad_read = False
+			
+			job = get_info('job');
+			if job is not None:
+				status = job['state']
+				file_name = job['job']['file']['name']
+				file_size = job['job']['file']['size']
+				progress_completion = job['progress']['completion']
+				progress_printtime = job['progress']['printTime']
+				progress_printtimeleft = job['progress']['printTimeLeft']
+			else:
+				bad_read = True
 				
-                    if progress_completion is None:
-			progress_completion = 0
-                    else:
-			progress_completion = int(round(progress_completion));
+			if progress_completion is None:
+				progress_completion = 0
+			else:
+				progress_completion = int(round(progress_completion));
 				
-                    ver = get_info('version')
-                    if ver is not None:
-                        api_version = ver['api']
-                        octo_version = ver['server']
-                    else:
-                         bad_read = True
+			ver = get_info('version')
+			if ver is not None:
+			    api_version = ver['api']
+			    octo_version = ver['server']
+			else:
+			    bad_read = True
 			
-                    ext_f = "0"
-                    bed_f = "0"
+			ext_f = "0"
+			bed_f = "0"
 			
-                    stateinfo = get_info('connection')
-                    if stateinfo is not None:
-                        state = stateinfo['current']['state']
-                    else:
-                        bad_read = True
+			stateinfo = get_info('connection')
+			if stateinfo is not None:
+				state = stateinfo['current']['state']
+			else:
+				bad_read = True
 			
-                    printer = get_info('printer')
-                    if printer is not None:
-                        try:
-                            ext = int(printer['temperature']['tool0']['actual'])
-                            ext_target = int(printer['temperature']['tool0']['target'])
-                            bed = int(printer['temperature']['bed']['actual'])
-                            bed_target = int(printer['temperature']['bed']['target'])
-			except:
-                            ext = 0
-                            ext_target = 0
-                            bed = 0
-                            bed_target = 0
+			printer = get_info('printer')
+			if printer is not None:
+				try:
+					ext = int(printer['temperature']['tool0']['actual'])
+					ext_target = int(printer['temperature']['tool0']['target'])
+					bed = int(printer['temperature']['bed']['actual'])
+					bed_target = int(printer['temperature']['bed']['target'])
+				except:
+					ext = 0
+					ext_target = 0
+					bed = 0
+					bed_target = 0
 					
-                        ext_f = CtoF(ext).ljust(3)
-                        bed_f = CtoF(bed).ljust(3)
+				ext_f = CtoF(ext).ljust(3)
+				bed_f = CtoF(bed).ljust(3)
 				
-                        if ext_target == 0 or bed_target == 0:
-                            ext_target_f = "0".rjust(3)
-                            bed_target_f = "0".rjust(3)
-                        else:
-                            ext_target_f = CtoF(ext_target).ljust(3)
-                            bed_target_f = CtoF(bed_target).ljust(3)
+				if ext_target == 0 or bed_target == 0:
+					ext_target_f = "0".rjust(3)
+					bed_target_f = "0".rjust(3)
+				else:
+					ext_target_f = CtoF(ext_target).ljust(3)
+					bed_target_f = CtoF(bed_target).ljust(3)
 
-                    else:
-                        bad_read = True
+			else:
+				bad_read = True
 				
 			if file_name is None:
 				file_name = rptstr(' ', 20);
@@ -365,20 +360,20 @@ def main():
 			if bed_target_f == "32": bed_target_f = 0;
 			
 			if progress_printtimeleft is not None:
-                            time = float(int(progress_printtimeleft))
-                            day = time // (24 * 3600)
-                            time = time % (24 * 3600)
-                            hour = time // 3600
-                            time %= 3600
-                            minutes = time // 60
-                            #time %= 60
-                            #seconds = time
+				time = float(int(progress_printtimeleft))
+				day = time // (24 * 3600)
+				time = time % (24 * 3600)
+				hour = time // 3600
+				time %= 3600
+				minutes = time // 60
+				time %= 60
+				seconds = time
 			else:
-                            time = 0
-                            day = 0
-                            hour = 0
-                            minutes = 0
-                            #seconds = 0
+				time = 0
+				day = 0
+				hour = 0
+				minutes = 0
+				seconds = 0
 			
 			eta = "%02d:%02d:%02d" % (day, hour, minutes)
 			
@@ -422,18 +417,19 @@ def main():
 			background.blit(etaText, (205, 300))
 			background.blit(timeText, (405, 300))
 			
+			screen.blit(background, (0, 0))
+			pygame.display.flip()
+			pygame.time.Clock().tick(25)
+			
 			# wait a second to refresh
 			runtime += 1
 			
 			if runtime == ssaver_time:
-                            runtime = 0
-                            screensaver_on = True
-                        
-                        screen.blit(background, (0, 0))
-			pygame.display.flip()
-			pygame.time.Clock().tick(25)
-                        sleep(0.25)
-                
+				runtime = 0
+				screensaver_on = True
+				
+			sleep(0.25)
+		
 		else:
 			# fire up the screensaver
 			size = [480,320]
