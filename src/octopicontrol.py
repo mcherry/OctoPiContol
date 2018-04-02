@@ -288,9 +288,9 @@ def main():
 		if screensaver_on is False:
 			bad_read = False
 			progress_completion = 0;
-                        progress_printtime = 0
-                        progress_printtimeleft = 0
+                        #progress_printtimeleft = 0
                         file_name = rptstr(' ', 20)
+                        file_size = 0
                         status = "Offline"
                         state = "Offline"
                         
@@ -301,7 +301,7 @@ def main():
 				file_name = job['job']['file']['name']
 				file_size = job['job']['file']['size']
 				progress_completion = job['progress']['completion']
-				progress_printtime = job['progress']['printTime']
+				#progress_printtime = job['progress']['printTime']
 				progress_printtimeleft = job['progress']['printTimeLeft']
 			else:
 				bad_read = True
