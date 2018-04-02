@@ -232,8 +232,7 @@ def setProgress(surface, percent):
 	if percent >= 100:
 		pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
         
-        if percent is not 0:
-            pygame.display.update((5, 65, 470, 40))
+        pygame.display.update((5, 65, 470, 40))
 
 def createSurface(screen, bgcolor):
     bground = pygame.Surface(screen.get_size())
@@ -306,6 +305,8 @@ def main():
 	
 	# create fonts
 	font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
+        
+        draw_info_display(background, font)
 	
 	# main loop that shows and cycles time
 	pos = (0, 0)
@@ -476,8 +477,6 @@ def main():
 			
 			#screen.blit(background, (0, 0))
 			#pygame.display.flip()
-                        draw_info_display(background, font)
-                        draw_time_display(background, font)
                         draw_time_display(background, font, eta)
 			
 			# wait a second to refresh
