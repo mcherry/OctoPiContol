@@ -426,7 +426,8 @@ def main():
 			
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
-			
+			pygame.time.Clock().tick(25)
+                        
 			# wait a second to refresh
 			runtime += 1
 			
@@ -435,7 +436,6 @@ def main():
                             screensaver_on = True
 				
 			sleep(0.25)
-                        #pygame.time.Clock().tick(25)
 		
 		else:
 			# fire up the screensaver
@@ -503,6 +503,5 @@ def main():
 											
                                     elif event.type == QUIT:
                                         return
-
 
 if __name__ == '__main__': main()
