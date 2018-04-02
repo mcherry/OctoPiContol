@@ -306,6 +306,8 @@ def main():
 	# create fonts
 	font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
         
+        background = createSurface(screen, (0, 0, 0))
+        
         draw_info_display(background, font)
 	
 	# main loop that shows and cycles time
