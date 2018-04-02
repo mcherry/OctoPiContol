@@ -288,7 +288,7 @@ def main():
 		if screensaver_on is False:
 			bad_read = False
 			progress_completion = 0;
-                        #progress_printtimeleft = 0
+                        progress_printtimeleft = 0
                         file_name = rptstr(' ', 20)
                         file_size = 0
                         status = "Offline"
