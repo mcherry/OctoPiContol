@@ -236,11 +236,11 @@ def setProgress(surface, percent):
             pygame.display.update((5, 65, 470, 40))
 
 def createSurface(screen, bgcolor):
-		bground = pygame.Surface(screen.get_size())
-		bground = bground.convert()
-		bground.fill(bgcolor)
-		
-		return bground
+    bground = pygame.Surface(screen.get_size())
+    bground = bground.convert()
+    bground.fill(bgcolor)
+
+    return bground
 
 def draw_info_display(background, font):
     # render each string
@@ -274,7 +274,9 @@ def draw_info_display(background, font):
     pygame.display.update(Button3)
     pygame.display.update(Button4)
 
-def draw_time_display(background, font):
+def draw_time_display(background, font, eta):
+    tzdata = datetime.now(timezone(default_timezone))
+    
     timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
     etaText = font.render(eta, True, (255, 255, 255))
     dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
@@ -409,7 +411,7 @@ def main():
 			background = createSurface(screen, (0, 0, 0))
 		
 			# get time for currently selected timezone
-			tzdata = datetime.now(timezone(default_timezone))
+			#tzdata = datetime.now(timezone(default_timezone))
 			
 			if ext_target_f == "32": ext_target_f = 0
 			if bed_target_f == "32": bed_target_f = 0;
@@ -476,6 +478,7 @@ def main():
 			#pygame.display.flip()
                         draw_info_display(background, font)
                         draw_time_display(background, font)
+                        draw_time_display(background, font, eta)
 			
 			# wait a second to refresh
 			runtime += 1
