@@ -23,6 +23,11 @@ os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 
 default_timezone = "US/Central";
 
+Button1 = pygame.Rect(5, 160, 100, 100)
+Button2 = pygame.Rect(127, 160, 100, 100)
+Button3 = pygame.Rect(250, 160, 100, 100)
+Button4 = pygame.Rect(371, 160, 100, 100)
+
 ########## start screen saver classes ##########
 #
 # Matrix code borrowed and modified from Dylan J. Raub (dylanjraub)
@@ -186,6 +191,8 @@ def rptstr(str, cnt):
 	return ''.join([char * cnt for char in str])
 
 def setProgress(surface, percent):
+        pygame.draw.rect(surface, (255, 255, 255), (5, 65, 470, 40), 2)
+        
 	if percent >= 7:
 		pygame.draw.rect(surface, (255, 255, 255), (14, 70, 30, 30))
 	
@@ -224,6 +231,9 @@ def setProgress(surface, percent):
 	
 	if percent >= 100:
 		pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
+        
+        if percent is not 0:
+            pygame.display.update((5, 65, 470, 40))
 
 def createSurface(screen, bgcolor):
 		bground = pygame.Surface(screen.get_size())
@@ -232,6 +242,49 @@ def createSurface(screen, bgcolor):
 		
 		return bground
 
+def draw_info_display(background, font):
+    # render each string
+    statusLabel = font.render("Status:", True, (255, 255, 255))
+    fileLabel = font.render("Name:", True, (255, 255, 255))
+    sizeLabel = font.render("Size:", True, (255, 255, 255))
+    verLabel = font.render("Ver: ", True, (255, 255, 255))
+    infoLine1 = font.render("               [ Ext:    F ]  [ Target:    F ]", True, (255, 255, 255))
+    infoLine2 = font.render("               [ Bed:    F ]  [ Target:    D ]", True, (255, 255, 255))
+    inetInfo2 = font.render("  [ wlan0:                 ]  [ mac:                   ]", True, (255, 255, 255))
+    inetInfo1 = font.render("  [ eth0:                  ]  [ mac:                   ]", True, (255, 255, 255))
+
+    background.blit(statusLabel, (5, 5))
+    background.blit(fileLabel, (5, 25))
+    background.blit(sizeLabel, (5, 45))
+    background.blit(verLabel, (360, 45))
+    background.blit(infoLine1, (2, 115))
+    background.blit(infoLine2, (2, 135))
+    background.blit(inetInfo1, (5,265))
+    background.blit(inetInfo2, (5,280))
+    
+    # buttons
+    pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+    pygame.draw.rect(background, (255, 255, 255), Button2, 2)
+    pygame.draw.rect(background, (255, 255, 255), Button3, 2)
+    pygame.draw.rect(background, (255, 255, 255), Button4, 2)
+    
+    pygame.display.update((5, 5, 480, 75))
+    pygame.display.update(Button1)
+    pygame.display.update(Button2)
+    pygame.display.update(Button3)
+    pygame.display.update(Button4)
+
+def draw_time_display(background, font):
+    timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
+    etaText = font.render(eta, True, (255, 255, 255))
+    dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
+    
+    background.blit(dateText, (5, 300))
+    background.blit(etaText, (205, 300))
+    background.blit(timeText, (405, 300))
+    
+    pygame.display.update((5, 300, 480, 320))
+    
 def main():
 	global index
 	global wclient
@@ -248,11 +301,6 @@ def main():
 	pygame.init()
 	screen = pygame.display.set_mode((480, 320))
 	pygame.mouse.set_visible(False)
-        
-	Button1 = pygame.Rect(5, 160, 100, 100)
-	Button2 = pygame.Rect(127, 160, 100, 100)
-	Button3 = pygame.Rect(250, 160, 100, 100)
-	Button4 = pygame.Rect(371, 160, 100, 100)
 	
 	# create fonts
 	font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
@@ -387,46 +435,47 @@ def main():
 			setProgress(background, progress_completion);
 			
 			# render each string
-			statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
-			fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
-			sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
-			verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-			infoLine1 = font.render("               [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
-			infoLine2 = font.render("               [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
-			inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
-			inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
-			timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
-			etaText = font.render(eta, True, (255, 255, 255))
-			dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
+			#statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
+			#fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
+			#sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
+			#verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
+			#infoLine1 = font.render("               [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
+			#infoLine2 = font.render("               [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
+			#inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
+			#inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
+			#timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
+			#etaText = font.render(eta, True, (255, 255, 255))
+			#dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
 
-			background.blit(statusLabel, (5, 5))
-			background.blit(fileLabel, (5, 25))
-			background.blit(sizeLabel, (5, 45))
-			background.blit(verLabel, (360, 45))
+			#background.blit(statusLabel, (5, 5))
+			#background.blit(fileLabel, (5, 25))
+			#background.blit(sizeLabel, (5, 45))
+			#background.blit(verLabel, (360, 45))
                         
 			# progress bar
-			pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
+			#pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
 			
-			background.blit(infoLine1, (2, 115))
-			background.blit(infoLine2, (2, 135))
+			#background.blit(infoLine1, (2, 115))
+			#background.blit(infoLine2, (2, 135))
 			
 			# buttons
-			pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-			pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-			pygame.draw.rect(background, (255, 255, 255), Button3, 2)
-			pygame.draw.rect(background, (255, 255, 255), Button4, 2)
+			#pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+			#pygame.draw.rect(background, (255, 255, 255), Button2, 2)
+			#pygame.draw.rect(background, (255, 255, 255), Button3, 2)
+			#pygame.draw.rect(background, (255, 255, 255), Button4, 2)
 			
-			background.blit(inetInfo1, (5,265))
-			background.blit(inetInfo2, (5,280))
+			#background.blit(inetInfo1, (5,265))
+			#background.blit(inetInfo2, (5,280))
 			
 			# date and time
-			background.blit(dateText, (5, 300))
-			background.blit(etaText, (205, 300))
-			background.blit(timeText, (405, 300))
+			#background.blit(dateText, (5, 300))
+			#background.blit(etaText, (205, 300))
+			#background.blit(timeText, (405, 300))
 			
-			screen.blit(background, (0, 0))
-			pygame.display.flip()
-			#pygame.time.Clock().tick(25)
+			#screen.blit(background, (0, 0))
+			#pygame.display.flip()
+                        draw_info_display(background, font)
+                        draw_time_display(background, font)
 			
 			# wait a second to refresh
 			runtime += 1
@@ -444,9 +493,7 @@ def main():
 			
 			background = createSurface(screen, (0, 0, 0))
 			screen.blit(background, (0, 0))
-			pygame.display.flip()
-					
-			delay = DelaySwitch(25)
+			#delay = DelaySwitch(25)
 
 			text_width = 13
 			groups = []
@@ -489,7 +536,7 @@ def main():
 					for rect in group.render(screen, font):
 						rects.append(rect)
 						
-				delay.update()
+				#delay.update()
 				
 				pygame.display.flip()
 				pygame.time.Clock().tick(25)
