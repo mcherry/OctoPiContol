@@ -337,6 +337,8 @@ def main():
 			file_name = rptstr(' ', 20);
 			file_size = 0
 				
+                    
+                    print "Creating background surface..."
                     # Fill background
                     background = createSurface(screen, (0, 0, 0))
 		
@@ -363,7 +365,8 @@ def main():
 			
                     eta = "%02d:%02d:%02d" % (day, hour, minutes)
                     setProgress(background, progress_completion);
-			
+                    
+                    print "Rendering interface to framebuffer..."
                     # render each string
                     statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
                     fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
@@ -401,7 +404,8 @@ def main():
                     background.blit(dateText, (5, 300))
                     background.blit(etaText, (205, 300))
                     background.blit(timeText, (405, 300))
-			
+		
+                    print "Refreshing screen..."
                     screen.blit(background, (0, 0))
                     pygame.display.flip()
                     pygame.time.Clock().tick(25)
