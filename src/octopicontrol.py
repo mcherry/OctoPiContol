@@ -249,7 +249,7 @@ def main():
 	
     # main loop that shows and cycles time
     pos = (0, 0)
-    while 1:
+    while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 return
@@ -425,57 +425,57 @@ def main():
 
             text_width = 13
             groups = []
-            add_line=1
-            pos = random.randint(1,size[0]/text_width+1)*text_width-text_width/2
+            add_line = 1
+            pos = random.randint(1, size[0] / text_width + 1) * text_width - text_width / 2
 
             while True:
                 if screensaver_on is False:
                     break
 									
-		add_line-=1
+		add_line -= 1
 		if add_line == 0:
                     fast = random.randint(0,20)
-                    if fast==0:
+                    if fast == 0:
                         speed = 3
                     else:
                         speed = random.randint(1,2)
 
-                    add_line=2
-                    pos = random.randint(1,size[0]/text_width)*text_width-text_width/2
+                    add_line = 2
+                    pos = random.randint(1, size[0] / text_width) * text_width - text_width / 2
                     groups.append(Group([pos, -font.get_height()], speed))
 					
-                    if random.randint(0,50) == 50:
-                        matrixcode = "MP Mini Slect V2 IIIP 3D Printer"
-                        code = list(matrixcode)
-			random.shuffle(code, random.random)
+                if random.randint(0, 50) == 50:
+                    matrixcode = "MP Mini Slect V2 IIIP 3D Printer"
+                    code = list(matrixcode)
+                    random.shuffle(code, random.random)
 					
-			pos = [random.randint(1,size[0]/text_width+1)*text_width-text_width/2, random.randint(1,size[1]/font.get_height()+1)*font.get_height()]
-			groups.append(CodePartical(pos, random.randint(0,len(code)-1), code))
+                    pos = [random.randint(1, size[0] / text_width + 1) * text_width-text_width / 2, random.randint(1, size[1] / font.get_height() + 1) * font.get_height()]
+                    groups.append(CodePartical(pos, random.randint(0, len(code)-1), code))
 
-                        for group in groups:
-                            group.modernize(font, size)
-                            if group.dead:
-                                groups.remove(group)
+                for group in groups:
+                    group.modernize(font, size)
+                    if group.dead:
+                        groups.remove(group)
 						
-                            rects = []
-                            for group in groups:
-				for rect in group.render(screen, font):
-                                    rects.append(rect)
+                rects = []
+                            
+                for group in groups:
+                    for rect in group.render(screen, font):
+                        rects.append(rect)
 						
-                            delay.update()
+                delay.update()
+                pygame.display.flip()
+                pygame.time.Clock().tick(25)
 				
-                            pygame.display.flip()
-                            pygame.time.Clock().tick(25)
-				
-                            for rect in rects:
-				screen.fill([0,0,0], rect)
+                for rect in rects:
+                    screen.fill([0,0,0], rect)
 
-                            for event in pygame.event.get():
-                                if event.type is MOUSEBUTTONUP:
-                                    screensaver_on = False
-                                    return_from_ss = True
-                                    break
-                                elif event.type == QUIT:
-                                    return
+                for event in pygame.event.get():
+                    if event.type is MOUSEBUTTONUP:
+                        screensaver_on = False
+                        return_from_ss = True
+                        break
+                    elif event.type == QUIT:
+                        return
 
 if __name__ == '__main__': main()
