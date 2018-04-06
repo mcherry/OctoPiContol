@@ -484,7 +484,7 @@ def main():
                     for rect in group.render(screen, font):
                         rects.append(rect)
 						
-                delay.update()
+                #delay.update()
                 pygame.display.flip()
                 clock.tick(30)
 				
