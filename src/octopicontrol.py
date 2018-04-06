@@ -291,16 +291,16 @@ def main():
                 file_name = job['job']['file']['name']
                 file_size = job['job']['file']['size']
                 progress_completion = job['progress']['completion']
-                progress_completion = int(round(progress_completion));
+                if progress_completion is not None: progress_completion = round(int(progress_completion));
                 progress_printtime = job['progress']['printTime']
                 progress_printtimeleft = job['progress']['printTimeLeft']
             else:
                 status = "Offline"
-                file_name = rptstr(' ', 20);
+                file_name = "_.gcode"
                 file_size = 0
-                progress_completion = 0
-                progress_printtime = 0
-                progress_printtimeleft = 0
+                progress_completion = "0"
+                progress_printtime = "0"
+                progress_printtimeleft = "0"
 
 				
             ver = get_info('version')
@@ -370,9 +370,21 @@ def main():
             setProgress(background, progress_completion);
                     
             # render each string
-            statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
-            fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
-            sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
+            if progress_completion is not None:
+                statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
+            else:
+                statusLabel = font.render("Status: " + state, True, (255, 255, 255))
+
+            if file_name is not None:
+                fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
+            else:
+                fileLabel = font.render("Name: ", True, (255, 255, 255))
+
+            if file_size is not None: 
+                sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
+            else:
+                sizeLabel = font.render("Size:", True, (255, 255, 255))
+
             verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
             infoLine1 = font.render("               [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
             infoLine2 = font.render("               [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
@@ -451,7 +463,7 @@ def main():
                     groups.append(Group([pos, -font.get_height()], speed))
 					
                 if random.randint(0, 50) == 50:
-                    matrixcode = "MP Mini Select V2 IIIP 3D Printer"
+                    matrixcode = ".: MP Mini Select V2 IIIP 3D Printer :."
                     code = list(matrixcode)
                     random.shuffle(code, random.random)
 					
