@@ -225,7 +225,7 @@ def main():
     global wclient
 	
     runtime = 0
-    ssaver_time = 720
+    ssaver_time = 10
     screensaver_on = False
     return_from_ss = False
     screenpressed = False
@@ -407,8 +407,6 @@ def main():
                 screen.blit(background, (0, 0))
                 pygame.display.flip()
                 pygame.time.Clock().tick(25)
-                
-                print "screen should be updating..."
 			
                 # wait a second to refresh
                 runtime += 1
