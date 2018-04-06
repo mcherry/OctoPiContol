@@ -275,7 +275,6 @@ def main():
                 break
 
 	if screensaver_on is False:
-            bad_read = False
             progress_completion = None
 			
             job = get_info('job');
@@ -294,7 +293,15 @@ def main():
                     progress_completion = 0
                     progress_printtime = 0
                     progress_printtimeleft = 0
-                    bad_read = True
+
+            else:
+                status = "Offline"
+                file_name = ""
+                file_size = 0
+                progress_completion = 0
+                progress_printtime = 0
+                progress_printtimeleft = 0
+
 				
             ver = get_info('version')
             if ver is not None:
