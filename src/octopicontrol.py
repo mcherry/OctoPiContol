@@ -247,7 +247,6 @@ def main():
 	
     # main loop that shows and cycles time
     pos = (0, 0)
-    
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -427,34 +426,34 @@ def main():
             add_line=1
             pos = random.randint(1,size[0]/text_width+1)*text_width-text_width/2
 
-                    while True:
-                        if screensaver_on is False:
-                            break
+            while True:
+                if screensaver_on is False:
+                    break
 									
-			add_line-=1
-			if add_line==0:
-                            fast = random.randint(0,20)
-                            if fast==0:
-                                speed = 3
-                            else:
-                                speed = random.randint(1,2)
+		add_line-=1
+		if add_line == 0:
+                    fast = random.randint(0,20)
+                    if fast==0:
+                        speed = 3
+                    else:
+                        speed = random.randint(1,2)
 
-                            add_line=2
-                            pos = random.randint(1,size[0]/text_width)*text_width-text_width/2
-                            groups.append(Group([pos, -font.get_height()], speed))
+                    add_line=2
+                    pos = random.randint(1,size[0]/text_width)*text_width-text_width/2
+                    groups.append(Group([pos, -font.get_height()], speed))
 					
-                            if random.randint(0,50) == 50:
-                                matrixcode = "MP Mini Slect V2 IIIP 3D Printer"
-				code = list(matrixcode)
-				random.shuffle(code, random.random)
+                    if random.randint(0,50) == 50:
+                        matrixcode = "MP Mini Slect V2 IIIP 3D Printer"
+                        code = list(matrixcode)
+			random.shuffle(code, random.random)
 					
-				pos = [random.randint(1,size[0]/text_width+1)*text_width-text_width/2, random.randint(1,size[1]/font.get_height()+1)*font.get_height()]
-				groups.append(CodePartical(pos, random.randint(0,len(code)-1), code))
+			pos = [random.randint(1,size[0]/text_width+1)*text_width-text_width/2, random.randint(1,size[1]/font.get_height()+1)*font.get_height()]
+			groups.append(CodePartical(pos, random.randint(0,len(code)-1), code))
 
-                            for group in groups:
-				group.modernize(font, size)
-				if group.dead:
-                                    groups.remove(group)
+                        for group in groups:
+                            group.modernize(font, size)
+                            if group.dead:
+                                groups.remove(group)
 						
                             rects = []
                             for group in groups:
