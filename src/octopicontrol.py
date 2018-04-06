@@ -247,10 +247,11 @@ def main():
 	
     # main loop that shows and cycles time
     pos = (0, 0)
-    while 1:
+    while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 return
+            
             elif event.type == MOUSEBUTTONUP:
                 mouse_pos = pygame.mouse.get_pos()
                 print mouse_pos
@@ -406,6 +407,8 @@ def main():
                 screen.blit(background, (0, 0))
                 pygame.display.flip()
                 pygame.time.Clock().tick(25)
+                
+                print "screen should be updating..."
 			
                 # wait a second to refresh
                 runtime += 1
