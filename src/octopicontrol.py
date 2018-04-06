@@ -254,7 +254,7 @@ def main():
             if event.type == QUIT:
                 return
             
-            elif event.type == MOUSEBUTTONUP:
+            elif event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 print mouse_pos
                                 
@@ -410,7 +410,7 @@ def main():
                 runtime = 0
                 screensaver_on = True
 				
-            sleep(0.1)
+            sleep(0.25)
 		
         else:
             # fire up the screensaver
