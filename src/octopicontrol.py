@@ -279,24 +279,15 @@ def main():
 			
             job = get_info('job');
             if job is not None:
-                try:
-                    status = job['state']
-                    file_name = job['job']['file']['name']
-                    file_size = job['job']['file']['size']
-                    progress_completion = int(round(job['progress']['completion']));
-                    progress_printtime = job['progress']['printTime']
-                    progress_printtimeleft = job['progress']['printTimeLeft']
-                except:
-                    status = "Offline"
-                    file_name = ""
-                    file_size = 0
-                    progress_completion = 0
-                    progress_printtime = 0
-                    progress_printtimeleft = 0
-
+                status = job['state']
+                file_name = job['job']['file']['name']
+                file_size = job['job']['file']['size']
+                progress_completion = int(round(job['progress']['completion']));
+                progress_printtime = job['progress']['printTime']
+                progress_printtimeleft = job['progress']['printTimeLeft']
             else:
                 status = "Offline"
-                file_name = ""
+                file_name = rptstr(' ', 20);
                 file_size = 0
                 progress_completion = 0
                 progress_printtime = 0
@@ -305,15 +296,12 @@ def main():
 				
             ver = get_info('version')
             if ver is not None:
-                try:
-                    api_version = ver['api']
-                    octo_version = ver['server']
-                except:
-                    api_verion = 0
-                    octo_verion = 0
+                api_version = ver['api']
+                octo_version = ver['server']
             else:
-                bad_read = True
-			
+                api_verion = 0
+                octo_verion = 0
+            
             ext_f = "0"
             bed_f = "0"
 			
@@ -321,130 +309,122 @@ def main():
             if stateinfo is not None:
                 state = stateinfo['current']['state']
             else:
-		bad_read = True
+                state = "Offline"
 			
             printer = get_info('printer')
             if printer is not None:
-                try:
-                    ext = int(printer['temperature']['tool0']['actual'])
-                    ext_target = int(printer['temperature']['tool0']['target'])
-                    bed = int(printer['temperature']['bed']['actual'])
-                    bed_target = int(printer['temperature']['bed']['target'])
-		except:
-                    ext = 0
-                    ext_target = 0
-                    bed = 0
-                    bed_target = 0
-					
-		ext_f = CtoF(ext).ljust(3)
-		bed_f = CtoF(bed).ljust(3)
-				
-		if ext_target == 0 or bed_target == 0:
-                    ext_target_f = "0".rjust(3)
-                    bed_target_f = "0".rjust(3)
-		else:
-                    ext_target_f = CtoF(ext_target).ljust(3)
-                    bed_target_f = CtoF(bed_target).ljust(3)
-
+                ext = int(printer['temperature']['tool0']['actual'])
+                ext_target = int(printer['temperature']['tool0']['target'])
+                bed = int(printer['temperature']['bed']['actual'])
+                bed_target = int(printer['temperature']['bed']['target'])
             else:
-		bad_read = True
+                ext = 0
+                ext_target = 0
+                bed = 0
+                bed_target = 0
+					
+            ext_f = CtoF(ext).ljust(3)
+            bed_f = CtoF(bed).ljust(3)
 				
-            if file_name is None:
-                file_name = rptstr(' ', 20);
-                file_size = 0
-				
-                # Fill background
-                background = createSurface(screen, (0, 0, 0))
+            if ext_target == 0 or bed_target == 0:
+                ext_target_f = "0".rjust(3)
+                bed_target_f = "0".rjust(3)
+            else:
+                ext_target_f = CtoF(ext_target).ljust(3)
+                bed_target_f = CtoF(bed_target).ljust(3)
+		           
+            # Fill background
+            background = createSurface(screen, (0, 0, 0))
 		
-                # get time for currently selected timezone
-                tzdata = datetime.now(timezone(default_timezone))
+            # get time for currently selected timezone
+            tzdata = datetime.now(timezone(default_timezone))
                     
-                if ext_target_f == "32": ext_target_f = 0
-                if bed_target_f == "32": bed_target_f = 0;
-                if progress_printtimeleft is not None:
-                    time = float(int(progress_printtimeleft))
-                    day = time // (24 * 3600)
-                    time = time % (24 * 3600)
-                    hour = time // 3600
-                    time %= 3600
-                    minutes = time // 60
-                    time %= 60
-                    seconds = time
-                else:
-                    time = 0
-                    day = 0
-                    hour = 0
-                    minutes = 0
-                    seconds = 0
+            if ext_target_f == "32": ext_target_f = 0
+            if bed_target_f == "32": bed_target_f = 0;
+            if progress_printtimeleft is not None:
+                time = float(int(progress_printtimeleft))
+                day = time // (24 * 3600)
+                time = time % (24 * 3600)
+                hour = time // 3600
+                time %= 3600
+                minutes = time // 60
+                time %= 60
+                seconds = time
+            else:
+                time = 0
+                day = 0
+                hour = 0
+                minutes = 0
+                seconds = 0
 			
-                eta = "%02d:%02d:%02d" % (day, hour, minutes)
-                setProgress(background, progress_completion);
+            eta = "%02d:%02d:%02d" % (day, hour, minutes)
+            setProgress(background, progress_completion);
                     
-                # render each string
-                statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
-                fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
-                sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
-                verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-                infoLine1 = font.render("               [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
-                infoLine2 = font.render("               [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
-                inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
-                inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
-                timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
-                etaText = font.render(eta, True, (255, 255, 255))
-                dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
+            # render each string
+            statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
+            fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
+            sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
+            verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
+            infoLine1 = font.render("               [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
+            infoLine2 = font.render("               [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
+            inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
+            inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
+            timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
+            etaText = font.render(eta, True, (255, 255, 255))
+            dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
 
-                background.blit(statusLabel, (5, 5))
-                background.blit(fileLabel, (5, 25))
-                background.blit(sizeLabel, (5, 45))
-                background.blit(verLabel, (360, 45))
+            background.blit(statusLabel, (5, 5))
+            background.blit(fileLabel, (5, 25))
+            background.blit(sizeLabel, (5, 45))
+            background.blit(verLabel, (360, 45))
                         
-                # progress bar
-                pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
+            # progress bar
+            pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
 			
-                background.blit(infoLine1, (2, 115))
-                background.blit(infoLine2, (2, 135))
+            background.blit(infoLine1, (2, 115))
+            background.blit(infoLine2, (2, 135))
 			
-                # buttons
-                pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-                pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-                pygame.draw.rect(background, (255, 255, 255), Button3, 2)
-                pygame.draw.rect(background, (255, 255, 255), Button4, 2)
+            # buttons
+            pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+            pygame.draw.rect(background, (255, 255, 255), Button2, 2)
+            pygame.draw.rect(background, (255, 255, 255), Button3, 2)
+            pygame.draw.rect(background, (255, 255, 255), Button4, 2)
 			
-                background.blit(inetInfo1, (5,265))
-                background.blit(inetInfo2, (5,280))
+            background.blit(inetInfo1, (5,265))
+            background.blit(inetInfo2, (5,280))
 			
-                # date and time
-                background.blit(dateText, (5, 300))
-                background.blit(etaText, (205, 300))
-                background.blit(timeText, (405, 300))
+            # date and time
+            background.blit(dateText, (5, 300))
+            background.blit(etaText, (205, 300))
+            background.blit(timeText, (405, 300))
 		
-                screen.blit(background, (0, 0))
-                pygame.display.flip()
-                pygame.time.Clock().tick(25)
+            screen.blit(background, (0, 0))
+            pygame.display.flip()
+            pygame.time.Clock().tick(25)
 			
-                # wait a second to refresh
-                runtime += 1
+            # wait a second to refresh
+            runtime += 1
 			
-                if runtime == ssaver_time:
-                    runtime = 0
-                    screensaver_on = True
+            if runtime == ssaver_time:
+                runtime = 0
+                screensaver_on = True
 				
-                sleep(0.25)
+            sleep(0.25)
 		
-            else:
-                    # fire up the screensaver
-                    size = [480,320]
+        else:
+            # fire up the screensaver
+            size = [480,320]
 			
-                    background = createSurface(screen, (0, 0, 0))
-                    screen.blit(background, (0, 0))
-                    pygame.display.flip()
+            background = createSurface(screen, (0, 0, 0))
+            screen.blit(background, (0, 0))
+            pygame.display.flip()
 					
-                    delay = DelaySwitch(25)
+            delay = DelaySwitch(25)
 
-                    text_width = 13
-                    groups = []
-                    add_line=1
-                    pos = random.randint(1,size[0]/text_width+1)*text_width-text_width/2
+            text_width = 13
+            groups = []
+            add_line=1
+            pos = random.randint(1,size[0]/text_width+1)*text_width-text_width/2
 
                     while True:
                         if screensaver_on is False:
