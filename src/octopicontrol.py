@@ -280,24 +280,30 @@ def main():
 			
             job = get_info('job');
             if job is not None:
-                status = job['state']
-		file_name = job['job']['file']['name']
-		file_size = job['job']['file']['size']
-		progress_completion = job['progress']['completion']
-		progress_printtime = job['progress']['printTime']
-		progress_printtimeleft = job['progress']['printTimeLeft']
-            else:
-		bad_read = True
-				
-            if progress_completion is None:
-		progress_completion = 0
-            else:
-		progress_completion = int(round(progress_completion));
+                try:
+                    status = job['state']
+                    file_name = job['job']['file']['name']
+                    file_size = job['job']['file']['size']
+                    progress_completion = int(round(job['progress']['completion']));
+                    progress_printtime = job['progress']['printTime']
+                    progress_printtimeleft = job['progress']['printTimeLeft']
+                except:
+                    status = "Offline"
+                    file_name = ""
+                    file_size = 0
+                    progress_completion = 0
+                    progress_printtime = 0
+                    progress_printtimeleft = 0
+                    bad_read = True
 				
             ver = get_info('version')
             if ver is not None:
-                api_version = ver['api']
-                octo_version = ver['server']
+                try:
+                    api_version = ver['api']
+                    octo_version = ver['server']
+                except:
+                    api_verion = 0
+                    octo_verion = 0
             else:
                 bad_read = True
 			
