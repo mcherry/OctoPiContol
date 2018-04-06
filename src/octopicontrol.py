@@ -402,7 +402,6 @@ def main():
 		
             screen.blit(background, (0, 0))
             pygame.display.flip()
-            #pygame.time.Clock().tick(25)
 			
             # wait a second to refresh
             runtime += 1
@@ -445,7 +444,7 @@ def main():
                     groups.append(Group([pos, -font.get_height()], speed))
 					
                 if random.randint(0, 50) == 50:
-                    matrixcode = "MP Mini Slect V2 IIIP 3D Printer"
+                    matrixcode = "MP Mini Select V2 IIIP 3D Printer"
                     code = list(matrixcode)
                     random.shuffle(code, random.random)
 					
@@ -465,7 +464,6 @@ def main():
 						
                 delay.update()
                 pygame.display.flip()
-                #pygame.time.Clock().tick(25)
 				
                 for rect in rects:
                     screen.fill([0,0,0], rect)
