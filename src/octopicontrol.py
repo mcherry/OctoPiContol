@@ -20,7 +20,7 @@ from pygame.locals import *
 # required environment variables for pygame
 os.putenv('SDL_FBDEV', '/dev/fb1')
 os.putenv('SDL_MOUSEDRV', 'TSLIB')
-os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
+os.putenv('SDL_MOUSEDEV', '/dev/input/touchscreen')
 
 default_timezone = "US/Central";
 
