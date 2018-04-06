@@ -257,7 +257,7 @@ def main():
             elif event.type == MOUSEBUTTONUP:
                 (mouse_x, mouse_y) = pygame.mouse.get_pos()
                 mouse_pos = pygame.mouse.get_pos()
-                print mouse_x + ", " + mouse_y
+                print `mouse_x` + ", " + `mouse_y`
                                 
                 if Button1.collidepoint(mouse_pos):
                     print "Pressed button 1"
