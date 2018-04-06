@@ -290,7 +290,8 @@ def main():
                 status = job['state']
                 file_name = job['job']['file']['name']
                 file_size = job['job']['file']['size']
-                progress_completion = int(round(job['progress']['completion']));
+                progress_completion = job['progress']['completion']
+                progress_completion = int(round(progress_conmpletion));
                 progress_printtime = job['progress']['printTime']
                 progress_printtimeleft = job['progress']['printTimeLeft']
             else:
