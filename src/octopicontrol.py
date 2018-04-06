@@ -225,7 +225,7 @@ def main():
     global wclient
 	
     runtime = 0
-    ssaver_time = 10
+    ssaver_time = 6000
     screensaver_on = False
     return_from_ss = False
     screenpressed = False
@@ -402,7 +402,7 @@ def main():
 		
             screen.blit(background, (0, 0))
             pygame.display.flip()
-            pygame.time.Clock().tick(25)
+            #pygame.time.Clock().tick(25)
 			
             # wait a second to refresh
             runtime += 1
@@ -465,7 +465,7 @@ def main():
 						
                 delay.update()
                 pygame.display.flip()
-                pygame.time.Clock().tick(25)
+                #pygame.time.Clock().tick(25)
 				
                 for rect in rects:
                     screen.fill([0,0,0], rect)
