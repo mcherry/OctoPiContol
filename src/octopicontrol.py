@@ -255,7 +255,10 @@ def main():
 	
     # main loop that shows and cycles time
     pos = (0, 0)
+    clock = pygame.time.Clock()
     while True:
+        clock.tick(30)
+        
         for event in pygame.event.get():
             if event.type == QUIT:
                 return
@@ -429,7 +432,7 @@ def main():
                 runtime = 0
                 screensaver_on = True
 				
-            sleep(0.25)
+            #sleep(0.25)
 		
         else:
             # fire up the screensaver
@@ -438,8 +441,8 @@ def main():
             background = createSurface(screen, (0, 0, 0))
             screen.blit(background, (0, 0))
             pygame.display.flip()
-					
-            delay = DelaySwitch(25)
+            
+            #delay = DelaySwitch(25)
 
             text_width = 13
             groups = []
@@ -483,6 +486,7 @@ def main():
 						
                 delay.update()
                 pygame.display.flip()
+                clock.tick(30)
 				
                 for rect in rects:
                     screen.fill([0,0,0], rect)
