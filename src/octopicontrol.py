@@ -3,6 +3,8 @@
 
 # This script requires that libsdl be downgraded to version 1.2
 # See here: https://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/pitft-pygame-tips
+# To calibrate touchscreen, use the following command: sudo TSLIB_FBDEVICE=/dev/fb1 TSLIB_TSDEVICE=/dev/input/touchscreen ts_calibrate
+# Screen rotation can be adjusted using https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/adafruit-pitft.sh
 
 import pygame
 import os
