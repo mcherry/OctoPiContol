@@ -410,7 +410,7 @@ def main():
                 runtime = 0
                 screensaver_on = True
 				
-            sleep(0.25)
+            sleep(0.1)
 		
         else:
             # fire up the screensaver
