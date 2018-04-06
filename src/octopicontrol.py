@@ -229,8 +229,10 @@ def main():
     screensaver_on = False
     return_from_ss = False
     screenpressed = False
-    ext_target_f = "0";
-    bed_target_f = "0";
+    api_version = "0"
+    octo_version = "0"
+    ext_target_f = "0"
+    bed_target_f = "0"
 	
     # Initialise screen
     pygame.init()
