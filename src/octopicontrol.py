@@ -247,7 +247,8 @@ def main():
 	
     # main loop that shows and cycles time
     pos = (0, 0)
-    while True:
+    
+    while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
                 return
