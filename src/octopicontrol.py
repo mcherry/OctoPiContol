@@ -257,7 +257,7 @@ def main():
     pos = (0, 0)
     clock = pygame.time.Clock()
     while True:
-        clock.tick(30)
+        clock.tick(15)
         
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -289,19 +289,10 @@ def main():
                 break
             
             elif event.type == MOUSEBUTTONUP:
-                mouse_pos = pygame.mouse.get_pos()
-                
-                if Button1.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button1)
-                                    
-                if Button2.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button2)
-                                
-                if Button3.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button3)
-                                    
-                if Button4.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button4)
+                pygame.draw.rect(background, (255, 255, 255), Button1)
+                pygame.draw.rect(background, (255, 255, 255), Button2)
+                pygame.draw.rect(background, (255, 255, 255), Button3)
+                pygame.draw.rect(background, (255, 255, 255), Button4)
                 
                 screen.blit(background, (0, 0))
                 pygame.display.flip()
@@ -428,12 +419,19 @@ def main():
 			
             background.blit(infoLine1, (2, 115))
             background.blit(infoLine2, (2, 135))
-			
+            
+            #Button1 = pygame.Rect(5, 160, 100, 100)
+            #Button2 = pygame.Rect(127, 160, 100, 100)
+            #Button3 = pygame.Rect(250, 160, 100, 100)
+            #Button4 = pygame.Rect(371, 160, 100, 100)
+    
             # buttons
             pygame.draw.rect(background, (255, 255, 255), Button1, 2)
             pygame.draw.rect(background, (255, 255, 255), Button2, 2)
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
             pygame.draw.rect(background, (255, 255, 255), Button4, 2)
+            
+            pygame.draw.rect(background, (255, 255, 255), (10, 170, 5, 80))
 			
             background.blit(inetInfo1, (5,265))
             background.blit(inetInfo2, (5,280))
@@ -507,7 +505,7 @@ def main():
 						
                 #delay.update()
                 pygame.display.flip()
-                clock.tick(30)
+                clock.tick(15)
 				
                 for rect in rects:
                     screen.fill([0,0,0], rect)
