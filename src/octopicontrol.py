@@ -289,10 +289,19 @@ def main():
                 break
             
             elif event.type == MOUSEBUTTONUP:
-                pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-                pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-                pygame.draw.rect(background, (255, 255, 255), Button3, 2)
-                pygame.draw.rect(background, (255, 255, 255), Button4, 2)
+                mouse_pos = pygame.mouse.get_pos()
+                
+                if Button1.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, (255, 255, 255), Button1)
+                                    
+                if Button2.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, (255, 255, 255), Button2)
+                                
+                if Button3.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, (255, 255, 255), Button3)
+                                    
+                if Button4.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, (255, 255, 255), Button4)
                 
                 screen.blit(background, (0, 0))
                 pygame.display.flip()
