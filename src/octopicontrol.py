@@ -257,7 +257,7 @@ def main():
     pos = (0, 0)
     clock = pygame.time.Clock()
     while True:
-        clock.tick(15)
+        clock.tick(25)
         
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -289,10 +289,10 @@ def main():
                 break
             
             elif event.type == MOUSEBUTTONUP:
-                pygame.draw.rect(background, (255, 255, 255), Button1)
-                pygame.draw.rect(background, (255, 255, 255), Button2)
-                pygame.draw.rect(background, (255, 255, 255), Button3)
-                pygame.draw.rect(background, (255, 255, 255), Button4)
+                pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+                pygame.draw.rect(background, (255, 255, 255), Button2, 2)
+                pygame.draw.rect(background, (255, 255, 255), Button3, 2)
+                pygame.draw.rect(background, (255, 255, 255), Button4, 2)
                 
                 screen.blit(background, (0, 0))
                 pygame.display.flip()
@@ -431,8 +431,16 @@ def main():
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
             pygame.draw.rect(background, (255, 255, 255), Button4, 2)
             
-            pygame.draw.rect(background, (255, 255, 255), (10, 170, 5, 80))
-			
+            pauseText = font.render("Pause", True, (255, 255, 255))
+            stopText = font.render("Stop", True, (255, 255, 255))
+            rebootText = font.render("Reboot", True, (255, 255, 255))
+            poweroffText = font.render("Power Off", True, (255, 255, 255))
+            
+            background.blit(pauseText, (10,170))
+            background.blit(stopText, (137,170))
+            background.blit(rebootText, (260,170))
+            background.blit(poweroffText, (381,170))
+            
             background.blit(inetInfo1, (5,265))
             background.blit(inetInfo2, (5,280))
 			
@@ -450,9 +458,6 @@ def main():
             if runtime == ssaver_time:
                 runtime = 0
                 screensaver_on = True
-				
-            #sleep(0.25)
-		
         else:
             # fire up the screensaver
             size = [480,320]
@@ -505,7 +510,7 @@ def main():
 						
                 #delay.update()
                 pygame.display.flip()
-                clock.tick(15)
+                clock.tick(25)
 				
                 for rect in rects:
                     screen.fill([0,0,0], rect)
