@@ -269,18 +269,23 @@ def main():
                                 
                 if Button1.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button1)
-                                    
+                    pauseText = font.render("Pause", True, (0, 0, 0))
+                    background.blit(pauseText, (35,202))
+
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
+                    stopText = font.render("Stop", True, (0, 0, 0))
+                    background.blit(stopText, (160,202))
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
-                                    
+                    rebootText = font.render("Reboot", True, (0, 0, 0))
+                    background.blit(rebootText, (275,202))
+                    
                 if Button4.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button4)
-                
-                screen.blit(background, (0, 0))
-                pygame.display.flip()
+                    poweroffText = font.render("Power Off", True, (0, 0, 0))
+                    background.blit(poweroffText, (386,202))
                                     
                 if return_from_ss != True:
                     runtime = 0
@@ -294,8 +299,13 @@ def main():
                 pygame.draw.rect(background, (255, 255, 255), Button3, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button4, 2)
                 
-                screen.blit(background, (0, 0))
-                pygame.display.flip()
+                background.blit(font.render("Pause", True, (255, 255, 255)), (35,202))
+                background.blit(font.render("Stop", True, (255, 255, 255)), (160,202))
+                background.blit(font.render("Reboot", True, (255, 255, 255)), (275,202))
+                background.blit(font.render("Power Off", True, (255, 255, 255)), (386,202))
+                
+            screen.blit(background, (0, 0))
+            pygame.display.flip()
 
 	if screensaver_on is False:
             progress_completion = None
@@ -431,15 +441,10 @@ def main():
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
             pygame.draw.rect(background, (255, 255, 255), Button4, 2)
             
-            pauseText = font.render("Pause", True, (255, 255, 255))
-            stopText = font.render("Stop", True, (255, 255, 255))
-            rebootText = font.render("Reboot", True, (255, 255, 255))
-            poweroffText = font.render("Power Off", True, (255, 255, 255))
-            
-            background.blit(pauseText, (35,202))
-            background.blit(stopText, (160,202))
-            background.blit(rebootText, (275,202))
-            background.blit(poweroffText, (386,202))
+            background.blit(font.render("Pause", True, (255, 255, 255)), (35,202))
+            background.blit(font.render("Stop", True, (255, 255, 255)), (160,202))
+            background.blit(font.render("Reboot", True, (255, 255, 255)), (275,202))
+            background.blit(font.render("Power Off", True, (255, 255, 255)), (386,202))
             
             background.blit(inetInfo1, (5,265))
             background.blit(inetInfo2, (5,280))
