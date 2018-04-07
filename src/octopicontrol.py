@@ -436,10 +436,10 @@ def main():
             rebootText = font.render("Reboot", True, (255, 255, 255))
             poweroffText = font.render("Power Off", True, (255, 255, 255))
             
-            background.blit(pauseText, (35,200))
-            background.blit(stopText, (155,200))
-            background.blit(rebootText, (275,200))
-            background.blit(poweroffText, (386,200))
+            background.blit(pauseText, (35,202))
+            background.blit(stopText, (160,202))
+            background.blit(rebootText, (275,202))
+            background.blit(poweroffText, (386,202))
             
             background.blit(inetInfo1, (5,265))
             background.blit(inetInfo2, (5,280))
