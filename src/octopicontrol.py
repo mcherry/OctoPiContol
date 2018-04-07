@@ -278,6 +278,9 @@ def main():
                                     
                 if Button4.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button4)
+                
+                screen.blit(background, (0, 0))
+                pygame.display.flip()
                                     
                 if return_from_ss != True:
                     runtime = 0
@@ -290,6 +293,9 @@ def main():
                 pygame.draw.rect(background, (255, 255, 255), Button2, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button3, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button4, 2)
+                
+                screen.blit(background, (0, 0))
+                pygame.display.flip()
 
 	if screensaver_on is False:
             progress_completion = None
