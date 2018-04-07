@@ -268,22 +268,28 @@ def main():
                 print mouse_pos
                                 
                 if Button1.collidepoint(mouse_pos):
-                    print "Pressed button 1"
+                    pygame.draw.rect(background, (255, 255, 255), Button1)
                                     
                 if Button2.collidepoint(mouse_pos):
-                    print "Pressed button 2"
+                    pygame.draw.rect(background, (255, 255, 255), Button2)
                                 
                 if Button3.collidepoint(mouse_pos):
-                    print "Pressed button 3"
+                    pygame.draw.rect(background, (255, 255, 255), Button3)
                                     
                 if Button4.collidepoint(mouse_pos):
-                    print "Pressed button 4"
+                    pygame.draw.rect(background, (255, 255, 255), Button4)
                                     
                 if return_from_ss != True:
                     runtime = 0
                     
                 return_from_ss = False
                 break
+            
+            elif event.type == MOUSEBUTTONUP:
+                pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+                pygame.draw.rect(background, (255, 255, 255), Button2, 2)
+                pygame.draw.rect(background, (255, 255, 255), Button3, 2)
+                pygame.draw.rect(background, (255, 255, 255), Button4, 2)
 
 	if screensaver_on is False:
             progress_completion = None
@@ -294,7 +300,7 @@ def main():
                 file_name = job['job']['file']['name']
                 file_size = job['job']['file']['size']
                 progress_completion = job['progress']['completion']
-                if progress_completion is not None: progress_completion = round(int(progress_completion));
+                if progress_completion is not None: progress_completion = int(round(progress_completion));
                 progress_printtime = job['progress']['printTime']
                 progress_printtimeleft = job['progress']['printTimeLeft']
             else:
