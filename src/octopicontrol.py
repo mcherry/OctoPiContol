@@ -436,8 +436,8 @@ def main():
             background.blit(font.render("Reboot", True, (255, 255, 255)), (275,202))
             background.blit(font.render("Power Off", True, (255, 255, 255)), (386,202))
             
-            background.blit(inetInfo1, (5,265))
-            background.blit(inetInfo2, (5,280))
+            background.blit(inetInfo1, (5,262))
+            background.blit(inetInfo2, (5,279))
 			
             # date and time
             background.blit(dateText, (5, 300))
