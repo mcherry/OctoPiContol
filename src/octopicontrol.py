@@ -239,7 +239,7 @@ def main():
     octo_version = "0"
     ext_target_f = "0"
     bed_target_f = "0"
-    degree_sign= u'\N{DEGREE SIGN}'
+    degree_symbol= u'\N{DEGREE SIGN}'
 	
     # Initialise screen
     pygame.init()
