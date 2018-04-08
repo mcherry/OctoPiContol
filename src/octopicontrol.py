@@ -73,10 +73,11 @@ class CodePartical(object):
 class Group(object): 
     def __init__(self, pos, speed):
 	# "matrix code" is a string made up of the current timezone/time/date
-	timedata = datetime.now(timezone(default_timezone))
-	timestring = timedata.strftime('%X %Z %z') + default_timezone
-	self.code = list(timestring)
-	random.shuffle(self.code, random.random)
+	#timedata = datetime.now(timezone(default_timezone))
+	#timestring = timedata.strftime('%X %Z %z') + default_timezone
+	codesrtring = "MP Mini Select V2 IIIP 3D Printer"
+        self.code = list(codestring)
+	#random.shuffle(self.code, random.random)
 	
 	self.speed=int(speed)
 	self.pos =[  int(pos[0]),int(pos[1]) ]
@@ -491,9 +492,9 @@ def main():
                     groups.append(Group([pos, -font.get_height()], speed))
 					
                 if random.randint(0, 50) == 50:
-                    matrixcode = ".: MP Mini Select V2 IIIP 3D Printer :."
+                    matrixcode = "MP Mini Select V2 IIIP 3D Printer"
                     code = list(matrixcode)
-                    random.shuffle(code, random.random)
+                    #random.shuffle(code, random.random)
 					
                     pos = [random.randint(1, size[0] / text_width + 1) * text_width-text_width / 2, random.randint(1, size[1] / font.get_height() + 1) * font.get_height()]
                     groups.append(CodePartical(pos, random.randint(0, len(code)-1), code))
