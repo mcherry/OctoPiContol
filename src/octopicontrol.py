@@ -257,22 +257,22 @@ def main():
                 if Button1.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button1)
                     pauseText = font.render("Pause", True, (0, 0, 0))
-                    background.blit(pauseText, (35,202))
+                    background.blit(pauseText, (35,192))
 
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
                     stopText = font.render("Stop", True, (0, 0, 0))
-                    background.blit(stopText, (160,202))
+                    background.blit(stopText, (160,192))
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
                     rebootText = font.render("Reboot", True, (0, 0, 0))
-                    background.blit(rebootText, (275,202))
+                    background.blit(rebootText, (275,192))
                     
                 if Button4.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button4)
                     poweroffText = font.render("Power Off", True, (0, 0, 0))
-                    background.blit(poweroffText, (386,202))
+                    background.blit(poweroffText, (386,192))
                                     
                 if return_from_ss != True:
                     runtime = 0
