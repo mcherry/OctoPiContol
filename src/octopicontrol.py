@@ -73,11 +73,10 @@ class CodePartical(object):
 class Group(object): 
     def __init__(self, pos, speed):
 	# "matrix code" is a string made up of the current timezone/time/date
-	#timedata = datetime.now(timezone(default_timezone))
-	#timestring = timedata.strftime('%X %Z %z') + default_timezone
-	codestring = "MP Mini Select V2 IIIP 3D Printer"
-        self.code = list(codestring)
-	#random.shuffle(self.code, random.random)
+	timedata = datetime.now(timezone(default_timezone))
+	timestring = timedata.strftime('%X %Z %z') + default_timezone
+	self.code = list(timestring)
+	random.shuffle(self.code, random.random)
 	
 	self.speed=int(speed)
 	self.pos =[  int(pos[0]),int(pos[1]) ]
@@ -220,7 +219,7 @@ def main():
     global wclient
 	
     runtime = 0
-    ssaver_time = 100
+    ssaver_time = 5000
     screensaver_on = False
     return_from_ss = False
     api_version = "0"
@@ -325,8 +324,8 @@ def main():
                 api_version = ver['api']
                 octo_version = ver['server']
             else:
-                api_verion = 0
-                octo_verion = 0
+                api_version = 0
+                octo_version = 0
             
             ext_f = "0"
             bed_f = "0"
@@ -492,9 +491,9 @@ def main():
                     groups.append(Group([pos, -font.get_height()], speed))
 					
                 if random.randint(0, 50) == 50:
-                    matrixcode = "MP Mini Select V2 IIIP 3D Printer"
+                    matrixcode = ".: MP Mini Select V2 IIIP 3D Printer :."
                     code = list(matrixcode)
-                    #random.shuffle(code, random.random)
+                    random.shuffle(code, random.random)
 					
                     pos = [random.randint(1, size[0] / text_width + 1) * text_width-text_width / 2, random.randint(1, size[1] / font.get_height() + 1) * font.get_height()]
                     groups.append(CodePartical(pos, random.randint(0, len(code)-1), code))
