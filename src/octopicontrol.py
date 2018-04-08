@@ -416,8 +416,8 @@ def main():
                 sizeLabel = font.render("Size:", True, (255, 255, 255))
 
             verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-            infoLine1 = font.render("  [ Extruder: " + ext_f + degree_symbol + " F / " + `ext` + degree_symbol + " C ]  [ Bed: " + bed_f + degree_symbol + " F / " + `bed` + degree_symbol + " C ]", True, (255, 255, 255))
-            infoLine2 = font.render("  [ Target: " + ext_target_f + degree_symbol + " F / " + `ext_target` + degree_symbol + " C ]  [ Target: " + bed_target_f + degree_symbol + " F / " + `bed_target` + degree_symbol + " C ]", True, (255, 255, 255))
+            infoLine1 = font.render("  [ Extruder: " + ext_f.rjust(3) + degree_symbol + " F / " + `ext`.rjust(3) + degree_symbol + " C - Bed: " + bed_f.rjust(3) + degree_symbol + " F / " + `bed`.rjust(3) + degree_symbol + " C ]", True, (255, 255, 255))
+            infoLine2 = font.render("  [ Target: " + ext_target_f.rjust(3) + degree_symbol + " F / " + `ext_target`.rjust(3) + degree_symbol + " C - Target: " + bed_target_f.rjust(3) + degree_symbol + " F / " + `bed_target`.rjust(3) + degree_symbol + " C ]", True, (255, 255, 255))
             inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
             inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
             timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
