@@ -415,7 +415,7 @@ def main():
             verString = "Ver: " + api_version + "-" + octo_version
             verLabel = font.render(verString.rjust(18), True, (255, 255, 255))
             infoLine1 = font.render("  [ extruder: " + ext_f.rjust(3) + degree_symbol + "F / " + ext_c.rjust(3) + degree_symbol + "C  " + bed_space + "   bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + degree_symbol + "F / " + bed_c.rjust(3).replace(' ', '') + degree_symbol + "C ]", True, (255, 255, 255))
-            infoLine2 = font.render("  [ target:   " + ext_target_f.rjust(3) + degree_symbol + "F / " + ext_target_c.rjust(3) + degree_symbol + "C  " + bed_space + "   target:     " + bed_target_f.rjust(3).replace(' ', '') + degree_symbol + "F / " + bed_target_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
+            infoLine2 = font.render("  [ target:   " + ext_target_f.rjust(3) + degree_symbol + "F / " + ext_target_c.rjust(3) + degree_symbol + "C  " + bed_space + "   target:     " + bed_target_f.rjust(3).replace(' ', '') + degree_symbol + "F /" + bed_target_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
             inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
             inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
             timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
