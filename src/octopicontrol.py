@@ -19,6 +19,7 @@ import requests
 from datetime import datetime
 from pytz import timezone
 from pygame.locals import *
+from os.path import expanduser
 
 # required environment variables for pygame
 os.putenv('SDL_VIDEODRIVER', 'fbcon')
@@ -28,7 +29,8 @@ os.putenv('SDL_MOUSEDEV', '/dev/input/touchscreen')
 
 default_timezone = "US/Central";
 
-with open('~/.octoprint_apikey', 'r') as apikey:
+home = expanduser("~")
+with open(home + '/.octoprint_apikey', 'r') as apikey:
     dat_key = apikey.read().replace('\n', '')
 
 ########## start screen saver classes ##########
