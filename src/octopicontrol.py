@@ -422,8 +422,8 @@ def main():
             # progress bar
             pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
 			
-            background.blit(infoLine1, (2, 115))
-            background.blit(infoLine2, (2, 135))
+            background.blit(infoLine1, (2, 110))
+            background.blit(infoLine2, (2, 130))
     
             # buttons
             pygame.draw.rect(background, (255, 255, 255), Button1, 2)
