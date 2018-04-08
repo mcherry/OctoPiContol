@@ -405,7 +405,7 @@ def main():
             bed_target_c = `bed_target`
             
             ext_space = ""
-            if len(ext(f) == 2):
+            if len(ext_f) == 2:
                 ext_space = " "
             
             bed_space = ""
