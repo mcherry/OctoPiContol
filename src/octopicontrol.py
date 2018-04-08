@@ -113,23 +113,6 @@ class Group(object):
             rects.append(  partical.render(screen, text)[0]  )
 
         return rects
-
-class DelaySwitch(object):
-    def __init__(self, frame_rate):
-        # FRAME RATE IS IN FRAMES/SECOND
-        self.frame_rate = 1.0/(frame_rate/100.0) # makes frame rate into milliseconds
-        self.time = 0
-        self.prev_time = 0
-        self.time_passed = 0
-    def update(self):
-        self.time=time.time()
-        self.time_passed = self.time-self.prev_time
-        if self.time_passed>self.frame_rate:
-            pass
-        elif self.time_passed<self.frame_rate:
-            time.sleep((self.frame_rate-self.time_passed)/100.0)
-        self.prev_time = self.time
-
 ########## end screen saver classes ##########
 
 def get_script_path():
@@ -270,7 +253,6 @@ def main():
             
             elif event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                #print mouse_pos
                                 
                 if Button1.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button1)
@@ -426,8 +408,8 @@ def main():
             verLabel = font.render(verString.rjust(18), True, (255, 255, 255))
             infoLine1 = font.render("   [ Extruder: " + ext_f.rjust(3) + degree_symbol + "F / " + ext_c.rjust(3) + degree_symbol + "C     Bed:     " + bed_f.rjust(3) + degree_symbol + "F / " + bed_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
             infoLine2 = font.render("   [ Target:   " + ext_target_f.rjust(3) + degree_symbol + "F / " + ext_target_c.rjust(3) + degree_symbol + "C     Target:  " + bed_target_f.rjust(3) + degree_symbol + "F / " + bed_target_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
-            inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
-            inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
+            inetInfo2 = font.render("   [ wlan0: " + getIPAddr('wlan0').ljust(15) + "       mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
+            inetInfo1 = font.render("   [ eth0:  " + getIPAddr('eth0').ljust(15) + "       mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
             timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
             etaText = font.render(eta, True, (255, 255, 255))
             dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
@@ -478,8 +460,6 @@ def main():
             background = createSurface(screen, (0, 0, 0))
             screen.blit(background, (0, 0))
             pygame.display.flip()
-            
-            #delay = DelaySwitch(25)
 
             text_width = 13
             groups = []
@@ -520,8 +500,7 @@ def main():
                 for group in groups:
                     for rect in group.render(screen, font):
                         rects.append(rect)
-						
-                #delay.update()
+
                 pygame.display.flip()
                 clock.tick(25)
 				
