@@ -239,6 +239,7 @@ def main():
     octo_version = "0"
     ext_target_f = "0"
     bed_target_f = "0"
+    degree_sign= u'\N{DEGREE SIGN}'
 	
     # Initialise screen
     pygame.init()
@@ -415,8 +416,8 @@ def main():
                 sizeLabel = font.render("Size:", True, (255, 255, 255))
 
             verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-            infoLine1 = font.render("  [ Extruder: " + ext_f + "° F / " + `ext` + "° C ]  [ Bed: " + bed_f + "F / " + `bed` + "° C ]", True, (255, 255, 255))
-            infoLine2 = font.render("  [ Target: " + ext_target_f + "° F / " + `ext_target` + "° C ]  [ Target: " + bed_target_f + "F / " + `bed_target` + "° C ]", True, (255, 255, 255))
+            infoLine1 = font.render("  [ Extruder: " + ext_f + degree_sybol + " F / " + `ext` + degree_sybol + " C ]  [ Bed: " + bed_f + degree_sybol + " F / " + `bed` + degree_sybol + " C ]", True, (255, 255, 255))
+            infoLine2 = font.render("  [ Target: " + ext_target_f + degree_sybol + " F / " + `ext_target` + degree_sybol + " C ]  [ Target: " + bed_target_f + degree_sybol + " F / " + `bed_target` + degree_sybol + " C ]", True, (255, 255, 255))
             inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
             inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
             timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
