@@ -28,6 +28,9 @@ os.putenv('SDL_MOUSEDEV', '/dev/input/touchscreen')
 
 default_timezone = "US/Central";
 
+with open('~/.octoprint_apikey', 'r') as apikey:
+    dat_key = apikey.read().replace('\n', '')
+
 ########## start screen saver classes ##########
 #
 # Matrix code borrowed and modified from Dylan J. Raub (dylanjraub)
@@ -160,9 +163,11 @@ def getHWAddr(ifname):
         return retval
 
 def headers():
+    global dat_key
+    
     headers = {
         'Content-Type': 'application/json',
-	'X-Api-Key': 'CDC8A137E67F454DB5CA45AEF6DE6973'
+	'X-Api-Key': dat_key
     }
 
     return headers
