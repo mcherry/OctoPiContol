@@ -422,7 +422,7 @@ def main():
             # progress bar
             pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
 			
-            background.blit(infoLine1, (5, 108))
+            background.blit(infoLine1, (5, 110))
             background.blit(infoLine2, (5, 128))
     
             # buttons
@@ -431,10 +431,10 @@ def main():
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
             pygame.draw.rect(background, (255, 255, 255), Button4, 2)
             
-            background.blit(font.render("Pause", True, (255, 255, 255)), (35,197))
-            background.blit(font.render("Stop", True, (255, 255, 255)), (160,197))
-            background.blit(font.render("Reboot", True, (255, 255, 255)), (275,197))
-            background.blit(font.render("Power Off", True, (255, 255, 255)), (386,197))
+            background.blit(font.render("Pause", True, (255, 255, 255)), (35,202))
+            background.blit(font.render("Stop", True, (255, 255, 255)), (160,202))
+            background.blit(font.render("Reboot", True, (255, 255, 255)), (275,202))
+            background.blit(font.render("Power Off", True, (255, 255, 255)), (386,202))
             
             background.blit(inetInfo1, (5,262))
             background.blit(inetInfo2, (5,279))
