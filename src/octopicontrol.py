@@ -415,8 +415,8 @@ def main():
             bed_c = `bed`
             bed_target_c = `bed_target`
             
-
-            verLabel = font.render("Ver: " + api_version.rjust(18) + "-" + octo_version, True, (255, 255, 255))
+            verString = "Ver: " + api_version + "-" + octo_version
+            verLabel = font.render(verString.rjust(18), True, (255, 255, 255))
             infoLine1 = font.render("   [ Extruder: " + ext_f.rjust(3) + degree_symbol + "F / " + ext_c.rjust(3) + degree_symbol + "C     Bed:     " + bed_f.rjust(3) + degree_symbol + "F / " + bed_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
             infoLine2 = font.render("   [ Target:   " + ext_target_f.rjust(3) + degree_symbol + "F / " + ext_target_c.rjust(3) + degree_symbol + "C     Target:  " + bed_target_f.rjust(3) + degree_symbol + "F / " + bed_target_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
             inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
