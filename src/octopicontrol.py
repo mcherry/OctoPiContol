@@ -75,7 +75,7 @@ class Group(object):
 	# "matrix code" is a string made up of the current timezone/time/date
 	#timedata = datetime.now(timezone(default_timezone))
 	#timestring = timedata.strftime('%X %Z %z') + default_timezone
-	codesrtring = "MP Mini Select V2 IIIP 3D Printer"
+	codestring = "MP Mini Select V2 IIIP 3D Printer"
         self.code = list(codestring)
 	#random.shuffle(self.code, random.random)
 	
@@ -220,7 +220,7 @@ def main():
     global wclient
 	
     runtime = 0
-    ssaver_time = 6000
+    ssaver_time = 100
     screensaver_on = False
     return_from_ss = False
     api_version = "0"
