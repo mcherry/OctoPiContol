@@ -233,10 +233,10 @@ def main():
     screen = pygame.display.set_mode((480, 320))
     pygame.mouse.set_visible(False)
         
-    Button1 = pygame.Rect(5, 160, 100, 100)
-    Button2 = pygame.Rect(127, 160, 100, 100)
-    Button3 = pygame.Rect(250, 160, 100, 100)
-    Button4 = pygame.Rect(371, 160, 100, 100)
+    Button1 = pygame.Rect(5, 155, 100, 100)
+    Button2 = pygame.Rect(127, 155, 100, 100)
+    Button3 = pygame.Rect(250, 155, 100, 100)
+    Button4 = pygame.Rect(371, 155, 100, 100)
 	
     # create font
     font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
@@ -422,7 +422,7 @@ def main():
             # progress bar
             pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
 			
-            background.blit(infoLine1, (2, 110))
+            background.blit(infoLine1, (2, 105))
             background.blit(infoLine2, (2, 130))
     
             # buttons
