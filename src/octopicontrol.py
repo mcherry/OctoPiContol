@@ -10,14 +10,12 @@ import pygame
 import os
 import sys
 import time
-import pytz
 import random
 import socket
 import fcntl
 import struct
 import json
 import requests
-from time import sleep
 from datetime import datetime
 from pytz import timezone
 from pygame.locals import *
@@ -234,7 +232,6 @@ def main():
     ssaver_time = 6000
     screensaver_on = False
     return_from_ss = False
-    screenpressed = False
     api_version = "0"
     octo_version = "0"
     ext_target_f = "0"
@@ -388,13 +385,11 @@ def main():
                 time %= 3600
                 minutes = time // 60
                 time %= 60
-                seconds = time
             else:
                 time = 0
                 day = 0
                 hour = 0
                 minutes = 0
-                seconds = 0
 			
             eta = "%02d:%02d:%02d" % (day, hour, minutes)
             setProgress(background, progress_completion);
@@ -422,8 +417,8 @@ def main():
             
 
             verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-            infoLine1 = font.render("  [ Extruder: " + ext_f.rjust(3) + degree_symbol + "F / " + ext_c.rjust(3) + degree_symbol + "C      Bed:     " + bed_f.rjust(3) + degree_symbol + "F / " + bed_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
-            infoLine2 = font.render("  [ Target:   " + ext_target_f.rjust(3) + degree_symbol + "F / " + ext_target_c.rjust(3) + degree_symbol + "C      Target:  " + bed_target_f.rjust(3) + degree_symbol + "F / " + bed_target_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
+            infoLine1 = font.render("   [ Extruder: " + ext_f.rjust(3) + degree_symbol + "F / " + ext_c.rjust(3) + degree_symbol + "C     Bed:     " + bed_f.rjust(3) + degree_symbol + "F / " + bed_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
+            infoLine2 = font.render("   [ Target:   " + ext_target_f.rjust(3) + degree_symbol + "F / " + ext_target_c.rjust(3) + degree_symbol + "C     Target:  " + bed_target_f.rjust(3) + degree_symbol + "F / " + bed_target_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
             inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
             inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
             timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
@@ -433,18 +428,13 @@ def main():
             background.blit(statusLabel, (5, 5))
             background.blit(fileLabel, (5, 25))
             background.blit(sizeLabel, (5, 45))
-            background.blit(verLabel, (360, 45))
+            background.blit(verLabel, (355, 45))
                         
             # progress bar
             pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
 			
             background.blit(infoLine1, (2, 115))
             background.blit(infoLine2, (2, 135))
-            
-            #Button1 = pygame.Rect(5, 160, 100, 100)
-            #Button2 = pygame.Rect(127, 160, 100, 100)
-            #Button3 = pygame.Rect(250, 160, 100, 100)
-            #Button4 = pygame.Rect(371, 160, 100, 100)
     
             # buttons
             pygame.draw.rect(background, (255, 255, 255), Button1, 2)
