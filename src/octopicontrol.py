@@ -265,7 +265,7 @@ def main():
             
             elif event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                print mouse_pos
+                #print mouse_pos
                                 
                 if Button1.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button1)
@@ -415,8 +415,8 @@ def main():
                 sizeLabel = font.render("Size:", True, (255, 255, 255))
 
             verLabel = font.render("Ver: " + api_version + "-" + octo_version, True, (255, 255, 255))
-            infoLine1 = font.render("               [ Ext: " + ext_f + "F ]  [ Target: " + ext_target_f + "F ]", True, (255, 255, 255))
-            infoLine2 = font.render("               [ Bed: " + bed_f + "F ]  [ Target: " + bed_target_f + "F ]", True, (255, 255, 255))
+            infoLine1 = font.render("  [ Extruder: " + ext_f + "° F / " + `ext` + "° C ]  [ Bed: " + bed_f + "F / " + `bed` + "° C ]", True, (255, 255, 255))
+            infoLine2 = font.render("  [ Target: " + ext_target_f + "° F / " + `ext_target` + "° C ]  [ Target: " + bed_target_f + "F / " + `bed_target` + "° C ]", True, (255, 255, 255))
             inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + " ]  [ mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
             inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + " ]  [ mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
             timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
