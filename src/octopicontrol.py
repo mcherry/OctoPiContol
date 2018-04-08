@@ -290,10 +290,10 @@ def main():
                 pygame.draw.rect(background, (255, 255, 255), Button3, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button4, 2)
                 
-                background.blit(font.render("Pause", True, (255, 255, 255)), (35,202))
-                background.blit(font.render("Stop", True, (255, 255, 255)), (160,202))
-                background.blit(font.render("Reboot", True, (255, 255, 255)), (275,202))
-                background.blit(font.render("Power Off", True, (255, 255, 255)), (386,202))
+                background.blit(font.render("Pause", True, (255, 255, 255)), (35,192))
+                background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
+                background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
+                background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
                 
                 screen.blit(background, (0, 0))
                 pygame.display.flip()
