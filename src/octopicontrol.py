@@ -245,12 +245,14 @@ def main():
     ext_target_f = "0"
     bed_target_f = "0"
     ds = u'\N{DEGREE SIGN}'
-	
+    is_paused = False
+
     # Initialise screen
     pygame.init()
     screen = pygame.display.set_mode((480, 320))
     pygame.mouse.set_visible(False)
-        
+    button_text = ""
+    
     Button1 = pygame.Rect(5, 152, 100, 100)
     Button2 = pygame.Rect(127, 152, 100, 100)
     Button3 = pygame.Rect(250, 152, 100, 100)
@@ -273,16 +275,21 @@ def main():
                 mouse_pos = pygame.mouse.get_pos()
                                 
                 if Button1.collidepoint(mouse_pos):
+                    if is_paused == False:
+                        button_text = "Resume"
+                        is_paused = True
+                    else:
+                        button_text = "Pause"
+                        is_paused = False
+                        
                     pygame.draw.rect(background, (255, 255, 255), Button1)
-                    pauseText = font.render("Pause", True, (0, 0, 0))
+                    pauseText = font.render(button_text, True, (0, 0, 0))
                     background.blit(pauseText, (35,192))
-                    backlightOff()
 
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
                     stopText = font.render("Stop", True, (0, 0, 0))
                     background.blit(stopText, (160,192))
-                    backlightOn()
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
