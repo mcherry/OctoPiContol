@@ -182,34 +182,35 @@ def rptstr(str, cnt):
     return ''.join([char * cnt for char in str])
 
 def setProgress(surface, percent):
-    pygame.draw.rect(surface, (255, 255, 255), (5, 65, 470, 40), 2)
+    WHITE = (255,255,255)
+    pygame.draw.rect(surface, WHITE, (5, 65, 470, 40), 2)
     
     if percent >= 7:
-        pygame.draw.rect(surface, (255, 255, 255), (14, 70, 30, 30))
+        pygame.draw.rect(surface, WHITE, (14, 70, 30, 30))
     if percent >= 16:
-	pygame.draw.rect(surface, (255, 255, 255), (49, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (49, 70, 30, 30))
     if percent >= 24:
-	pygame.draw.rect(surface, (255, 255, 255), (84, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (84, 70, 30, 30))
     if percent >= 31:
-	pygame.draw.rect(surface, (255, 255, 255), (119, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (119, 70, 30, 30))
     if percent >= 39:
-	pygame.draw.rect(surface, (255, 255, 255), (154, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (154, 70, 30, 30))
     if percent >= 45:
-	pygame.draw.rect(surface, (255, 255, 255), (189, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (189, 70, 30, 30))
     if percent >= 52:
-        pygame.draw.rect(surface, (255, 255, 255), (224, 70, 30, 30))
+        pygame.draw.rect(surface, WHITE, (224, 70, 30, 30))
     if percent >= 60:
-        pygame.draw.rect(surface, (255, 255, 255), (260, 70, 30, 30))
+        pygame.draw.rect(surface, WHITE, (260, 70, 30, 30))
     if percent >= 69:
-	pygame.draw.rect(surface, (255, 255, 255), (295, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (295, 70, 30, 30))
     if percent >= 78:
-	pygame.draw.rect(surface, (255, 255, 255), (330, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (330, 70, 30, 30))
     if percent >= 85:
-	pygame.draw.rect(surface, (255, 255, 255), (365, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (365, 70, 30, 30))
     if percent >= 92:
-	pygame.draw.rect(surface, (255, 255, 255), (401, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (401, 70, 30, 30))
     if percent >= 100:
-	pygame.draw.rect(surface, (255, 255, 255), (437, 70, 30, 30))
+	pygame.draw.rect(surface, WHITE, (437, 70, 30, 30))
 
 def createSurface(screen, bgcolor):
     bground = pygame.Surface(screen.get_size())
@@ -239,9 +240,10 @@ def main():
     global index
     global wclient
     
-    signal.signal(signal.SIGINT, ctrl_c)
+    WHITE = (255,255,255)
+    BLACK = (0,0,0)
     
-    backlightOn()
+    signal.signal(signal.SIGINT, ctrl_c)
 	
     runtime = 0
     ssaver_time = 5000
@@ -293,23 +295,23 @@ def main():
                         pause_text = "Pause"
                         is_paused = False
                         
-                    pygame.draw.rect(background, (255, 255, 255), Button1)
-                    pauseText = font.render(pause_text, True, (0, 0, 0))
+                    pygame.draw.rect(background, WHITE, Button1)
+                    pauseText = font.render(pause_text, True, BLACK)
                     background.blit(pauseText, (35,192))
 
                 if Button2.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button2)
-                    background.blit(font.render("Cancel", True, (0, 0, 0)), (152,192))
+                    pygame.draw.rect(background, WHITE, Button2)
+                    background.blit(font.render("Cancel", True, BLACK), (152,192))
                     post_info('job', {'command': 'cancel'})
                                 
                 if Button3.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button3)
-                    background.blit(font.render("Reboot", True, (0, 0, 0)), (275,192))
+                    pygame.draw.rect(background, WHITE, Button3)
+                    background.blit(font.render("Reboot", True, BLACK), (275,192))
                     os.system("/sbin/reboot")
                     
                 if Button4.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button4)
-                    background.blit(font.render("Power Off", True, (0, 0, 0)), (386,192))
+                    pygame.draw.rect(background, WHITE, Button4)
+                    background.blit(font.render("Power Off", True, BLACK), (386,192))
                     backlightOff()
                     os.system("/sbin/poweroff")
                                     
@@ -325,20 +327,20 @@ def main():
             
             elif event.type == MOUSEBUTTONUP:
                 if Button1.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-                    background.blit(font.render(pause_text, True, (0, 0, 0)), (35,192))
+                    pygame.draw.rect(background, WHITE, Button1, 2)
+                    background.blit(font.render(pause_text, True, BLACK), (35,192))
                     
                 if Button2.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-                    background.blit(font.render("Cancel", True, (0, 0, 0)), (152,192))
+                    pygame.draw.rect(background, WHITE, Button2, 2)
+                    background.blit(font.render("Cancel", True, BLACK), (152,192))
                     
                 if Button3.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button3, 2)
-                    background.blit(font.render("Reboot", True, (0, 0, 0)), (275,192))
+                    pygame.draw.rect(background, WHITE, Button3, 2)
+                    background.blit(font.render("Reboot", True, BLACK), (275,192))
                     
                 if Button4.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, (255, 255, 255), Button4, 2)
-                    background.blit(font.render("Power Off", True, (0, 0, 0)), (386,192))
+                    pygame.draw.rect(background, WHITE, Button4, 2)
+                    background.blit(font.render("Power Off", True, BLACK), (386,192))
                 
                 pygame.event.set_allowed(MOUSEBUTTONDOWN)
                 
@@ -404,7 +406,7 @@ def main():
                 bed_target_f = CtoF(bed_target).ljust(3)
 		           
             # Fill background
-            background = createSurface(screen, (0, 0, 0))
+            background = createSurface(screen, BLACK)
 		
             # get time for currently selected timezone
             tzdata = datetime.now(timezone(default_timezone))
@@ -456,33 +458,34 @@ def main():
             if len(bed_f) == 2:
                 bed_space = " "
             
-            printText(font, (255,255,255), status_text, background, 5,5)
-            printText(font, (255,255,255), filename_text, background, 5,25)
-            printText(font, (255,255,255), size_text, background, 5,45)
+            printText(font, WHITE, status_text, background, 5,5)
+            printText(font, WHITE, filename_text, background, 5,25)
+            printText(font, WHITE, size_text, background, 5,45)
             if state != 'Offline':
-                printText(font, (255,255,255), "Ver: " + `api_version` + "-" + `octo_version`, background, 330,5)
-            printText(font, (255,255,255), "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + ds + "F /  " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
-            printText(font, (255,255,255), "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:     " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
-            printText(font, (255,255,255), "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
-            printText(font, (255,255,255), "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 279)
-            printText(font, (255,255,255), tzdata.strftime('%m-%d-%Y'), background, 5,300)
-            printText(font, (255,255,255), "%02d:%02d:%02d" % (day, hour, minutes), background, 205, 300)
-            printText(font, (255,255,255), tzdata.strftime('%H:%M:%S'), background, 405,300)
+                printText(font, WHITE, "Ver: " + `api_version` + "-" + `octo_version`, background, 330,5)
+                printText(font, WHITE, "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + ds + "F /  " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
+                printText(font, WHITE, "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:     " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
+                printText(font, WHITE, "%02d:%02d:%02d" % (day, hour, minutes), background, 205, 300)
+                
+            printText(font, WHITE, "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
+            printText(font, WHITE, "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 279)
+            printText(font, WHITE, tzdata.strftime('%m-%d-%Y'), background, 5,300)
+            printText(font, WHITE, tzdata.strftime('%H:%M:%S'), background, 405,300)
             
             setProgress(background, progress_completion)
     
             # buttons
-            pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-            background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
+            pygame.draw.rect(background, WHITE, Button1, 2)
+            background.blit(font.render(pause_text, True, WHITE), (35,192))
             
-            pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-            background.blit(font.render("Cancel", True, (255, 255, 255)), (152,192))
+            pygame.draw.rect(background, WHITE, Button2, 2)
+            background.blit(font.render("Cancel", True, WHITE), (152,192))
             
-            pygame.draw.rect(background, (255, 255, 255), Button3, 2)
-            background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
+            pygame.draw.rect(background, WHITE, Button3, 2)
+            background.blit(font.render("Reboot", True, WHITE), (275,192))
             
-            pygame.draw.rect(background, (255, 255, 255), Button4, 2)
-            background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
+            pygame.draw.rect(background, WHITE, Button4, 2)
+            background.blit(font.render("Power Off", True, WHITE), (386,192))
 		
             screen.blit(background, (0, 0))
             pygame.display.flip()
@@ -496,7 +499,7 @@ def main():
             # fire up the screensaver
             size = [480,320]
 			
-            background = createSurface(screen, (0, 0, 0))
+            background = createSurface(screen, BLACK)
             screen.blit(background, (0, 0))
             pygame.display.flip()
 
