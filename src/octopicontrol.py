@@ -214,6 +214,18 @@ def createSurface(screen, bgcolor):
 		
     return bground
 
+def backlightOff():
+    file = open("/sys/class/backlight/soc\:backlight/brightness","w") 
+    file.write("0")
+    file.close()
+    return
+
+def backlightOn():
+    file = open("/sys/class/backlight/soc\:backlight/brightness","w") 
+    file.write("1")
+    file.close()
+    return
+
 def main():
     global index
     global wclient
@@ -258,11 +270,13 @@ def main():
                     pygame.draw.rect(background, (255, 255, 255), Button1)
                     pauseText = font.render("Pause", True, (0, 0, 0))
                     background.blit(pauseText, (35,192))
+                    backlightOff()
 
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
                     stopText = font.render("Stop", True, (0, 0, 0))
                     background.blit(stopText, (160,192))
+                    BacklightOn()
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
