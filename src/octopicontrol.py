@@ -252,7 +252,7 @@ def main():
     bed_target_f = "0"
     ds = u'\N{DEGREE SIGN}'
     is_paused = False
-    pause_text = ""
+    pause_text = "Pause"
 
     # Initialise screen
     pygame.init()
