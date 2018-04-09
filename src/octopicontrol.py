@@ -284,11 +284,11 @@ def main():
                                 
                 if Button1.collidepoint(mouse_pos):
                     if is_paused == False:
-                        post_info("job", {"Command": "pause", "action": "pause"})
+                        post_info("job", {"command": "pause", "action": "pause"})
                         pause_text = "Resume"
                         is_paused = True
                     else:
-                        post_info("job", {"Command": "pause", "action": "resume"})
+                        post_info("job", {"command": "pause", "action": "resume"})
                         pause_text = "Pause"
                         is_paused = False
                         
