@@ -296,7 +296,6 @@ def main():
                     pygame.draw.rect(background, (255, 255, 255), Button2)
                     background.blit(font.render("Cancel", True, (0, 0, 0)), (152,192))
                     post_info('job', {'command': 'cancel'})
-                    #post_info('printer/printhead', {'command': 'home', 'axes': ['x', 'y', 'z']})
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
