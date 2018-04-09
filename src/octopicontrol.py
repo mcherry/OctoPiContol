@@ -279,6 +279,7 @@ def main():
             
             elif event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
+                pygame.event.set_blocked(MOUSEBUTTONDOWN)
                                 
                 if Button1.collidepoint(mouse_pos):
                     if is_paused == False:
@@ -292,7 +293,6 @@ def main():
                     pauseText = font.render(pause_text, True, (0, 0, 0))
                     background.blit(pauseText, (35,192))
                     
-                    pygame.event.set_blocked(MOUSEBUTTONDOWN)
                     Button1Pushed()
 
                 if Button2.collidepoint(mouse_pos):
@@ -323,12 +323,12 @@ def main():
                 pygame.draw.rect(background, (255, 255, 255), Button3, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button4, 2)
                 
-                if is_paused == False:
-                    pause_text = "Resume"
-                    is_paused = True
-                else:
-                    pause_text = "Pause"
-                    is_paused = False
+                #if is_paused == False:
+                #    pause_text = "Resume"
+                #    is_paused = True
+                #else:
+                #    pause_text = "Pause"
+                #    is_paused = False
                 
                 background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
                 background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
