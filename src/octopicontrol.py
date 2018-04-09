@@ -280,7 +280,6 @@ def main():
             elif event.type == MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 pygame.event.set_blocked(MOUSEBUTTONDOWN)
-                background = createSurface(screen, (0, 0, 0))
                                 
                 if Button1.collidepoint(mouse_pos):
                     if is_paused == False:
