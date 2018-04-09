@@ -422,18 +422,18 @@ def main():
                     
             # render each string
             status_text = ""
-            if progress_completion is not None:
+            if progress_completion is not None and state != 'Offline':
                 status_text = "Status: " + state + " (" + `progress_completion` + "%)"
             else:
                 status_text = "Status:" + state
 
             filename_text = ""
-            if file_name is not None:
+            if file_name is not None and state != 'Offline':
                 filename_text = "Name:   " + file_name.replace("_", " ").replace(".gcode", "")
             else:
                 filename_text = "Name: "
 
-            if file_size is not None:
+            if file_size is not None and state != 'Offline':
                 size_text = "Size:   " + "{:,}".format(file_size) + " Bytes"
             else:
                 size_text = "Size:"
