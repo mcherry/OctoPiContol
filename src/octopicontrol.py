@@ -165,8 +165,9 @@ def get_info(api_path):
     else:
         return None
 
-def put_info(api_path):
-    response = requests.put("http://octopi.inditech.org/api/" + api_path, headers = headers())
+def post_info(api_path, command):
+    data = { "command": command }
+    response = requests.post("http://octopi.inditech.org/api/" + api_path, headers = headers(), json = command)
     if response.status_code == 200:
         return json.loads(response.content.decode('utf-8'))
     else:
@@ -284,9 +285,11 @@ def main():
                                 
                 if Button1.collidepoint(mouse_pos):
                     if is_paused == False:
+                        post_info("job", {"Command": "pause", "action": "pause"})
                         pause_text = "Resume"
                         is_paused = True
                     else:
+                        post_info("job", {"Command": "pause", "action": "resume"})
                         pause_text = "Pause"
                         is_paused = False
                         
