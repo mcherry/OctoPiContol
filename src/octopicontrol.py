@@ -238,6 +238,12 @@ def Button1Pushed():
 def Button2Pushed():
     return
 
+def brightness(surface, value):
+    # Value is 0 to 255. So 128 would be 50% darken
+    dark = pygame.Surface(surface.get_size(), 32)
+    dark.set_alpha(value, pygame.RLEACCEL)
+    surface.blit(dark, (0, 0))
+
 def main():
     global index
     global wclient
@@ -300,7 +306,8 @@ def main():
 
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
-                    background.blit(font.render("Stop", True, (0, 0, 0)), (160,192))
+                    background.blit(font.render("Cancel", True, (0, 0, 0)), (130,192))
+                    brightness(background, 50)
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
@@ -327,7 +334,7 @@ def main():
                     
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-                    background.blit(font.render("Stop", True, (0, 0, 0)), (160,192))
+                    background.blit(font.render("Cancel", True, (0, 0, 0)), (160,192))
                     
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3, 2)
@@ -336,18 +343,6 @@ def main():
                 if Button4.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button4, 2)
                     background.blit(font.render("Power Off", True, (0, 0, 0)), (386,192))
-                
-                #if is_paused == False:
-                #    pause_text = "Resume"
-                #    is_paused = True
-                #else:
-                #    pause_text = "Pause"
-                #    is_paused = False
-                
-                #background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
-                #background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
-                #background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
-                #background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
                 
                 pygame.event.set_allowed(MOUSEBUTTONDOWN)
                 
@@ -480,7 +475,7 @@ def main():
             background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
             
             pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-            background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
+            background.blit(font.render("Cancel", True, (255, 255, 255)), (160,192))
             
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
             background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
