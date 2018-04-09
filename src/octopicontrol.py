@@ -321,7 +321,7 @@ def main():
             elif event.type == MOUSEBUTTONUP:
                 if Button1.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-                    background.blit(font.render(pause_text, True, (0, 0, 0)), (160,192))
+                    background.blit(font.render(pause_text, True, (0, 0, 0)), (35,192))
                     
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2, 2)
