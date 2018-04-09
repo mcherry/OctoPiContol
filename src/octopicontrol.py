@@ -278,6 +278,7 @@ def main():
                 return
             
             elif event.type == MOUSEBUTTONDOWN:
+                screen.blit(background, (0, 0))
                 mouse_pos = pygame.mouse.get_pos()
                 pygame.event.set_blocked(MOUSEBUTTONDOWN)
                                 
@@ -318,6 +319,7 @@ def main():
                 break
             
             elif event.type == MOUSEBUTTONUP:
+                screen.blit(background, (0, 0))
                 pygame.draw.rect(background, (255, 255, 255), Button1, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button2, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button3, 2)
