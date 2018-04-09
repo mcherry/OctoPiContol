@@ -444,8 +444,8 @@ def main():
             bed_target_c = `bed_target`
             
             if state == 'Offline':
-                ext_f = 0
-                bed_f = 0
+                ext_f = "0"
+                bed_f = "0"
             
             bed_space = ""
             if len(bed_f) == 2:
