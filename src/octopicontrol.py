@@ -9,7 +9,6 @@
 import pygame
 import os
 import sys
-#import time
 import random
 import socket
 import fcntl
@@ -180,6 +179,8 @@ def rptstr(str, cnt):
     return ''.join([char * cnt for char in str])
 
 def setProgress(surface, percent):
+    pygame.draw.rect(surface, (255, 255, 255), (5, 65, 470, 40), 2)
+    
     if percent >= 7:
         pygame.draw.rect(surface, (255, 255, 255), (14, 70, 30, 30))
     if percent >= 16:
@@ -243,7 +244,7 @@ def main():
     octo_version = "0"
     ext_target_f = "0"
     bed_target_f = "0"
-    ds= u'\N{DEGREE SIGN}'
+    ds = u'\N{DEGREE SIGN}'
 	
     # Initialise screen
     pygame.init()
@@ -322,19 +323,17 @@ def main():
 			
             job = get_info('job');
             if job is not None:
-                #status = job['state']
+                status = job['state']
                 file_name = job['job']['file']['name']
                 file_size = job['job']['file']['size']
                 progress_completion = job['progress']['completion']
                 if progress_completion is not None: progress_completion = int(round(progress_completion));
-                #progress_printtime = job['progress']['printTime']
                 progress_printtimeleft = job['progress']['printTimeLeft']
             else:
-                #status = "Offline"
+                status = "Offline"
                 file_name = "_.gcode"
                 file_size = 0
                 progress_completion = "0"
-                #progress_printtime = "0"
                 progress_printtimeleft = "0"
 
 				
@@ -422,17 +421,9 @@ def main():
             bed_c = `bed`
             bed_target_c = `bed_target`
             
-            ext_space = ""
-            if len(ext_f) == 2:
-                ext_space = " "
-            
             bed_space = ""
             if len(bed_f) == 2:
                 bed_space = " "
-            
-            #printText(font, color, text, background, x, y):
-            
-           #eta = "%02d:%02d:%02d" % (day, hour, minutes)
             
             printText(font, (255,255,255), status_text, background, 5,5)
             printText(font, (255,255,255), filename_text, background, 5,25)
@@ -447,9 +438,6 @@ def main():
             printText(font, (255,255,255), tzdata.strftime('%H:%M:%S'), background, 405,300)
             
             setProgress(background, progress_completion)
-                        
-            # progress bar
-            #pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
     
             # buttons
             pygame.draw.rect(background, (255, 255, 255), Button1, 2)
