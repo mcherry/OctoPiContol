@@ -232,6 +232,12 @@ def printText(font, color, text, background, x, y):
     background.blit(item, (x, y))
     return
 
+def Button1Pushed():
+    return
+
+def Button2Pushed():
+    return
+
 def main():
     global index
     global wclient
@@ -285,6 +291,10 @@ def main():
                     pygame.draw.rect(background, (255, 255, 255), Button1)
                     pauseText = font.render(pause_text, True, (0, 0, 0))
                     background.blit(pauseText, (35,192))
+                    
+                    pygame.event.set_blocked(MOUSEBUTTONDOWN)
+                    Button1Pushed()
+                    break
 
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
@@ -325,6 +335,8 @@ def main():
                 background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
                 background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
                 background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
+                
+                pygame.event.set_allowed(MOUSEBUTTONDOWN)
                 
                 screen.blit(background, (0, 0))
                 pygame.display.flip()
