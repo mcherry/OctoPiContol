@@ -274,11 +274,12 @@ def main():
         clock.tick(25)
         
         for event in pygame.event.get():
+            mouse_pos = pygame.mouse.get_pos()
+            
             if event.type == QUIT:
                 return
             
             elif event.type == MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
                 pygame.event.set_blocked(MOUSEBUTTONDOWN)
                                 
                 if Button1.collidepoint(mouse_pos):
@@ -318,8 +319,10 @@ def main():
                 break
             
             elif event.type == MOUSEBUTTONUP:
-                pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-                
+                if Button1.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+                    background.blit(font.render(pause_text, True, (0, 0, 0)), (160,192))
+                    
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2, 2)
                     background.blit(font.render("Stop", True, (0, 0, 0)), (160,192))
