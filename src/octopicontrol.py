@@ -463,7 +463,7 @@ def main():
     
             # buttons
             pygame.draw.rect(background, (255, 255, 255), Button1, 2)
-            background.blit(font.render("Pause", True, (255, 255, 255)), (35,192))
+            background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
             
             pygame.draw.rect(background, (255, 255, 255), Button2, 2)
             background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
