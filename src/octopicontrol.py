@@ -294,6 +294,7 @@ def main():
                     background.blit(pauseText, (35,192))
                     
                     Button1Pushed()
+                    break
 
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
