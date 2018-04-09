@@ -276,7 +276,7 @@ def main():
                     pygame.draw.rect(background, (255, 255, 255), Button2)
                     stopText = font.render("Stop", True, (0, 0, 0))
                     background.blit(stopText, (160,192))
-                    BacklightOn()
+                    backlightOn()
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
