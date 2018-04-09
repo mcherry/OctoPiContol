@@ -357,7 +357,6 @@ def main():
                 file_size = 0
                 progress_completion = "0"
                 progress_printtimeleft = "0"
-
 				
             ver = get_info('version')
             if ver is not None:
@@ -375,6 +374,7 @@ def main():
                 state = stateinfo['current']['state']
             else:
                 state = "Offline"
+                progress_completion = 0
 			
             printer = get_info('printer')
             if printer is not None:
@@ -425,7 +425,7 @@ def main():
             if progress_completion is not None and state != 'Offline':
                 status_text = "Status: " + state + " (" + `progress_completion` + "%)"
             else:
-                status_text = "Status:" + state
+                status_text = "Status: " + state
 
             filename_text = ""
             if file_name is not None and state != 'Offline':
@@ -443,6 +443,10 @@ def main():
             bed_c = `bed`
             bed_target_c = `bed_target`
             
+            if state == 'Offline':
+                ext_f = 0
+                bed_f = 0
+            
             bed_space = ""
             if len(bed_f) == 2:
                 bed_space = " "
@@ -450,7 +454,8 @@ def main():
             printText(font, (255,255,255), status_text, background, 5,5)
             printText(font, (255,255,255), filename_text, background, 5,25)
             printText(font, (255,255,255), size_text, background, 5,45)
-            printText(font, (255,255,255), "Ver: " + `api_version` + "-" + `octo_version`, background, 330,5)
+            if state != 'Offline':
+                printText(font, (255,255,255), "Ver: " + `api_version` + "-" + `octo_version`, background, 330,5)
             printText(font, (255,255,255), "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
             printText(font, (255,255,255), "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:    " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
             printText(font, (255,255,255), "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
