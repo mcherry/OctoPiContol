@@ -6,19 +6,20 @@
 # To calibrate touchscreen, use the following command: sudo TSLIB_FBDEVICE=/dev/fb1 TSLIB_TSDEVICE=/dev/input/touchscreen ts_calibrate
 # Screen rotation can be adjusted using https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/adafruit-pitft.sh
 
-import pygame
-import os
-import sys
-import random
-import socket
 import fcntl
-import struct
 import json
+import os
+import pygame
+import random
 import requests
+import signal
+import socket
+import struct
+import sys
 from datetime import datetime
+from os.path import expanduser
 from pytz import timezone
 from pygame.locals import *
-from os.path import expanduser
 
 # required environment variables for pygame
 os.putenv('SDL_VIDEODRIVER', 'fbcon')
@@ -155,7 +156,9 @@ def headers():
     }
 
     return headers
-    
+
+def ctrl_c(signal, frame):
+    pygame.quit() 
 
 def get_info(api_path):
     response = requests.get("http://octopi.inditech.org/api/" + api_path, headers = headers())
@@ -235,6 +238,8 @@ def printText(font, color, text, background, x, y):
 def main():
     global index
     global wclient
+    
+    signal.signal(signal.SIGINT, ctrl_c)
     
     backlightOn()
 	
