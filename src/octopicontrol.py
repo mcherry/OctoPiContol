@@ -246,12 +246,12 @@ def main():
     bed_target_f = "0"
     ds = u'\N{DEGREE SIGN}'
     is_paused = False
+    pause_text = ""
 
     # Initialise screen
     pygame.init()
     screen = pygame.display.set_mode((480, 320))
     pygame.mouse.set_visible(False)
-    button_text = ""
     
     Button1 = pygame.Rect(5, 152, 100, 100)
     Button2 = pygame.Rect(127, 152, 100, 100)
@@ -276,10 +276,10 @@ def main():
                                 
                 if Button1.collidepoint(mouse_pos):
                     if is_paused == False:
-                        button_text = "Resume"
+                        pause_text = "Resume"
                         is_paused = True
                     else:
-                        button_text = "Pause"
+                        pause_text = "Pause"
                         is_paused = False
                         
                     pygame.draw.rect(background, (255, 255, 255), Button1)
@@ -317,7 +317,14 @@ def main():
                 pygame.draw.rect(background, (255, 255, 255), Button3, 2)
                 pygame.draw.rect(background, (255, 255, 255), Button4, 2)
                 
-                background.blit(font.render("Pause", True, (255, 255, 255)), (35,192))
+                if is_paused == False:
+                    pause_text = "Resume"
+                    is_paused = True
+                else:
+                    pause_text = "Pause"
+                    is_paused = False
+                
+                background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
                 background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
                 background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
                 background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
