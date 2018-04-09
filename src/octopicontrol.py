@@ -166,8 +166,7 @@ def get_info(api_path):
         return None
 
 def post_info(api_path, command):
-    data = { "command": command }
-    response = requests.post("http://octopi.inditech.org/api/" + api_path, headers = headers(), json = command)
+    response = requests.post("http://octopi.inditech.org/api/" + api_path, headers = headers(), data = command)
     if response.status_code == 200:
         return json.loads(response.content.decode('utf-8'))
     else:
