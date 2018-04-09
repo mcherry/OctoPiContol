@@ -460,7 +460,7 @@ def main():
             background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
             
             pygame.draw.rect(background, (255, 255, 255), Button2, 2)
-            background.blit(font.render("Cancel", True, (255, 255, 255)), (160,192))
+            background.blit(font.render("Cancel", True, (255, 255, 255)), (100,192))
             
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
             background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
