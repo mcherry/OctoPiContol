@@ -342,10 +342,10 @@ def main():
                 #    pause_text = "Pause"
                 #    is_paused = False
                 
-                background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
-                background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
-                background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
-                background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
+                #background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
+                #background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
+                #background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
+                #background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
                 
                 pygame.event.set_allowed(MOUSEBUTTONDOWN)
                 
