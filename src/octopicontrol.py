@@ -243,7 +243,7 @@ def main():
     octo_version = "0"
     ext_target_f = "0"
     bed_target_f = "0"
-    degree_symbol= u'\N{DEGREE SIGN}'
+    ds= u'\N{DEGREE SIGN}'
 	
     # Initialise screen
     pygame.init()
@@ -434,26 +434,33 @@ def main():
             #printText(font, color, text, background, x, y):
             
             printText(font, (255,255,255), "Ver: " + api_version + "-" + octo_version, background, 330,5)
+            printText(font, (255,255,255), "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
+            printText(font, (255,255,255), "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:    " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
+            printText(font, (255,255,255), "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
+            printText(font, (255,255,255), "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 79)
+            printText(font, (255,255,255), tzdata.strftime('%m-%d-%Y'), background, 5,300)
+            printText(font, (255,255,255), eta, background, 205, 300)
+            printText(font, (255,255,255), tzdata.strftime('%H:%M:%S'), background, 405,300)
             #verString = "Ver: " + api_version + "-" + octo_version
             #verLabel = font.render(verString.rjust(18), True, (255, 255, 255))
-            infoLine1 = font.render("  [ extruder: " + ext_f.rjust(3) + degree_symbol + "F / " + ext_c.rjust(3) + degree_symbol + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + degree_symbol + "F / " + bed_c.rjust(3).replace(' ', '') + degree_symbol + "C ]", True, (255, 255, 255))
-            infoLine2 = font.render("  [ target:   " + ext_target_f.rjust(3) + degree_symbol + "F / " + ext_target_c.rjust(3) + degree_symbol + "C  " + bed_space + "   target:    " + bed_target_f.rjust(3).replace(' ', '') + degree_symbol + "F /" + bed_target_c.rjust(3) + degree_symbol + "C ]", True, (255, 255, 255))
-            inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
-            inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
-            timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
-            etaText = font.render(eta, True, (255, 255, 255))
-            dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
+            #infoLine1 = font.render("  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", True, (255, 255, 255))
+            #infoLine2 = font.render("  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:    " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", True, (255, 255, 255))
+            #inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
+            #inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
+            #timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
+            #etaText = font.render(eta, True, (255, 255, 255))
+            #dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
 
-            background.blit(statusLabel, (5, 5))
-            background.blit(fileLabel, (5, 25))
-            background.blit(sizeLabel, (5, 45))
+            #background.blit(statusLabel, (5, 5))
+            #background.blit(fileLabel, (5, 25))
+            #background.blit(sizeLabel, (5, 45))
             #background.blit(verLabel, (330, 5))
                         
             # progress bar
             pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
 			
-            background.blit(infoLine1, (5, 110))
-            background.blit(infoLine2, (5, 128))
+            #background.blit(infoLine1, (5, 110))
+            #background.blit(infoLine2, (5, 128))
     
             # buttons
             pygame.draw.rect(background, (255, 255, 255), Button1, 2)
@@ -461,18 +468,18 @@ def main():
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
             pygame.draw.rect(background, (255, 255, 255), Button4, 2)
             
-            background.blit(font.render("Pause", True, (255, 255, 255)), (35,192))
-            background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
-            background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
-            background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
+            #background.blit(font.render("Pause", True, (255, 255, 255)), (35,192))
+            #background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
+            #background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
+            #background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
             
-            background.blit(inetInfo1, (5,262))
-            background.blit(inetInfo2, (5,279))
+            #background.blit(inetInfo1, (5,262))
+            #background.blit(inetInfo2, (5,279))
 			
             # date and time
-            background.blit(dateText, (5, 300))
-            background.blit(etaText, (205, 300))
-            background.blit(timeText, (405, 300))
+            #background.blit(dateText, (5, 300))
+            #background.blit(etaText, (205, 300))
+            #background.blit(timeText, (405, 300))
 		
             screen.blit(background, (0, 0))
             pygame.display.flip()
