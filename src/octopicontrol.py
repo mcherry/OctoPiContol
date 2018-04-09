@@ -403,25 +403,19 @@ def main():
             status_text = ""
             if progress_completion is not None:
                 status_text = "Status: " + state + " (" + `progress_completion` + "%)"
-                #statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
             else:
                 status_text = "Status:" + state
-                #statusLabel = font.render("Status: " + state, True, (255, 255, 255))
 
             filename_text = ""
             if file_name is not None:
                 filename_text = "Name:   " + file_name.replace("_", " ").replace(".gcode", "")
-                #fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
             else:
                 filename_text = "Name: "
-                #fileLabel = font.render("Name: ", True, (255, 255, 255))
 
             if file_size is not None:
                 size_text = "Size:   " + "{:,}".format(file_size) + " Bytes"
-                #sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
             else:
                 size_text = "Size:"
-                #sizeLabel = font.render("Size:", True, (255, 255, 255))
             
             ext_c = `ext`
             ext_target_c = `ext_target`
@@ -438,7 +432,7 @@ def main():
             
             #printText(font, color, text, background, x, y):
             
-            eta = "%02d:%02d:%02d" % (day, hour, minutes)
+           #eta = "%02d:%02d:%02d" % (day, hour, minutes)
             
             printText(font, (255,255,255), status_text, background, 5,5)
             printText(font, (255,255,255), filename_text, background, 5,25)
@@ -449,55 +443,30 @@ def main():
             printText(font, (255,255,255), "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
             printText(font, (255,255,255), "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 279)
             printText(font, (255,255,255), tzdata.strftime('%m-%d-%Y'), background, 5,300)
-            printText(font, (255,255,255), eta, background, 205, 300)
+            printText(font, (255,255,255), "%02d:%02d:%02d" % (day, hour, minutes), background, 205, 300)
             printText(font, (255,255,255), tzdata.strftime('%H:%M:%S'), background, 405,300)
             
-            setProgress(background, progress_completion);
-            
-            #verString = "Ver: " + api_version + "-" + octo_version
-            #verLabel = font.render(verString.rjust(18), True, (255, 255, 255))
-            #infoLine1 = font.render("  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", True, (255, 255, 255))
-            #infoLine2 = font.render("  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:    " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", True, (255, 255, 255))
-            #inetInfo2 = font.render("  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", True, (255, 255, 255))
-            #inetInfo1 = font.render("  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", True, (255, 255, 255))
-            #timeText = font.render(tzdata.strftime('%H:%M:%S'), True, (255, 255, 255))
-            #etaText = font.render(eta, True, (255, 255, 255))
-            #dateText = font.render(tzdata.strftime('%m-%d-%Y'), True, (255, 255, 255))
-
-            #background.blit(statusLabel, (5, 5))
-            #background.blit(fileLabel, (5, 25))
-            #background.blit(sizeLabel, (5, 45))
-            #background.blit(verLabel, (330, 5))
+            setProgress(background, progress_completion)
                         
             # progress bar
-            pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
-			
-            #background.blit(infoLine1, (5, 110))
-            #background.blit(infoLine2, (5, 128))
+            #pygame.draw.rect(background, (255, 255, 255), (5, 65, 470, 40), 2)
     
             # buttons
             pygame.draw.rect(background, (255, 255, 255), Button1, 2)
+            background.blit(font.render("Pause", True, (255, 255, 255)), (35,192))
+            
             pygame.draw.rect(background, (255, 255, 255), Button2, 2)
+            background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
+            
             pygame.draw.rect(background, (255, 255, 255), Button3, 2)
+            background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
+            
             pygame.draw.rect(background, (255, 255, 255), Button4, 2)
-            
-            #background.blit(font.render("Pause", True, (255, 255, 255)), (35,192))
-            #background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
-            #background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
-            #background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
-            
-            #background.blit(inetInfo1, (5,262))
-            #background.blit(inetInfo2, (5,279))
-			
-            # date and time
-            #background.blit(dateText, (5, 300))
-            #background.blit(etaText, (205, 300))
-            #background.blit(timeText, (405, 300))
+            background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
 		
             screen.blit(background, (0, 0))
             pygame.display.flip()
-			
-            # wait a second to refresh
+
             runtime += 1
 			
             if runtime == ssaver_time:
