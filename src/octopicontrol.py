@@ -398,26 +398,31 @@ def main():
                 day = 0
                 hour = 0
                 minutes = 0
-			
-            eta = "%02d:%02d:%02d" % (day, hour, minutes)
-            setProgress(background, progress_completion);
                     
             # render each string
+            status_text = ""
             if progress_completion is not None:
-                statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
+                status_text = "Status: " + state + " (" + `progress_completion` + "%)"
+                #statusLabel = font.render("Status: " + state + " (" + `progress_completion` + "%)", True, (255, 255, 255))
             else:
-                statusLabel = font.render("Status: " + state, True, (255, 255, 255))
+                status_text = "Status:" + state
+                #statusLabel = font.render("Status: " + state, True, (255, 255, 255))
 
+            filename_text = ""
             if file_name is not None:
-                fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
+                filename_text = "Name:   " + file_name.replace("_", " ").replace(".gcode", "")
+                #fileLabel = font.render("Name:   " + file_name.replace("_", " ").replace(".gcode", ""), True, (255, 255, 255))
             else:
-                fileLabel = font.render("Name: ", True, (255, 255, 255))
+                filename_text = "Name: "
+                #fileLabel = font.render("Name: ", True, (255, 255, 255))
 
-            if file_size is not None: 
-                sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
+            if file_size is not None:
+                size_text = "Size:   " + "{:,}".format(file_size) + " Bytes"
+                #sizeLabel = font.render("Size:   " + "{:,}".format(file_size) + " Bytes", True, (255, 255, 255))
             else:
-                sizeLabel = font.render("Size:", True, (255, 255, 255))
-                
+                size_text = "Size:"
+                #sizeLabel = font.render("Size:", True, (255, 255, 255))
+            
             ext_c = `ext`
             ext_target_c = `ext_target`
             bed_c = `bed`
@@ -433,14 +438,22 @@ def main():
             
             #printText(font, color, text, background, x, y):
             
+            eta = "%02d:%02d:%02d" % (day, hour, minutes)
+            
+            printText(font, (255,255,255), status_text, background, 5,5)
+            printText(font, (255,255,255), filename_text, background, 5,25)
+            printText(font, (255,255,255), size_text, background, 5,45)
             printText(font, (255,255,255), "Ver: " + api_version + "-" + octo_version, background, 330,5)
             printText(font, (255,255,255), "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
             printText(font, (255,255,255), "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:    " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
             printText(font, (255,255,255), "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
-            printText(font, (255,255,255), "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 79)
+            printText(font, (255,255,255), "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 279)
             printText(font, (255,255,255), tzdata.strftime('%m-%d-%Y'), background, 5,300)
             printText(font, (255,255,255), eta, background, 205, 300)
             printText(font, (255,255,255), tzdata.strftime('%H:%M:%S'), background, 405,300)
+            
+            setProgress(background, progress_completion);
+            
             #verString = "Ver: " + api_version + "-" + octo_version
             #verLabel = font.render(verString.rjust(18), True, (255, 255, 255))
             #infoLine1 = font.render("  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", True, (255, 255, 255))
