@@ -215,13 +215,13 @@ def createSurface(screen, bgcolor):
     return bground
 
 def backlightOff():
-    file = open("/sys/class/backlight/soc\:backlight/brightness","w") 
+    file = open("/sys/class/backlight/soc:backlight/brightness","w") 
     file.write("0")
     file.close()
     return
 
 def backlightOn():
-    file = open("/sys/class/backlight/soc\:backlight/brightness","w") 
+    file = open("/sys/class/backlight/soc:backlight/brightness","w") 
     file.write("1")
     file.close()
     return
