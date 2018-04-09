@@ -235,6 +235,8 @@ def printText(font, color, text, background, x, y):
 def main():
     global index
     global wclient
+    
+    backlightOn()
 	
     runtime = 0
     ssaver_time = 5000
@@ -293,14 +295,19 @@ def main():
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button2)
                     background.blit(font.render("Cancel", True, (0, 0, 0)), (152,192))
+                    post_info('job', {'command': 'cancel'})
+                    #post_info('printer/printhead', {'command': 'home', 'axes': ['x', 'y', 'z']})
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button3)
                     background.blit(font.render("Reboot", True, (0, 0, 0)), (275,192))
+                    os.system("/sbin/reboot")
                     
                 if Button4.collidepoint(mouse_pos):
                     pygame.draw.rect(background, (255, 255, 255), Button4)
                     background.blit(font.render("Power Off", True, (0, 0, 0)), (386,192))
+                    backlightOff()
+                    os.system("/sbin/poweroff")
                                     
                 if return_from_ss != True:
                     runtime = 0
