@@ -456,8 +456,8 @@ def main():
             printText(font, (255,255,255), size_text, background, 5,45)
             if state != 'Offline':
                 printText(font, (255,255,255), "Ver: " + `api_version` + "-" + `octo_version`, background, 330,5)
-            printText(font, (255,255,255), "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "   " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
-            printText(font, (255,255,255), "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:    " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
+            printText(font, (255,255,255), "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + ds + "F /  " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
+            printText(font, (255,255,255), "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:     " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
             printText(font, (255,255,255), "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
             printText(font, (255,255,255), "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 279)
             printText(font, (255,255,255), tzdata.strftime('%m-%d-%Y'), background, 5,300)
