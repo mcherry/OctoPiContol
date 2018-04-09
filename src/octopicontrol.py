@@ -331,16 +331,14 @@ def main():
                 #    is_paused = False
                 
                 background.blit(font.render(pause_text, True, (255, 255, 255)), (35,192))
-                
-                if is_paused == False:
-                    background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
-                    background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
-                    background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
+                background.blit(font.render("Stop", True, (255, 255, 255)), (160,192))
+                background.blit(font.render("Reboot", True, (255, 255, 255)), (275,192))
+                background.blit(font.render("Power Off", True, (255, 255, 255)), (386,192))
                 
                 pygame.event.set_allowed(MOUSEBUTTONDOWN)
                 
-                screen.blit(background, (0, 0))
-                pygame.display.flip()
+            screen.blit(background, (0, 0))
+            pygame.display.flip()
 
 	if screensaver_on is False:
             progress_completion = None
