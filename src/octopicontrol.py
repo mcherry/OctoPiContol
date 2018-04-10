@@ -231,7 +231,7 @@ def printText(font, color, text, background, x, y):
     background.blit(item, (x, y))
     return
 
-def confirm(background, message):
+def confirm(screen, background, message):
     return_val = False
     button_clicked = False
     
@@ -371,7 +371,7 @@ def main():
                     background.blit(font.render("Reboot", True, BLACK), (275,192))
                     #backLight("0")
                     #os.system("/sbin/reboot")
-                    check = confirm(background, "Are you sure you want to do this?")
+                    check = confirm(screen, background, "Are you sure you want to do this?")
                     if check == True:
                         print "Yes"
                     else:
