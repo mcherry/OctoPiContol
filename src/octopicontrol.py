@@ -370,8 +370,8 @@ def main():
                 api_version = ver['api']
                 octo_version = ver['server']
             else:
-                api_version = 0
-                octo_version = 0
+                api_version = "0"
+                octo_version = "0"
             
             ext_f = "0"
             bed_f = "0"
@@ -462,9 +462,9 @@ def main():
             printText(font, WHITE, filename_text, background, 5,25)
             printText(font, WHITE, size_text, background, 5,45)
             if state != 'Offline':
-                printText(font, WHITE, "Ver: " + `api_version` + "-" + `octo_version`, background, 330,5)
-                printText(font, WHITE, "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "   bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + ds + "F /  " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
-                printText(font, WHITE, "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "   target:     " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
+                printText(font, WHITE, "Ver: " + api_version + "-" + octo_version, background, 330,5)
+                printText(font, WHITE, "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "  bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
+                printText(font, WHITE, "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "  target:     " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
                 printText(font, WHITE, "%02d:%02d:%02d" % (day, hour, minutes), background, 205, 300)
                 
             printText(font, WHITE, "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
