@@ -286,10 +286,10 @@ def confirm(screen, message):
                     
             # buttons
             pygame.draw.rect(background, WHITE, Button1, 2)
-            background.blit(font.render("Yes", True, WHITE), (200,265))
+            background.blit(font.render("Yes", True, WHITE), (230,265))
             
             pygame.draw.rect(background, WHITE, Button2, 2)
-            background.blit(font.render("No", True, WHITE), (370,265))
+            background.blit(font.render("No", True, WHITE), (400,265))
         
             screen.blit(background, (0, 0))
             pygame.display.flip()
