@@ -245,10 +245,10 @@ def confirm(screen, message):
     
     printText(font, WHITE, message, background, 5,5)
     pygame.draw.rect(background, WHITE, Button1, 2)
-    background.blit(font.render("Yes", True, WHITE), (220,270))
+    background.blit(font.render("Yes", True, WHITE), (215,270))
             
     pygame.draw.rect(background, WHITE, Button2, 2)
-    background.blit(font.render("No", True, WHITE), (390,270))
+    background.blit(font.render("No", True, WHITE), (395,270))
 
     screen.blit(background, (0, 0))
     pygame.display.flip()
@@ -357,26 +357,26 @@ def main():
                     pygame.draw.rect(background, WHITE, Button2)
                     background.blit(font.render("Cancel", True, BLACK), (152,192))
                     
-                    #cancel = confirm(background, "Are you sure you want to cancel the current print job?")
-                    #if cancel == True:
-                    #    post_info('job', {'command': 'cancel'})
+                    cancel = confirm(background, "Are you sure you want to cancel the current job?")
+                    if cancel == True:
+                        post_info('job', {'command': 'cancel'})
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, WHITE, Button3)
                     background.blit(font.render("Reboot", True, BLACK), (275,192))
-                    #backLight("0")
-                    #os.system("/sbin/reboot")
-                    check = confirm(screen, "Are you sure you want to do this?")
+                    
+                    check = confirm(screen, "Are you sure you want to reboot?")
                     if check == True:
-                        print "Yes"
-                    else:
-                        print "No"
+                        backLight("0")
+                        os.system("/sbin/reboot")
                     
                 if Button4.collidepoint(mouse_pos):
                     pygame.draw.rect(background, WHITE, Button4)
                     background.blit(font.render("Power Off", True, BLACK), (386,192))
-                    #backLight("0")
-                    #os.system("/sbin/poweroff")
+                    check = confirm(screen, "Are you sure you want to power off?")
+                    if check == True:
+                        backLight("0")
+                        os.system("/sbin/poweroff")
                                     
                 if return_from_ss != True:
                     runtime = 0
