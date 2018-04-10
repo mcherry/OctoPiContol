@@ -373,7 +373,7 @@ def main():
                     background.blit(font.render("Reboot", True, BLACK), (275,192))
                     #backLight("0")
                     #os.system("/sbin/reboot")
-                    check = confirm(screen, background, "Are you sure you want to do this?")
+                    check = confirm(screen, "Are you sure you want to do this?")
                     if check == True:
                         print "Yes"
                     else:
