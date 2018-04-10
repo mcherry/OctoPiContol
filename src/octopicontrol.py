@@ -231,7 +231,7 @@ def printText(font, color, text, background, x, y):
     background.blit(item, (x, y))
     return
 
-def confirm(screen, background, message):
+def confirm(screen, message):
     return_val = False
     button_clicked = False
     
@@ -243,6 +243,7 @@ def confirm(screen, background, message):
     font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
     printText(font, WHITE, message, background, 5,5)
     
+    background = createSurface(screen, BLACK)
     screen.blit(background, (0, 0))
     pygame.display.flip()
     
@@ -371,7 +372,7 @@ def main():
                     background.blit(font.render("Reboot", True, BLACK), (275,192))
                     #backLight("0")
                     #os.system("/sbin/reboot")
-                    check = confirm(screen, background, "Are you sure you want to do this?")
+                    check = confirm(screen, "Are you sure you want to do this?")
                     if check == True:
                         print "Yes"
                     else:
