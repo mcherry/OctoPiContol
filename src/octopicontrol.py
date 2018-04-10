@@ -239,7 +239,7 @@ def confirm(screen, message):
     BLACK = (0,0,0)
     
     Button1 = pygame.Rect(280, 300, 75, 150)
-    Button2 = pygame.Rect(160, 455, 75, 150)
+    Button2 = pygame.Rect(160, 300, 75, 150)
     font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
     background = createSurface(screen, BLACK)
     
