@@ -445,13 +445,19 @@ def main():
             else:
                 state = "Offline"
                 progress_completion = 0
-			
-            printer = get_info('printer')
-            if printer is not None:
-                ext = int(printer['temperature']['tool0']['actual'])
-                ext_target = int(printer['temperature']['tool0']['target'])
-                bed = int(printer['temperature']['bed']['actual'])
-                bed_target = int(printer['temperature']['bed']['target'])
+                
+            if state != "Offline":
+                printer = get_info('printer')
+                if printer is not None:
+                    ext = int(printer['temperature']['tool0']['actual'])
+                    ext_target = int(printer['temperature']['tool0']['target'])
+                    bed = int(printer['temperature']['bed']['actual'])
+                    bed_target = int(printer['temperature']['bed']['target'])
+                else:
+                    ext = 0
+                    ext_target = 0
+                    bed = 0
+                    bed_target = 0
             else:
                 ext = 0
                 ext_target = 0
