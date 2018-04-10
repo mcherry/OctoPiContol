@@ -245,10 +245,10 @@ def confirm(screen, message):
     
     printText(font, WHITE, message, background, 5,5)
     pygame.draw.rect(background, WHITE, Button1, 2)
-    background.blit(font.render("Yes", True, WHITE), (200,265))
+    background.blit(font.render("Yes", True, WHITE), (220,270))
             
     pygame.draw.rect(background, WHITE, Button2, 2)
-    background.blit(font.render("No", True, WHITE), (370,265))
+    background.blit(font.render("No", True, WHITE), (390,270))
 
     screen.blit(background, (0, 0))
     pygame.display.flip()
@@ -278,26 +278,14 @@ def confirm(screen, message):
                 if Button1.collidepoint(mouse_pos):
                     pygame.draw.rect(background, WHITE, Button1, 2)
                     background.blit(font.render("Yes", True, BLACK), (35,192))
-                    #time.sleep(0.25)
                     return_val = True
                     button_clicked = True
                     
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, WHITE, Button2, 2)
                     background.blit(font.render("No", True, BLACK), (152,192))
-                    #time.sleep(0.25)
                     return_val = False
                     button_clicked = True
-                    
-#            # buttons
-#            pygame.draw.rect(background, WHITE, Button1, 2)
-#            background.blit(font.render("Yes", True, WHITE), (200,265))
-#            
-#            pygame.draw.rect(background, WHITE, Button2, 2)
-#            background.blit(font.render("No", True, WHITE), (370,265))
-        
-            #screen.blit(background, (0, 0))
-            #pygame.display.flip()
             
             if button_clicked == True:
                 return return_val
