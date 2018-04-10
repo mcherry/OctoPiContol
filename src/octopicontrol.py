@@ -16,6 +16,7 @@ import signal
 import socket
 import struct
 import sys
+import time
 from datetime import datetime
 from os.path import expanduser
 from pytz import timezone
@@ -219,15 +220,9 @@ def createSurface(screen, bgcolor):
 		
     return bground
 
-def backlightOff():
+def backLight(state):
     file = open("/sys/class/backlight/soc:backlight/brightness","w") 
-    file.write("0")
-    file.close()
-    return
-
-def backlightOn():
-    file = open("/sys/class/backlight/soc:backlight/brightness","w") 
-    file.write("1")
+    file.write(state)
     file.close()
     return
 
@@ -236,14 +231,76 @@ def printText(font, color, text, background, x, y):
     background.blit(item, (x, y))
     return
 
+def confirm(background, message):
+    return_val = False
+    button_clicked = False
+    
+    WHITE = (255,255,255)
+    BLACK = (0,0,0)
+    
+    Button1 = pygame.Rect(5, 152, 100, 100)
+    Button2 = pygame.Rect(127, 152, 100, 100)
+    font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
+    printText(font, WHITE, message, background, 5,5)
+    
+    screen.blit(background, (0, 0))
+    pygame.display.flip()
+    
+    clock = pygame.time.Clock()
+    while True:
+        clock.tick(15)
+        
+        for event in pygame.event.get():
+            mouse_pos = pygame.mouse.get_pos()
+            
+            if event.type == QUIT:
+                return
+            
+            elif event.type == MOUSEBUTTONDOWN:
+                pygame.event.set_blocked(MOUSEBUTTONDOWN)
+                
+                if Button1.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, WHITE, Button3)
+                    background.blit(font.render("Yes", True, BLACK), (275,192))
+                    
+                if Button2.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, WHITE, Button4)
+                    background.blit(font.render("No", True, BLACK), (386,192))
+                    
+            elif event.type == MOUSEBUTTONUP:
+                if Button1.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, WHITE, Button1, 2)
+                    background.blit(font.render("Yes", True, BLACK), (35,192))
+                    time.sleep(0.25)
+                    return_val = True
+                    button_clicked = True
+                    
+                if Button2.collidepoint(mouse_pos):
+                    pygame.draw.rect(background, WHITE, Button2, 2)
+                    background.blit(font.render("No", True, BLACK), (152,192))
+                    time.sleep(0.25)
+                    return_val = False
+                    button_clicked = True
+                    
+            # buttons
+            pygame.draw.rect(background, WHITE, Button1, 2)
+            background.blit(font.render("Yes", True, WHITE), (35,192))
+            
+            pygame.draw.rect(background, WHITE, Button2, 2)
+            background.blit(font.render("No", True, WHITE), (152,192))
+        
+            screen.blit(background, (0, 0))
+            pygame.display.flip()
+            
+            if button_clicked == True:
+                return return_val
+
 def main():
     global index
     global wclient
     
     WHITE = (255,255,255)
     BLACK = (0,0,0)
-    
-    signal.signal(signal.SIGINT, ctrl_c)
 	
     runtime = 0
     ssaver_time = 5000
@@ -256,6 +313,8 @@ def main():
     ds = u'\N{DEGREE SIGN}'
     is_paused = False
     pause_text = "Pause"
+
+    signal.signal(signal.SIGINT, ctrl_c)
 
     # Initialise screen
     pygame.init()
@@ -274,7 +333,7 @@ def main():
     pos = (0, 0)
     clock = pygame.time.Clock()
     while True:
-        clock.tick(25)
+        clock.tick(15)
         
         for event in pygame.event.get():
             mouse_pos = pygame.mouse.get_pos()
@@ -302,18 +361,27 @@ def main():
                 if Button2.collidepoint(mouse_pos):
                     pygame.draw.rect(background, WHITE, Button2)
                     background.blit(font.render("Cancel", True, BLACK), (152,192))
-                    post_info('job', {'command': 'cancel'})
+                    
+                    #cancel = confirm(background, "Are you sure you want to cancel the current print job?")
+                    #if cancel == True:
+                    #    post_info('job', {'command': 'cancel'})
                                 
                 if Button3.collidepoint(mouse_pos):
                     pygame.draw.rect(background, WHITE, Button3)
                     background.blit(font.render("Reboot", True, BLACK), (275,192))
-                    os.system("/sbin/reboot")
+                    #backLight("0")
+                    #os.system("/sbin/reboot")
+                    check = confirm(background, "Are you sure you want to do this?")
+                    if check == True:
+                        print "Yes"
+                    else:
+                        print "No"
                     
                 if Button4.collidepoint(mouse_pos):
                     pygame.draw.rect(background, WHITE, Button4)
                     background.blit(font.render("Power Off", True, BLACK), (386,192))
-                    backlightOff()
-                    os.system("/sbin/poweroff")
+                    #backLight("0")
+                    #os.system("/sbin/poweroff")
                                     
                 if return_from_ss != True:
                     runtime = 0
@@ -394,7 +462,7 @@ def main():
                 ext_target = 0
                 bed = 0
                 bed_target = 0
-					
+
             ext_f = CtoF(ext).ljust(3)
             bed_f = CtoF(bed).ljust(3)
 				
@@ -544,7 +612,7 @@ def main():
                         rects.append(rect)
 
                 pygame.display.flip()
-                clock.tick(25)
+                clock.tick(15)
 				
                 for rect in rects:
                     screen.fill([0,0,0], rect)
