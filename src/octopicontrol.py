@@ -266,26 +266,27 @@ def confirm(screen, message):
             elif event.type == MOUSEBUTTONDOWN:
                 pygame.event.set_blocked(MOUSEBUTTONDOWN)
                 
-                if Button1.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button3)
-                    background.blit(font.render("Yes", True, BLACK), (275,192))
-                    
-                if Button2.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button4)
-                    background.blit(font.render("No", True, BLACK), (386,192))
+                #if Button1.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button3)
+                #    background.blit(font.render("Yes", True, BLACK), (275,192))
+                #    
+                #if Button2.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button4)
+                #    background.blit(font.render("No", True, BLACK), (386,192))
                     
             elif event.type == MOUSEBUTTONUP:
-                if Button1.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button1, 2)
-                    background.blit(font.render("Yes", True, BLACK), (35,192))
-                    return_val = True
-                    button_clicked = True
-                    
-                if Button2.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button2, 2)
-                    background.blit(font.render("No", True, BLACK), (152,192))
-                    return_val = False
-                    button_clicked = True
+		pygame.event.set_allowed(MOUSEBUTTONDOWN)
+                #if Button1.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button1, 2)
+                #    background.blit(font.render("Yes", True, BLACK), (35,192))
+                #    return_val = True
+                #    button_clicked = True
+                #    
+                #if Button2.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button2, 2)
+                #    background.blit(font.render("No", True, BLACK), (152,192))
+                #    return_val = False
+                #    button_clicked = True
             
             if button_clicked == True:
                 return return_val
@@ -313,13 +314,13 @@ def main():
 
     # Initialise screen
     pygame.init()
-    screen = pygame.display.set_mode((480, 320))
+    screen = pygame.display.set_mode((320, 480))
     pygame.mouse.set_visible(False)
     
-    Button1 = pygame.Rect(5, 152, 100, 100)
-    Button2 = pygame.Rect(127, 152, 100, 100)
-    Button3 = pygame.Rect(250, 152, 100, 100)
-    Button4 = pygame.Rect(371, 152, 100, 100)
+    #Button1 = pygame.Rect(5, 152, 100, 100)
+    #Button2 = pygame.Rect(127, 152, 100, 100)
+    #Button3 = pygame.Rect(250, 152, 100, 100)
+    #Button4 = pygame.Rect(371, 152, 100, 100)
 	
     # create font
     font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
@@ -339,44 +340,44 @@ def main():
             elif event.type == MOUSEBUTTONDOWN:
                 pygame.event.set_blocked(MOUSEBUTTONDOWN)
                                 
-                if Button1.collidepoint(mouse_pos):
-                    if is_paused == False:
-                        post_info("job", {'command': 'pause', 'action': 'pause'})
-                        pause_text = "Resume"
-                        is_paused = True
-                    else:
-                        post_info('job', {'command': 'pause', 'action': 'resume'})
-                        pause_text = "Pause"
-                        is_paused = False
-                        
-                    pygame.draw.rect(background, WHITE, Button1)
-                    pauseText = font.render(pause_text, True, BLACK)
-                    background.blit(pauseText, (35,192))
+                #if Button1.collidepoint(mouse_pos):
+                #    if is_paused == False:
+                #        post_info("job", {'command': 'pause', 'action': 'pause'})
+                #        pause_text = "Resume"
+                #        is_paused = True
+                #    else:
+                #        post_info('job', {'command': 'pause', 'action': 'resume'})
+                #        pause_text = "Pause"
+                #        is_paused = False
+                #        
+                #    pygame.draw.rect(background, WHITE, Button1)
+                #    pauseText = font.render(pause_text, True, BLACK)
+                #    background.blit(pauseText, (35,192))
 
-                if Button2.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button2)
-                    background.blit(font.render("Cancel", True, BLACK), (152,192))
-                    
-                    cancel = confirm(background, "Are you sure you want to cancel the current job?")
-                    if cancel == True:
-                        post_info('job', {'command': 'cancel'})
+                #if Button2.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button2)
+                #    background.blit(font.render("Cancel", True, BLACK), (152,192))
+                #    
+                #    cancel = confirm(background, "Are you sure you want to cancel the current job?")
+                #    if cancel == True:
+                #        post_info('job', {'command': 'cancel'})
                                 
-                if Button3.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button3)
-                    background.blit(font.render("Reboot", True, BLACK), (275,192))
+                #if Button3.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button3)
+                #    background.blit(font.render("Reboot", True, BLACK), (275,192))
+                #    
+                #    check = confirm(screen, "Are you sure you want to reboot?")
+                #    if check == True:
+                #        backLight("0")
+                #        os.system("/sbin/reboot")
                     
-                    check = confirm(screen, "Are you sure you want to reboot?")
-                    if check == True:
-                        backLight("0")
-                        os.system("/sbin/reboot")
-                    
-                if Button4.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button4)
-                    background.blit(font.render("Power Off", True, BLACK), (386,192))
-                    check = confirm(screen, "Are you sure you want to power off?")
-                    if check == True:
-                        backLight("0")
-                        os.system("/sbin/poweroff")
+                #if Button4.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button4)
+                #    background.blit(font.render("Power Off", True, BLACK), (386,192))
+                #    check = confirm(screen, "Are you sure you want to power off?")
+                #    if check == True:
+                #        backLight("0")
+                #        os.system("/sbin/poweroff")
                                     
                 if return_from_ss != True:
                     runtime = 0
@@ -389,21 +390,21 @@ def main():
                 break
             
             elif event.type == MOUSEBUTTONUP:
-                if Button1.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button1, 2)
-                    background.blit(font.render(pause_text, True, BLACK), (35,192))
+                #if Button1.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button1, 2)
+                #    background.blit(font.render(pause_text, True, BLACK), (35,192))
                     
-                if Button2.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button2, 2)
-                    background.blit(font.render("Cancel", True, BLACK), (152,192))
+                #if Button2.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button2, 2)
+                #    background.blit(font.render("Cancel", True, BLACK), (152,192))
                     
-                if Button3.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button3, 2)
-                    background.blit(font.render("Reboot", True, BLACK), (275,192))
+                #if Button3.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button3, 2)
+                #    background.blit(font.render("Reboot", True, BLACK), (275,192))
                     
-                if Button4.collidepoint(mouse_pos):
-                    pygame.draw.rect(background, WHITE, Button4, 2)
-                    background.blit(font.render("Power Off", True, BLACK), (386,192))
+                #if Button4.collidepoint(mouse_pos):
+                #    pygame.draw.rect(background, WHITE, Button4, 2)
+                #    background.blit(font.render("Power Off", True, BLACK), (386,192))
                 
                 pygame.event.set_allowed(MOUSEBUTTONDOWN)
                 
@@ -530,31 +531,35 @@ def main():
             printText(font, WHITE, status_text, background, 5,5)
             printText(font, WHITE, filename_text, background, 5,25)
             printText(font, WHITE, size_text, background, 5,45)
-            if state != 'Offline':
-                printText(font, WHITE, "Ver: " + api_version + "-" + octo_version, background, 330,5)
-                printText(font, WHITE, "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "  bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
-                printText(font, WHITE, "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "  target:     " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
-                printText(font, WHITE, "%02d:%02d:%02d" % (day, hour, minutes), background, 205, 300)
-                
-            printText(font, WHITE, "  [ wlan0: " + getIPAddr('wlan0').ljust(15) + "      mac: " + getHWAddr('wlan0').ljust(17) + " ]", background, 5,263)
-            printText(font, WHITE, "  [ eth0:  " + getIPAddr('eth0').ljust(15) + "      mac: " + getHWAddr('eth0').ljust(17) + " ]", background, 5, 279)
-            printText(font, WHITE, tzdata.strftime('%m-%d-%Y'), background, 5,300)
-            printText(font, WHITE, tzdata.strftime('%H:%M:%S'), background, 405,300)
+            printText(font, WHITE, "ETA:    %02d:%02d:%02d" % (day, hour, minutes), background, 5, 65)
+            printText(font, WHITE, "wlan0:  " + getIPAddr('wlan0').ljust(15), background, 5, 105)
+            printText(font, WHITE, "        " + getHWAddr('wlan0').ljust(17), background, 5,125)
+            printText(font, WHITE, "eth0:   " + getIPAddr('eth0').ljust(15), background, 5, 145)
+            printText(font, WHITE, "        " + getHWAddr('eth0').ljust(17), background, 5, 165)
+
+            #if state != 'Offline':
+                #printText(font, WHITE, "Ver: " + api_version + "-" + octo_version, background, 330,5)
+                #printText(font, WHITE, "  [ extruder: " + ext_f.rjust(3) + ds + "F / " + ext_c.rjust(3) + ds + "C  " + bed_space + "  bed:    " + bed_space + "    " + bed_f.rjust(3).replace(' ', '') + ds + "F / " + bed_c.rjust(3).replace(' ', '') + ds + "C ]", background, 5, 110)
+                #printText(font, WHITE, "  [ target:   " + ext_target_f.rjust(3) + ds + "F / " + ext_target_c.rjust(3) + ds + "C  " + bed_space + "  target:     " + bed_target_f.rjust(3).replace(' ', '') + ds + "F /" + bed_target_c.rjust(3) + ds + "C ]", background, 5, 128)
+                #printText(font, WHITE, "%02d:%02d:%02d" % (day, hour, minutes), background, 205, 300)
+
+            #printText(font, WHITE, tzdata.strftime('%m-%d-%Y'), background, 5,300)
+            #printText(font, WHITE, tzdata.strftime('%H:%M:%S'), background, 405,300)
             
-            setProgress(background, progress_completion)
+            #setProgress(background, progress_completion)
     
             # buttons
-            pygame.draw.rect(background, WHITE, Button1, 2)
-            background.blit(font.render(pause_text, True, WHITE), (35,192))
+            #pygame.draw.rect(background, WHITE, Button1, 2)
+            #background.blit(font.render(pause_text, True, WHITE), (35,192))
             
-            pygame.draw.rect(background, WHITE, Button2, 2)
-            background.blit(font.render("Cancel", True, WHITE), (152,192))
+            #pygame.draw.rect(background, WHITE, Button2, 2)
+            #background.blit(font.render("Cancel", True, WHITE), (152,192))
             
-            pygame.draw.rect(background, WHITE, Button3, 2)
-            background.blit(font.render("Reboot", True, WHITE), (275,192))
+            #pygame.draw.rect(background, WHITE, Button3, 2)
+            #background.blit(font.render("Reboot", True, WHITE), (275,192))
             
-            pygame.draw.rect(background, WHITE, Button4, 2)
-            background.blit(font.render("Power Off", True, WHITE), (386,192))
+            #pygame.draw.rect(background, WHITE, Button4, 2)
+            #background.blit(font.render("Power Off", True, WHITE), (386,192))
 		
             screen.blit(background, (0, 0))
             pygame.display.flip()
@@ -566,7 +571,7 @@ def main():
                 screensaver_on = True
         else:
             # fire up the screensaver
-            size = [480,320]
+            size = [320,480]
 			
             background = createSurface(screen, BLACK)
             screen.blit(background, (0, 0))
