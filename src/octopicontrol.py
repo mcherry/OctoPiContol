@@ -61,10 +61,10 @@ class CodePartical(object):
     def render(self, screen, text):
         if self.life>self.fade_time:
             #color = [ 200*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 255 , 200*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
-            color = [ 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 255 , 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
+            color = [ 0*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 0 , 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
         else:
             #color = [ 0 , 255*(float(self.life)/self.fade_time) , 0 ]
-            color = [ 95 , 95*(float(self.life)/self.fade_time) , 200 ]
+            color = [ 100 , 100*(float(self.life)/self.fade_time) , 255 ]
             
         text_surface =  text.render(self.code[int(self.frame)], False, color)
         rect = text_surface.get_rect(center = self.pos)
