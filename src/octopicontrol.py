@@ -61,10 +61,10 @@ class CodePartical(object):
     def render(self, screen, text):
         if self.life>self.fade_time:
             #color = [ 200*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 255 , 200*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
-            color = [ 102*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 123 , 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
+            color = [ 115*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 115 , 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
         else:
             #color = [ 0 , 255*(float(self.life)/self.fade_time) , 0 ]
-            color = [ 54 , 5*(float(self.life)/self.fade_time) , 230 ]
+            color = [ 0 , 0*(float(self.life)/self.fade_time) , 200 ]
             
         text_surface =  text.render(self.code[int(self.frame)], False, color)
         rect = text_surface.get_rect(center = self.pos)
@@ -311,7 +311,6 @@ def main():
     ds = u'\N{DEGREE SIGN}'
     is_paused = False
     pause_text = "Pause"
-    
 
     signal.signal(signal.SIGINT, ctrl_c)
 
