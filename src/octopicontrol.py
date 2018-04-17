@@ -61,7 +61,7 @@ class CodePartical(object):
     def render(self, screen, text):
         if self.life>self.fade_time:
             #color = [ 200*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 255 , 200*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
-            color = [ 115*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 115 , 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
+            color = [ 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) , 255 , 255*(float(self.life-self.fade_time)/(self.max_life-self.fade_time)) ]
         else:
             #color = [ 0 , 255*(float(self.life)/self.fade_time) , 0 ]
             color = [ 95 , 95*(float(self.life)/self.fade_time) , 200 ]
