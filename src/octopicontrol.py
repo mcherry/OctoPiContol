@@ -325,7 +325,7 @@ def main():
     #Button4 = pygame.Rect(371, 152, 100, 100)
 	
     # create font
-    font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 13)
+    font = pygame.font.Font(get_script_path() + "/Fonts/NotoMono-Regular.ttf", 15)
 	
     # main loop that shows and cycles time
     pos = (0, 0)
