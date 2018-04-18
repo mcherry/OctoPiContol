@@ -529,13 +529,13 @@ def main():
                 bed_space = " "
             
             printText(font, WHITE, status_text, background, 5,5)
-            printText(font, WHITE, filename_text, background, 5,25)
-            printText(font, WHITE, size_text, background, 5,45)
-            printText(font, WHITE, "ETA:    %02d:%02d:%02d" % (day, hour, minutes), background, 5, 65)
-            printText(font, WHITE, "wlan0:  " + getIPAddr('wlan0').ljust(15), background, 5, 105)
-            printText(font, WHITE, "        " + getHWAddr('wlan0').ljust(17), background, 5,125)
-            printText(font, WHITE, "eth0:   " + getIPAddr('eth0').ljust(15), background, 5, 145)
-            printText(font, WHITE, "        " + getHWAddr('eth0').ljust(17), background, 5, 165)
+            printText(font, WHITE, filename_text, background, 5,30)
+            printText(font, WHITE, size_text, background, 5,55)
+            printText(font, WHITE, "ETA:    %02d:%02d:%02d" % (day, hour, minutes), background, 5, 80)
+            printText(font, WHITE, "wlan0:  " + getIPAddr('wlan0').ljust(15), background, 5, 130)
+            printText(font, WHITE, "        " + getHWAddr('wlan0').ljust(17), background, 5,155)
+            printText(font, WHITE, "eth0:   " + getIPAddr('eth0').ljust(15), background, 5, 180)
+            printText(font, WHITE, "        " + getHWAddr('eth0').ljust(17), background, 5, 205)
 
             #if state != 'Offline':
                 #printText(font, WHITE, "Ver: " + api_version + "-" + octo_version, background, 330,5)
@@ -599,7 +599,7 @@ def main():
                     groups.append(Group([pos, -font.get_height()], speed))
 					
                 if random.randint(0, 50) == 50:
-                    matrixcode = ".: MP Mini Select V2 IIIP 3D Printer :."
+                    matrixcode = "MP Mini Select V2 IIIP 3D Printer"
                     code = list(matrixcode)
                     random.shuffle(code, random.random)
 					
